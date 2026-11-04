@@ -1,0 +1,130 @@
+/*
+ * Bridge: the original NOVATECH IRM pages keep their own components and class names, but read their colours,
+ * type and radii from Sentinel's tokens, so one product look runs through both. Light theme follows Sentinel's
+ * Daylight setting through the same tokens. Loaded after legacy-scoped.css; the doubled class outranks the
+ * original `:root[data-theme='light'] .ent-root` palette so Sentinel's theme decides in both modes.
+ */
+html:root .ent-root.ent-root {
+  --bg: var(--s-bg-1);
+  --bg-2: var(--s-bg-1);
+  --panel: var(--s-bg-2);
+  --raised: var(--s-bg-3);
+  --hover: color-mix(in srgb, var(--s-bg-3) 70%, var(--s-bg-4));
+  --border: var(--s-line);
+  --border-2: var(--s-line-2);
+  --text: var(--s-text);
+  --text-2: var(--s-text-2);
+  --text-3: var(--s-text-3);
+  --text-4: var(--s-text-3);
+  --accent: var(--s-cobalt);
+  --accent-2: color-mix(in srgb, var(--s-cobalt) 70%, white);
+  --accent-wash: var(--s-cobalt-dim);
+  --accent-line: color-mix(in srgb, var(--s-cobalt) 42%, transparent);
+  --hot: var(--s-amber);
+  --pass: var(--s-teal);
+  --pass-2: color-mix(in srgb, var(--s-teal) 80%, white);
+  --pass-wash: var(--s-teal-dim);
+  --pass-line: color-mix(in srgb, var(--s-teal) 40%, transparent);
+  --medium: var(--s-amber);
+  --medium-wash: var(--s-amber-dim);
+  --medium-line: color-mix(in srgb, var(--s-amber) 38%, transparent);
+  --crit: var(--s-crimson);
+  --crit-2: color-mix(in srgb, var(--s-crimson) 80%, white);
+  --crit-wash: var(--s-crimson-dim);
+  --crit-line: color-mix(in srgb, var(--s-crimson) 42%, transparent);
+  --high: #FF8F5A;
+  --high-wash: rgba(255, 143, 90, 0.13);
+  --high-line: rgba(255, 143, 90, 0.4);
+  --low: var(--s-cobalt);
+  --low-wash: var(--s-cobalt-dim);
+  --low-line: color-mix(in srgb, var(--s-cobalt) 40%, transparent);
+  --font: var(--s-font);
+  --mono: var(--s-mono);
+  --r: var(--s-r-2);
+  --r-sm: var(--s-r-1);
+  --r-lg: var(--s-r-3);
+  background: transparent;
+  color: var(--s-text);
+  font-family: var(--s-font);
+  font-size: 14px;
+  min-height: auto;
+  padding: 0;
+}
+
+/* The page sits in Sentinel's frame: no second app chrome, Sentinel's own gutter and width. */
+.ent-banner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; margin: 0 0 22px; padding: 10px 12px 10px 14px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--s-amber) 40%, transparent); background: var(--s-amber-dim); color: var(--s-text); font-size: 0.9rem; line-height: 1.45; }
+.ent-banner-text { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+.ent-banner-text svg { vertical-align: -2px; }
+.ent-banner b { font-weight: 620; }
+.ent-banner .s-linkbtn { white-space: nowrap; }
+@media (max-width: 640px) { .ent-banner { grid-template-columns: 1fr; } .ent-banner .s-btn { justify-self: start; } }
+
+/* One product: page heads, surfaces and controls take Sentinel's alignment, type scale and shapes. */
+.ent-root .app2.ent-app .content { width: min(1440px, 100% - 2 * clamp(14px, 3vw, 40px)); padding: clamp(16px, 2.4vw, 32px) 0 72px; }
+.ent-root .app2.ent-app .page-head { flex-direction: row; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; text-align: left; gap: 16px; margin: 0 0 24px; }
+.ent-root .app2.ent-app .page-head > div:first-child { display: block; }
+.ent-root .app2.ent-app .page-head h1 { font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.6rem); font-weight: 620; font-stretch: 110%; letter-spacing: -0.02em; line-height: 1.06; max-width: none; }
+.ent-root .app2.ent-app .page-head p { font-size: clamp(1.02rem, 0.95rem + 0.3vw, 1.18rem); line-height: 1.55; color: var(--s-text-2); max-width: 62ch; margin-top: 8px; }
+.ent-root .app2.ent-app .page-head .eyebrow { justify-content: flex-start; color: var(--s-text-2); font-size: 0.85rem; font-weight: 560; margin-bottom: 6px; }
+.ent-root .app2.ent-app .page-head .row.wrap { justify-content: flex-start; }
+.ent-root .app2.ent-app .tabs { justify-content: flex-start; }
+.ent-root .app2.ent-app .card { border-radius: var(--s-r-3); border: 1px solid var(--s-line); background: var(--s-bg-2); box-shadow: none; }
+.ent-root .app2.ent-app .stats { border-radius: var(--s-r-3); border: 1px solid var(--s-line); background: var(--s-bg-2); }
+.ent-root .app2.ent-app .card-head h3 { font-size: 1.05rem; font-weight: 600; font-stretch: 102%; letter-spacing: 0; }
+.ent-root .app2.ent-app .stat .v { font-weight: 620; font-stretch: 106%; letter-spacing: -0.02em; }
+.ent-root.ent-root .btn { border-radius: 10px; height: 38px; padding: 0 15px; font-weight: 560; font-size: 0.9rem; border: 1px solid var(--s-line-2); background: var(--s-bg-3); }
+.ent-root.ent-root .btn:hover { background: color-mix(in srgb, var(--s-bg-3) 70%, var(--s-bg-4)); }
+.ent-root.ent-root .btn.primary { background: var(--s-cobalt); border-color: transparent; font-weight: 620; }
+.ent-root.ent-root .btn.primary:hover { background: color-mix(in srgb, var(--s-cobalt) 88%, white); }
+.ent-root.ent-root .btn.lg { height: 48px; border-radius: 12px; padding: 0 22px; font-size: 1rem; }
+.ent-root.ent-root .btn.sm { height: 30px; border-radius: 8px; padding: 0 11px; font-size: 0.84rem; }
+.ent-root.ent-root .btn.ghost { background: transparent; border-color: transparent; }
+.ent-root.ent-root .btn.ghost:hover { background: var(--s-cobalt-dim); }
+.ent-root.ent-root .seg { border-radius: 11px; }
+.ent-root.ent-root .seg button { border-radius: 8px; }
+/* Workspace home: the hero reads like Sentinel's landing — left-aligned, Archivo wide. */
+.ent-root .h-hero { text-align: left; align-items: flex-start; padding: 6px 0 40px; }
+.ent-root .h-hero h1 { font-size: clamp(2.4rem, 1.2rem + 3.6vw, 4.6rem); font-weight: 640; font-stretch: 116%; letter-spacing: -0.028em; line-height: 0.98; }
+.ent-root .h-date { font-size: 1rem; font-weight: 560; color: var(--s-teal); }
+.ent-root .h-cta { justify-content: flex-start; }
+.ent-root .ht { border-radius: var(--s-r-4); }
+.ent-root .ht-v { font-weight: 640; font-stretch: 110%; letter-spacing: -0.03em; }
+.ent-root .h-sec { padding-top: 64px; }
+.ent-root .h-sh { flex-direction: row; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; text-align: left; }
+.ent-root .h-sh .sec-k { color: var(--s-teal); font-size: 0.9rem; }
+.ent-root .h-sh .sec-h { font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.2rem); font-weight: 620; font-stretch: 110%; letter-spacing: -0.02em; max-width: 30ch; }
+.ent-root .h-sh .sec-p { text-align: left; margin: 0; }
+.ent-root .h-sh > div { align-items: flex-start; }
+.ent-root .h-sub { max-width: 54ch; margin-top: 22px; }
+.ent-root .sec-h { font-weight: 620; font-stretch: 108%; letter-spacing: -0.02em; }
+
+/* Contrast: filled accent and severity surfaces carry dark ink, as Sentinel's own buttons do. */
+.ent-root .btn.primary, .ent-root .present .btn.primary { color: var(--s-cobalt-ink) !important; }
+.ent-root .count, .ent-root .pr-av, .ent-root .pr-track li.now .pr-dot, .ent-root .present .brand-mark,
+.ent-root .present .pr-track li.now .pr-dot, .ent-root .pr-ro.on .pr-roav, .ent-root .chain-node.on .chain-ic,
+.ent-root .eb-step.on .n, .ent-root .eb-scalepick button.on, .ent-root .lp-pill span { color: var(--s-cobalt-ink); }
+.ent-root .eb-g.l3 b, .ent-root .eb-g.l4 b { color: var(--s-crimson-ink); }
+.ent-root .hk.warn .hk-l { color: var(--s-amber); }
+/* The board pack is a white "paper" preview: keep its small labels readable on white. */
+.ent-root .bp { --text-4: #5E6168; }
+/* Light theme: Sentinel's Daylight tokens apply through the same bridge. */
+html:root[data-s-theme='light'] .ent-root.ent-root { --high: #A13F0A; --high-wash: rgba(161, 63, 10, 0.1); --high-line: rgba(161, 63, 10, 0.35); --crit-2: var(--s-crimson); --pass-2: var(--s-teal); --accent: #1E43AE; --accent-2: #1E43AE; }
+:root[data-s-theme='light'] .ent-root .btn.primary { color: #fff !important; }
+:root[data-s-theme='light'] .ent-root .count, :root[data-s-theme='light'] .ent-root .eb-step.on .n { color: #fff; }
+:root[data-s-theme='light'] .ent-root .hk.warn .hk-l { color: var(--s-amber); }
+.ent-root .app2 { min-height: auto; background: transparent; }
+.ent-root .page-glow { display: none; }
+.ent-root .present .pr-k { color: #9a9aa2; }
+/* The classic present view is always dark (keynote): its accent stays light blue in both themes, so the ink on it stays dark. */
+.ent-root .present { --s-cobalt-ink: #0A1638; }
+.ent-root .heat .cell .sc { opacity: 0.85; }
+html:root[data-s-theme='light'] .ent-root .cx-cell.l3 { color: #0E2156; }
+/* Light theme: the live page's floating decision card had a fixed dark background with dark text. */
+html:root[data-s-theme='light'] .ent-root .graph-card { background: color-mix(in srgb, var(--s-bg-2) 94%, transparent) !important; border: 1px solid var(--s-line-2); box-shadow: 0 18px 40px -24px rgba(14, 33, 58, 0.45); }
+/* Phones: wide tables scroll inside their card, button rows wrap, the board paper never widens the page. */
+@media (max-width: 640px) {
+  .ent-root table.t, .ent-root table.bt { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .ent-root .card .row { flex-wrap: wrap; }
+  .ent-root .bp-sheet { overflow-x: auto; }
+  .ent-root .badge { max-width: 100%; white-space: normal; height: auto; min-height: 22px; line-height: 1.3; padding-block: 2px; }
+}

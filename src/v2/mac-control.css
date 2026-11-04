@@ -1,0 +1,49 @@
+.v2-mac-card { margin-top: 33px; border: 1px solid rgba(114, 174, 207, .24); background: linear-gradient(125deg,rgba(23,48,65,.96),rgba(14,25,39,.98) 60%,rgba(24,30,49,.94)); border-radius: 17px; box-shadow: 0 18px 60px rgba(2,8,19,.2),inset 0 1px 0 rgba(203,238,255,.08); overflow: hidden; }
+.v2-mac-header { padding: 25px 28px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 15px; border-bottom: 1px solid rgba(137,185,218,.13); }
+.v2-mac-heading { display: flex; gap: 16px; align-items: flex-start; }
+.v2-mac-icon { display: grid; place-items: center; flex: none; width: 49px; height: 49px; color: #a7e7fb; border-radius: 13px; border: 1px solid rgba(103,190,223,.27); background: linear-gradient(145deg,#1f4e63,#132c43); }
+.v2-mac-heading h2 { font-size: 24px; letter-spacing: -.035em; font-weight: 650; }
+.v2-mac-heading p { font-size: 12px; color: #9fb1c1; max-width: 650px; line-height: 1.65; margin-top: 7px; }
+.v2-mac-state { display: inline-flex; align-items: center; gap: 9px; font: 10px 'Geist Mono',monospace; letter-spacing: .06em; border: 1px solid rgba(157,174,193,.18); background: rgba(117,135,155,.1); padding: 8px 10px; border-radius: 7px; color: #a5b6c8; white-space: nowrap; }
+.v2-mac-state > span { width: 7px; height: 7px; background: #71869a; border-radius: 100%; }
+.v2-mac-state.preview { color: #e2d8a8; background: rgba(238,199,96,.08); border-color: rgba(238,199,96,.21); }
+.v2-mac-state.preview > span { background: #f2cd73; }
+.v2-mac-state.live { color: #ffa9a3; background: rgba(246,96,90,.1); border-color: rgba(246,96,90,.3); }
+.v2-mac-state.live > span { background: #ff746f; box-shadow: 0 0 15px rgba(255,103,99,.6); }
+.v2-mac-gates { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-bottom: 1px solid rgba(137,185,218,.13); }
+.v2-mac-gates > div { display: flex; align-items: center; padding: 16px 24px; gap: 8px; color: #71869a; font-size: 11px; border-right: 1px solid rgba(137,185,218,.13); }
+.v2-mac-gates > div:last-child { border-right: 0; }
+.v2-mac-gates > div > span { flex: 1; }
+.v2-mac-gates > div.passed { color: #b6e8d6; }
+.v2-mac-inner { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(310px,.9fr); gap: 29px; padding: 27px 29px 30px; }
+.v2-mac-alert { display: flex; gap: 10px; align-items: flex-start; padding: 13px 14px; border-radius: 10px; color: #e9c6a9; border: 1px solid rgba(238,175,104,.22); background: rgba(238,175,104,.07); font-size: 12px; line-height: 1.55; }
+.v2-mac-alert > svg { flex: none; margin-top: 1px; }
+.v2-mac-alert.ready { color: #abe6c9; border-color: rgba(100,215,161,.24); background: rgba(100,215,161,.065); }
+.v2-mac-role-btn { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; text-align: left; padding: 12px 14px; border-radius: 9px; color: #a7e5fb; border: 1px solid rgba(111,198,237,.27); background: rgba(111,198,237,.075); font-size: 12px; }
+.v2-mac-role-btn:hover { background: rgba(111,198,237,.13); }
+.v2-mac-steps { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; }
+.v2-mac-steps > div { display: flex; align-items: flex-start; gap: 15px; color: #9aafbe; font-size: 12px; line-height: 1.8; }
+.v2-mac-steps b { display: grid; place-items: center; font: 11px 'Geist Mono',monospace; color: #72c1e0; background: rgba(86,163,197,.08); border: 1px solid rgba(103,185,220,.16); width: 31px; height: 31px; border-radius: 8px; flex: none; }
+.v2-mac-steps strong { color: #e0ecf8; }
+.v2-mac-steps code { display: inline; color: #c1eecf; font-size: 11px; background: rgba(95,188,142,.1); padding: 2px 4px; border-radius: 4px; }
+.v2-mac-check { display: flex; gap: 9px; align-items: center; padding: 9px 12px; margin-top: 23px; border: 1px solid rgba(134,177,215,.24); color: #c9def0; border-radius: 8px; background: rgba(148,193,220,.055); font-size: 11px; }
+.v2-mac-check:hover { background: rgba(148,193,220,.12); }
+.v2-mac-form { display: flex; flex-direction: column; gap: 10px; background: rgba(7,16,27,.42); border: 1px solid rgba(149,183,210,.11); padding: 19px; border-radius: 12px; }
+.v2-mac-form > label:not(.v2-mac-consent) { font-size: 11px; color: #c8d8e7; font-weight: 550; }
+.v2-mac-form > label strong { color: #c3f0db; font-family: 'Geist Mono',monospace; font-weight: 600; }
+.v2-mac-form > input { width: 100%; height: 42px; padding: 0 11px; background: #0c1b2a; border: 1px solid rgba(136,176,213,.23); border-radius: 7px; color: #e8f3fd; font: 12px 'Geist Mono',monospace; outline: 0; }
+.v2-mac-form > input:focus { border-color: #69b8db; box-shadow: 0 0 0 3px rgba(105,184,219,.11); }
+.v2-mac-form > input::placeholder { color: #587289; }
+.v2-mac-form > label + input + label { margin-top: 7px; }
+.v2-mac-consent { display: flex; gap: 11px; align-items: flex-start; color: #a8b8c9; font-size: 11px; line-height: 1.6; padding: 9px 0 4px; cursor: pointer; }
+.v2-mac-consent input { accent-color: #68c3df; width: 16px; height: 16px; flex: none; margin-top: 2px; }
+.v2-mac-shutdown-btn { background: #3d7e97; color: white; font-weight: 680; min-height: 45px; display: flex; justify-content: center; align-items: center; gap: 10px; border: 1px solid rgba(174,234,243,.3); border-radius: 8px; }
+.v2-mac-shutdown-btn.danger { background: linear-gradient(115deg,#b93e43,#d2644d); border-color: rgba(255,159,145,.42); }
+.v2-mac-shutdown-btn:hover:not(:disabled) { filter: brightness(1.1); }
+.v2-mac-disclaimer { color: #788da0; font-size: 10px; line-height: 1.6; display: flex; align-items: flex-start; gap: 7px; }
+.v2-mac-disclaimer svg { flex: none; margin-top: 2px; }
+.v2-mac-message { display: flex; align-items: flex-start; gap: 9px; font-size: 11px; line-height: 1.5; border-radius: 7px; background: rgba(64,174,141,.1); border: 1px solid rgba(64,174,141,.19); color: #b0e8d3; padding: 10px; }
+.v2-mac-message.error { background: rgba(227,133,95,.08); border-color: rgba(227,133,95,.2); color: #f3bbac; }
+.v2-mac-message svg { flex: none; margin-top: 1px; }
+@media(max-width:1080px) { .v2-mac-inner { grid-template-columns: 1fr; } }
+@media(max-width:760px) { .v2-mac-header { padding: 20px; }.v2-mac-inner { padding: 19px; }.v2-mac-gates { grid-template-columns: 1fr; }.v2-mac-gates > div { border-right: 0; border-bottom: 1px solid rgba(137,185,218,.13); padding: 12px 20px; }.v2-mac-heading h2 { font-size: 21px; } }

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NOVATECH · Remote Presenter Console</title>
+  <link rel="stylesheet" href="/remote-controller.css"/>
+  <script src="/remote-controller.js" defer></script>
+</head>
+<body>
+  <div class="lights" aria-hidden="true"></div>
+  <div class="shell">
+    <header class="header">
+      <div class="mark"><span class="brand-symbol">⬡</span><span><strong>NOVATECH</strong><small>REMOTE ENDPOINT COMMAND</small></span></div>
+      <span class="secure"><i></i> LOCAL CLASSROOM NETWORK</span>
+    </header>
+    <main>
+      <div class="eyebrow"><span class="line"></span> CONTROLLER / PAVAN · GROUP 1</div>
+      <div class="hero">
+        <div><span class="pill">EXPLICIT OWNER CONSENT REQUIRED</span><h1>The final decision.<br/><em>From your laptop.</em></h1><p>Request the last step of the NOVATECH ransomware response from your own device. Only Karan's Mac can approve and carry out a shutdown.</p></div>
+        <div class="hero-icon" aria-hidden="true"><div class="orbit one"></div><div class="orbit two"></div><span>↗</span><small>REMOTE LINK</small></div>
+      </div>
+      <section class="layout">
+        <div class="panel">
+          <div class="panel-title"><span class="no">01</span><div><small>DEVICE PAIRING</small><h2>Connect to Karan's Mac</h2></div></div>
+          <div id="unpaired">
+            <p class="explainer">Ask Karan to open <b>Remote Presenter Pairing</b> in NOVATECH on his Mac. Enter the six-digit code shown there. It expires after five minutes.</p>
+            <div class="code-entry"><label for="pin">PAIRING CODE</label><input id="pin" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" placeholder="000000"/></div>
+            <button id="pair-button" class="primary">Pair securely <span>↗</span></button>
+          </div>
+          <div id="paired" hidden>
+            <div class="connected"><span class="dot"></span><strong>Secure session established</strong><span>ACTIVE</span></div>
+            <div class="detail-row"><span>Controller</span><b id="controller-name">Pavan</b></div>
+            <div class="detail-row"><span>Paired endpoint</span><b>Karan's MacBook Air</b></div>
+            <div class="detail-row"><span>Session remaining</span><b id="time-remaining">30:00</b></div>
+            <div class="bar"><span id="time-progress"></span></div>
+            <button id="disconnect-button" class="secondary">Forget pairing on this laptop</button>
+          </div>
+        </div>
+        <div class="panel command">
+          <div class="panel-title"><span class="no">02</span><div><small>GOVERNED PHYSICAL ACTION</small><h2>Request endpoint shutdown</h2></div></div>
+          <div class="approval-line"><span class="checkmark">✓</span><span>Director approval, containment and closure are checked before the Mac owner starts pairing.</span></div>
+          <div class="approval-line"><span class="checkmark">✓</span><span>The remote controller can only <b>request</b> the shutdown. It cannot bypass macOS confirmation.</span></div>
+          <div class="approval-line"><span class="checkmark">✓</span><span>Mac owner's native confirmation defaults to <b>Cancel</b> and expires automatically.</span></div>
+          <label class="consent"><input id="consent" type="checkbox"/><span>I understand my request will ask Karan to approve a real Mac shutdown. Karan must save his work first.</span></label>
+          <button id="shutdown-button" class="danger" disabled>Request shutdown from Mac <span>→</span></button>
+          <p class="hint">This page never directly powers off a device. The Mac owner keeps the final choice.</p>
+        </div>
+      </section>
+      <section class="footer-status" aria-live="polite"><div id="status-dot" class="status-dot"></div><p id="status">Waiting for pairing. Keep your Mac owner informed before requesting a shutdown.</p></section>
+      <footer>© NOVATECH SERVICES / ESAIP GROUP 1 <span>TRAINING CONTROL · NOT PRODUCTION AUTHORIZATION</span></footer>
+    </main>
+  </div>
+</body>
+</html>
