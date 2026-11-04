@@ -318,7 +318,7 @@ test runner.
 novatech-sentinel-v24/
 ├── src/
 │   ├── main.tsx            Entry point: Sentinel, or the archived V2.3 app under /v2-demo
-│   ├── sentinel/           V2.4 Sentinel: pages, components, incident engine, ledger, presenter, NOVA voice, case data
+│   ├── sentinel/           V2.4 Sentinel: pages, incident engine, ledger, presenter, NOVA voice
 │   ├── enterprise/         Hosts the original pages; demo/ is the simulated backend with its fixtures
 │   ├── pages/ components/ lib/ styles/   Original NOVATECH IRM enterprise application
 │   └── v2/                 Archived V2.3 rehearsal
