@@ -36,8 +36,8 @@ const TRUST: [React.ReactNode, string, string][] = [
 
 const TEAM = [
   ['Karan Deshmukh', 'Project Manager / Risk Coordinator', ''],
-  ['Vijay Bhosale', 'RSSI / CISO', ''], ['Vandana Madem', 'Chief Executive Officer', ''], ['Nandini Vadlamudi', 'Cybersecurity Analyst', ''],
-  ['Srija Poudapally', 'Finance Director (CFO / DAF)', ''], ['Pavan Sanam', 'IT Operations Manager', ''],
+  ['Victor Bonnet', 'RSSI / CISO', ''], ['Vanessa Mallet', 'Chief Executive Officer', ''], ['Nadia Vasseur', 'Cybersecurity Analyst', ''],
+  ['Sarah Perrin', 'Finance Director (CFO / DAF)', ''], ['Pierre Sauvage', 'IT Operations Manager', ''],
 ];
 
 export default function Landing() {

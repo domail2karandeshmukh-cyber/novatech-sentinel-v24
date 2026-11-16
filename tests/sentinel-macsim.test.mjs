@@ -11,16 +11,16 @@ test('nothing opens before the seven gates are closed', () => {
   assert.equal(macCan(blankMacSim(), false, T0).open, false);
 });
 
-test('owner opens, Pavan pairs and requests, owner decides — each step logged under the right person', () => {
+test('owner opens, Pierre pairs and requests, owner decides — each step logged under the right person', () => {
   const a = step(blankMacSim(), { type: 'open', code: '123456' }, T0);
   assert.equal(a.mac.phase, 'code'); assert.equal(a.mac.codeUntil, T0 + PAIRING_MS); assert.equal(a.log.actor, 'karan');
   const b = step(a.mac, { type: 'pair' }, T0 + 1000);
-  assert.equal(b.mac.phase, 'paired'); assert.equal(b.mac.sessionUntil, T0 + 1000 + SESSION_MS); assert.equal(b.log.actor, 'pavan');
+  assert.equal(b.mac.phase, 'paired'); assert.equal(b.mac.sessionUntil, T0 + 1000 + SESSION_MS); assert.equal(b.log.actor, 'pierre');
   const c = step(b.mac, { type: 'request' }, T0 + 2000);
-  assert.equal(c.mac.phase, 'pending'); assert.equal(c.mac.deadline, T0 + 2000 + DECISION_MS); assert.equal(c.log.actor, 'pavan');
+  assert.equal(c.mac.phase, 'pending'); assert.equal(c.mac.deadline, T0 + 2000 + DECISION_MS); assert.equal(c.log.actor, 'pierre');
   const d = step(c.mac, { type: 'decide', decision: 'rejected' }, T0 + 5000);
   assert.equal(d.mac.result, 'rejected'); assert.equal(d.log.actor, 'karan'); assert.match(d.log.title, /stays on/);
-  // A new request is possible while the session lasts; Pavan never decides.
+  // A new request is possible while the session lasts; Pierre never decides.
   const e = step(d.mac, { type: 'request' }, T0 + 6000);
   assert.equal(e.mac.phase, 'pending');
 });

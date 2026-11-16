@@ -12,15 +12,15 @@ const first = (id: string) => actorName(id as never).split(' ')[0];
 
 const ALERT: Record<ScenarioId, Record<Style, string>> = {
   ransomware: {
-    story: 'Attention, team. A critical ransomware signal is spreading on a finance workstation in Angers. Karan, please take ownership. Nandini is already pulling the endpoint telemetry.',
+    story: 'Attention, team. A critical ransomware signal is spreading on a finance workstation in Angers. Karan, please take ownership. Nadia is already pulling the endpoint telemetry.',
     executive: 'Critical alert. Ransomware on a finance workstation in Angers. Two hundred and forty thousand euros modelled exposure. Owner required: Karan Deshmukh.',
   },
   cloud: {
-    story: 'Attention, team. Our client portal is failing for sixty-one clients. Karan, please take ownership. Nandini, let’s rule out an attack before anyone touches the infrastructure.',
+    story: 'Attention, team. Our client portal is failing for sixty-one clients. Karan, please take ownership. Nadia, let’s rule out an attack before anyone touches the infrastructure.',
     executive: 'High-severity alert. Client portal errors above the critical threshold. One hundred and ten thousand euros at risk. Owner required: Karan Deshmukh.',
   },
   payments: {
-    story: 'Heads up, team. A supplier’s bank details changed less than a day before an eighty-five thousand euro payment. Karan, please take ownership. Nandini, please check that mailbox.',
+    story: 'Heads up, team. A supplier’s bank details changed less than a day before an eighty-five thousand euro payment. Karan, please take ownership. Nadia, please check that mailbox.',
     executive: 'Payment-fraud alert. Bank details changed before an eighty-five thousand euro payment. Owner required: Karan Deshmukh.',
   },
 };
@@ -39,15 +39,15 @@ export function lineForEvent(run: Run, e: LedgerEvent, style: Style): { key: str
       : `Owner confirmed: ${actorName(e.actor)}. Next: cybersecurity assessment by ${actorName(gateActor(run, 'assess'))}.` };
     case 'assessment': {
       const next = first(gateActor(run, 'impact'));
-      const t = s.id === 'ransomware' ? `Assessment recorded. Nandini proposes isolating the workstation and keeping it powered on for forensics. ${next}, we need the business view: what could this cost us?`
+      const t = s.id === 'ransomware' ? `Assessment recorded. Nadia proposes isolating the workstation and keeping it powered on for forensics. ${next}, we need the business view: what could this cost us?`
         : s.id === 'cloud' ? `Assessment recorded. No sign of an attack, and the standby region is in sync. ${next}, what does this outage cost us?`
           : `Assessment recorded. This looks like business email compromise. ${next}, this one is yours: how much is at risk, and should the payment be held?`;
       return { key, text: story ? t : `Assessment recorded. Proposed treatment: ${s.treatment.name}. Next: financial impact.` };
     }
     case 'impact': {
-      const t = s.id === 'ransomware' ? 'Two hundred and forty thousand euros at stake. Because isolation is disruptive, Vijay’s security authorization comes first, and above one hundred thousand euros Vandana must approve too. That is dual control.'
-        : s.id === 'cloud' ? 'One hundred and ten thousand euros at stake. Vijay, please confirm this is not an attack in disguise. Then Vandana decides on the client-facing failover.'
-          : 'Srija requested the hold, so she cannot approve it herself. The policy routes the decision to Vandana, as CEO.';
+      const t = s.id === 'ransomware' ? 'Two hundred and forty thousand euros at stake. Because isolation is disruptive, Victor’s security authorization comes first, and above one hundred thousand euros Vanessa must approve too. That is dual control.'
+        : s.id === 'cloud' ? 'One hundred and ten thousand euros at stake. Victor, please confirm this is not an attack in disguise. Then Vanessa decides on the client-facing failover.'
+          : 'Sarah requested the hold, so she cannot approve it herself. The policy routes the decision to Vanessa, as CEO.';
       return { key, text: story ? t : `Impact recorded: ${Math.round(s.exposure / 1000)} thousand euros. Approval route: ${run.approvals.map(a => actorName(a.acting)).join(', then ')}.` };
     }
     case 'approval_requested': return null; // covered by the impact / approved lines

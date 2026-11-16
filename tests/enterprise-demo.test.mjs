@@ -103,7 +103,7 @@ test('every RPC referenced in src/** is answered in demo mode', async () => {
   for (const fn of SRC_RPCS.filter(f => RPC[f].write)) await assert.rejects(backend.demoRpc(fn, {}), /Could not find the function/);
   // The one writer that is not simulated explains why.
   assert.deepEqual(backend.demoDeniedRpcs(), ['grc_platform_set_level']);
-  await rejects(as('Karan', 'grc_platform_set_level', { p_user: emp('Vijay'), p_level: 'member' }), 'DENIED', /Not available in the public demo: .+\. Use the authenticated workspace\./);
+  await rejects(as('Karan', 'grc_platform_set_level', { p_user: emp('Victor'), p_level: 'member' }), 'DENIED', /Not available in the public demo: .+\. Use the authenticated workspace\./);
   await rejects(backend.demoRpc('grc_devices', {}), 'DENIED', /Not available in the public demo: grc_devices is not part of the simulated backend/);
 });
 
@@ -119,7 +119,7 @@ function productionWorld() {
   world.offsetMs = 0; world.dayShift = 0;
   return world;
 }
-const PERSONA_CODES = { karan: 'Karan', vijay: 'Vijay', vandana: 'Vandana', nandini: 'Nandini', srija: 'Srija', pavan: 'Pavan', lea: 'Léa', thomas: 'Thomas',
+const PERSONA_CODES = { karan: 'Karan', victor: 'Victor', vanessa: 'Vanessa', nadia: 'Nadia', sarah: 'Sarah', pierre: 'Pierre', lea: 'Léa', thomas: 'Thomas',
   camille: 'Camille', julie: 'Julie', auditor: 'Internal Auditor (Professor access)' };
 
 test('the simulated reads reproduce every captured production result byte for byte', () => {
@@ -227,10 +227,10 @@ test('each persona gets its own NT session, work queue and permissions', async (
   assert.equal(seen.filter(t => t === 'persona').length, 10, 'one event per actual switch (Karan was already current)');
   assert.throws(() => backend.setDemoPersona('00000000-0000-0000-0000-000000000000'), /NOT_FOUND/);
   // The choice is remembered.
-  backend.setDemoPersona(emp('Vijay'));
+  backend.setDemoPersona(emp('Victor'));
   demoSession.resetDemoPersonaMemory();
-  assert.equal(backend.getDemoPersona().full_name, 'Vijay Bhosale');
-  // Only Karan (owner) and Vijay (admin) carry elevated platform roles; the auditor is read-only.
+  assert.equal(backend.getDemoPersona().full_name, 'Victor Bonnet');
+  // Only Karan (owner) and Victor (admin) carry elevated platform roles; the auditor is read-only.
   assert.equal((await as('Karan', 'grc_platform_access')).me, 'owner');
   const auditorPerms = (await as('Internal Auditor (Professor access)', 'grc_session')).memberships[0].permissions;
   assert.deepEqual(auditorPerms, ['audit.view']);
@@ -240,43 +240,43 @@ test('each persona gets its own NT session, work queue and permissions', async (
 // ---------------------------------------------------------------------------------------------- action lifecycle
 test('payment hold ≥ €100,000: requester cannot approve, the CEO is added, dual control, executor, verification', async () => {
   setup();
-  const id = await as('Srija', 'grc_propose_action', { p_org: 'NT', p: {
+  const id = await as('Sarah', 'grc_propose_action', { p_org: 'NT', p: {
     action_type: 'payment_hold', title: 'Hold supplier payment of €184,500 pending call-back', amount: 184500, asset_id: 'NT-AST-ERP', risk_id: 'NT-R7', severity: 3,
     justification: 'Bank details changed after a risky sign-in.',
   } });
-  let a = await as('Srija', 'grc_action', { p_id: id });
+  let a = await as('Sarah', 'grc_action', { p_id: id });
   assert.equal(a.ref, 'ACT-1059');
   assert.equal(a.status, 'draft');
   assert.deepEqual(a.policy.matched_rules.map(r => r.role), ['Finance Director (CFO / DAF)', 'Chief Executive Officer (CEO)']);
 
   // The CFO requested it and holds the assessor role: assessment is recorded, routing starts.
-  assert.equal(await as('Srija', 'grc_submit_action', { p_id: id }), 'awaiting_approval');
-  a = await as('Srija', 'grc_action', { p_id: id });
+  assert.equal(await as('Sarah', 'grc_submit_action', { p_id: id }), 'awaiting_approval');
+  a = await as('Sarah', 'grc_action', { p_id: id });
   assert.deepEqual(a.approvals.map(x => [x.step, x.role, x.status]), [[1, 'Finance Director (CFO / DAF)', 'pending'], [2, 'Chief Executive Officer (CEO)', 'waiting']]);
-  await rejects(as('Srija', 'grc_decide', { p_id: id, p_decision: 'approve' }), 'DENIED', /you requested this action and cannot approve it/);
-  await rejects(as('Vijay', 'grc_decide', { p_id: id, p_decision: 'approve' }), 'DENIED', /Policy requires the Finance Director \(CFO \/ DAF\) for this decision/);
+  await rejects(as('Sarah', 'grc_decide', { p_id: id, p_decision: 'approve' }), 'DENIED', /you requested this action and cannot approve it/);
+  await rejects(as('Victor', 'grc_decide', { p_id: id, p_decision: 'approve' }), 'DENIED', /Policy requires the Finance Director \(CFO \/ DAF\) for this decision/);
   assert.equal(a.ops.approve.allowed, false);
 
-  // Srija delegates her CFO authority to Karan, who approves step 1 on her behalf.
-  await as('Srija', 'grc_delegate', { p_org: 'NT', p_to: emp('Karan'), p_until: new Date(clock + 2 * DAY).toISOString(), p_reason: 'Annual leave' });
+  // Sarah delegates her CFO authority to Karan, who approves step 1 on her behalf.
+  await as('Sarah', 'grc_delegate', { p_org: 'NT', p_to: emp('Karan'), p_until: new Date(clock + 2 * DAY).toISOString(), p_reason: 'Annual leave' });
   assert.equal(await as('Karan', 'grc_decide', { p_id: id, p_decision: 'approve', p_comment: 'Call-back pending; hold is proportionate.' }), 'awaiting_approval');
   a = await as('Karan', 'grc_action', { p_id: id });
   assert.equal(a.approvals[0].status, 'approved');
-  assert.equal(a.approvals[0].on_behalf_of.name, 'Srija Poudapally');
+  assert.equal(a.approvals[0].on_behalf_of.name, 'Sarah Perrin');
   assert.equal(a.approvals[1].status, 'pending');
-  assert.match(a.timeline.at(-1).summary, /approved by Karan Deshmukh on behalf of Srija Poudapally \(delegation\) \(step 1: Finance Director \(CFO \/ DAF\)\)/);
+  assert.match(a.timeline.at(-1).summary, /approved by Karan Deshmukh on behalf of Sarah Perrin \(delegation\) \(step 1: Finance Director \(CFO \/ DAF\)\)/);
 
   // ≥ €100,000: the CEO's own queue and notifications now hold the decision.
-  const work = await as('Vandana', 'grc_my_work', { p_org: 'NT' });
+  const work = await as('Vanessa', 'grc_my_work', { p_org: 'NT' });
   assert.equal(work.tasks.find(t => t.id === id)?.task, 'approve');
-  const notes = await as('Vandana', 'grc_my_notifications', { p_limit: 20 });
+  const notes = await as('Vanessa', 'grc_my_notifications', { p_limit: 20 });
   assert.match(notes.items[0].title, /^Approval required: ACT-1059$/);
   assert.match(notes.items[0].body, /step 2 — previous step approved by Karan Deshmukh/);
 
   // Dual control: even with the CEO's delegated authority, Karan cannot approve a second step.
-  await as('Vandana', 'grc_delegate', { p_org: 'NT', p_to: emp('Karan'), p_until: new Date(clock + DAY).toISOString(), p_reason: 'Travelling' });
+  await as('Vanessa', 'grc_delegate', { p_org: 'NT', p_to: emp('Karan'), p_until: new Date(clock + DAY).toISOString(), p_reason: 'Travelling' });
   await rejects(as('Karan', 'grc_decide', { p_id: id, p_decision: 'approve' }), 'DENIED', /Dual control: a different person must approve this step/);
-  assert.equal(await as('Vandana', 'grc_decide', { p_id: id, p_decision: 'approve', p_comment: 'Approved.' }), 'approved');
+  assert.equal(await as('Vanessa', 'grc_decide', { p_id: id, p_decision: 'approve', p_comment: 'Approved.' }), 'approved');
   assert.ok((await as('Léa', 'grc_my_notifications', { p_limit: 5 })).items.some(n => n.kind === 'execution_ready' && n.entity_id === id));
 
   // Only Accounts Payable executes; approvers never do.
@@ -287,9 +287,9 @@ test('payment hold ≥ €100,000: requester cannot approve, the CEO is added, d
   await rejects(as('Léa', 'grc_verify_action', { p_id: id }), 'DENIED', /Your role cannot perform verification/);
 
   // Verification by the CFO: the call-back attestation is required.
-  let v = await as('Srija', 'grc_verify_action', { p_id: id, p_confirmations: {} });
+  let v = await as('Sarah', 'grc_verify_action', { p_id: id, p_confirmations: {} });
   assert.equal(v.passed, false);
-  v = await as('Srija', 'grc_verify_action', { p_id: id, p_confirmations: { callback: true }, p_notes: 'Supplier confirmed by phone.', p_residual_likelihood: 2, p_residual_impact: 3 });
+  v = await as('Sarah', 'grc_verify_action', { p_id: id, p_confirmations: { callback: true }, p_notes: 'Supplier confirmed by phone.', p_residual_likelihood: 2, p_residual_impact: 3 });
   assert.equal(v.passed, true);
   a = await as('Karan', 'grc_action', { p_id: id });
   assert.equal(a.status, 'completed');
@@ -308,9 +308,9 @@ test('payment hold ≥ €100,000: requester cannot approve, the CEO is added, d
 
 test('below €100,000 the CFO alone decides; an executor never verifies their own work', async () => {
   setup();
-  const small = await as('Nandini', 'grc_policy_preview', { p_org: 'NT', p_action_type: 'payment_hold', p_severity: 3, p_asset: 'NT-AST-ERP', p_amount: 50000 });
+  const small = await as('Nadia', 'grc_policy_preview', { p_org: 'NT', p_action_type: 'payment_hold', p_severity: 3, p_asset: 'NT-AST-ERP', p_amount: 50000 });
   assert.deepEqual(small.approvals.map(x => x.role), ['Finance Director (CFO / DAF)']);
-  const big = await as('Nandini', 'grc_policy_preview', { p_org: 'NT', p_action_type: 'payment_hold', p_severity: 3, p_asset: 'NT-AST-ERP', p_amount: 184500 });
+  const big = await as('Nadia', 'grc_policy_preview', { p_org: 'NT', p_action_type: 'payment_hold', p_severity: 3, p_asset: 'NT-AST-ERP', p_amount: 184500 });
   assert.deepEqual(big.approvals.map(x => x.role), ['Finance Director (CFO / DAF)', 'Chief Executive Officer (CEO)']);
 
   // A treatment task without budget is authorised by policy; Julie (responsible) executes it.
@@ -323,12 +323,12 @@ test('below €100,000 the CFO alone decides; an executor never verifies their o
   assert.equal((await as('Karan', 'grc_verify_action', { p_id: id })).passed, true);
 
   // A requester cannot assess their own request.
-  const fw = await as('Vijay', 'grc_propose_action', { p_org: 'NT', p: { action_type: 'firewall_change', title: 'Block outbound C2 range', asset_id: 'NT-AST-FW', severity: 3 } });
-  assert.equal(await as('Vijay', 'grc_submit_action', { p_id: fw }), 'awaiting_approval', 'the RSSI holds the assessor role, so routing starts');
-  await rejects(as('Vijay', 'grc_decide', { p_id: fw, p_decision: 'approve' }), 'DENIED', /you requested this action/);
-  const iso = await as('Nandini', 'grc_propose_action', { p_org: 'NT', p: { action_type: 'isolate_endpoint', title: 'Isolate LT-07', asset_id: 'NT-AST-LT07', severity: 3 } });
-  assert.equal(await as('Nandini', 'grc_submit_action', { p_id: iso }), 'under_review');
-  await rejects(as('Nandini', 'grc_assess_action', { p_id: iso, p_assessment: 'ok', p_recommend: true }), 'DENIED', /Assessment is reserved for the RSSI/);
+  const fw = await as('Victor', 'grc_propose_action', { p_org: 'NT', p: { action_type: 'firewall_change', title: 'Block outbound C2 range', asset_id: 'NT-AST-FW', severity: 3 } });
+  assert.equal(await as('Victor', 'grc_submit_action', { p_id: fw }), 'awaiting_approval', 'the RSSI holds the assessor role, so routing starts');
+  await rejects(as('Victor', 'grc_decide', { p_id: fw, p_decision: 'approve' }), 'DENIED', /you requested this action/);
+  const iso = await as('Nadia', 'grc_propose_action', { p_org: 'NT', p: { action_type: 'isolate_endpoint', title: 'Isolate LT-07', asset_id: 'NT-AST-LT07', severity: 3 } });
+  assert.equal(await as('Nadia', 'grc_submit_action', { p_id: iso }), 'under_review');
+  await rejects(as('Nadia', 'grc_assess_action', { p_id: iso, p_assessment: 'ok', p_recommend: true }), 'DENIED', /Assessment is reserved for the RSSI/);
 });
 
 // ---------------------------------------------------------------------------------------------- every writer
@@ -351,26 +351,26 @@ test('every writer used by the pages runs against the simulated backend', async 
   assert.equal(await call('Karan', 'grc_cancel_action', { p_id: t1, p_reason: 'Superseded by the platform migration' }), 'cancelled');
   assert.equal(await call('Karan', 'grc_verify_action', { p_id: t1 }).catch(e => e.message), 'DENIED: The action is not awaiting verification.');
   // Assessment, information request, emergency.
-  const iso = await call('Nandini', 'grc_propose_action', { ...org, p: { action_type: 'isolate_endpoint', title: 'Isolate LT-07', asset_id: 'NT-AST-LT07', severity: 3 } });
-  assert.equal(await call('Nandini', 'grc_submit_action', { p_id: iso }), 'under_review');
-  assert.equal(await call('Vijay', 'grc_assess_action', { p_id: iso, p_assessment: 'Confirmed beaconing; isolate.', p_recommend: true, p_severity: 4 }), 'awaiting_approval');
-  assert.equal(await call('Vijay', 'grc_decide', { p_id: iso, p_decision: 'request_info', p_comment: 'Which VLAN?' }), 'submitted');
-  assert.equal(await call('Nandini', 'grc_respond_info', { p_id: iso, p_response: 'Corporate VLAN 20.' }), 'awaiting_approval');
-  assert.equal(await call('Vijay', 'grc_invoke_emergency', { p_id: iso, p_reason: 'Active exfiltration in progress' }), 'approved');
-  assert.equal((await as('Vijay', 'grc_action', { p_id: iso })).emergency, true);
+  const iso = await call('Nadia', 'grc_propose_action', { ...org, p: { action_type: 'isolate_endpoint', title: 'Isolate LT-07', asset_id: 'NT-AST-LT07', severity: 3 } });
+  assert.equal(await call('Nadia', 'grc_submit_action', { p_id: iso }), 'under_review');
+  assert.equal(await call('Victor', 'grc_assess_action', { p_id: iso, p_assessment: 'Confirmed beaconing; isolate.', p_recommend: true, p_severity: 4 }), 'awaiting_approval');
+  assert.equal(await call('Victor', 'grc_decide', { p_id: iso, p_decision: 'request_info', p_comment: 'Which VLAN?' }), 'submitted');
+  assert.equal(await call('Nadia', 'grc_respond_info', { p_id: iso, p_response: 'Corporate VLAN 20.' }), 'awaiting_approval');
+  assert.equal(await call('Victor', 'grc_invoke_emergency', { p_id: iso, p_reason: 'Active exfiltration in progress' }), 'approved');
+  assert.equal((await as('Victor', 'grc_action', { p_id: iso })).emergency, true);
   // Rejection and escalation.
-  const lock = await call('Nandini', 'grc_propose_action', { ...org, p: { action_type: 'lock_device', title: 'Lock LT-07', asset_id: 'NT-AST-LT07', severity: 2 } });
-  assert.equal(await call('Nandini', 'grc_submit_action', { p_id: lock }), 'awaiting_approval');
-  assert.equal(await call('Pavan', 'grc_decide', { p_id: lock, p_decision: 'reject', p_comment: 'Already isolated.' }), 'rejected');
-  const lock2 = await call('Nandini', 'grc_propose_action', { ...org, p: { action_type: 'lock_device', title: 'Lock LT-09', asset_id: 'NT-AST-LT07', severity: 3 } });
-  await call('Nandini', 'grc_submit_action', { p_id: lock2 });
-  assert.equal(await call('Vijay', 'grc_decide', { p_id: lock2, p_decision: 'escalate', p_comment: 'Executive device.' }), 'escalated');
-  assert.equal((await as('Vandana', 'grc_my_work', org)).tasks.find(t => t.id === lock2)?.task, 'approve');
+  const lock = await call('Nadia', 'grc_propose_action', { ...org, p: { action_type: 'lock_device', title: 'Lock LT-07', asset_id: 'NT-AST-LT07', severity: 2 } });
+  assert.equal(await call('Nadia', 'grc_submit_action', { p_id: lock }), 'awaiting_approval');
+  assert.equal(await call('Pierre', 'grc_decide', { p_id: lock, p_decision: 'reject', p_comment: 'Already isolated.' }), 'rejected');
+  const lock2 = await call('Nadia', 'grc_propose_action', { ...org, p: { action_type: 'lock_device', title: 'Lock LT-09', asset_id: 'NT-AST-LT07', severity: 3 } });
+  await call('Nadia', 'grc_submit_action', { p_id: lock2 });
+  assert.equal(await call('Victor', 'grc_decide', { p_id: lock2, p_decision: 'escalate', p_comment: 'Executive device.' }), 'escalated');
+  assert.equal((await as('Vanessa', 'grc_my_work', org)).tasks.find(t => t.id === lock2)?.task, 'approve');
   // Incidents and regulatory clocks.
-  const inc = await call('Karan', 'grc_create_incident', { ...org, p: { title: 'Phishing wave on finance', severity: 3, category: 'Phishing', assigned_to: emp('Nandini'), risk_id: 'NT-R2' } });
-  assert.equal(await call('Nandini', 'grc_incident_transition', { p_id: inc, p_status: 'investigating', p_note: 'Triage started.' }), 'investigating');
-  assert.equal(await call('Vijay', 'grc_assess_incident', { p_id: inc, p_kind: 'security', p_summary: 'Credential theft attempt', p_severity: 3, p_recommendation: 'Reset passwords' }), 'ok');
-  assert.equal(await call('Srija', 'grc_assess_incident', { p_id: inc, p_kind: 'financial', p_summary: 'No payment released', p_severity: 2, p_recommendation: 'Monitor' }), 'ok');
+  const inc = await call('Karan', 'grc_create_incident', { ...org, p: { title: 'Phishing wave on finance', severity: 3, category: 'Phishing', assigned_to: emp('Nadia'), risk_id: 'NT-R2' } });
+  assert.equal(await call('Nadia', 'grc_incident_transition', { p_id: inc, p_status: 'investigating', p_note: 'Triage started.' }), 'investigating');
+  assert.equal(await call('Victor', 'grc_assess_incident', { p_id: inc, p_kind: 'security', p_summary: 'Credential theft attempt', p_severity: 3, p_recommendation: 'Reset passwords' }), 'ok');
+  assert.equal(await call('Sarah', 'grc_assess_incident', { p_id: inc, p_kind: 'financial', p_summary: 'No payment released', p_severity: 2, p_recommendation: 'Monitor' }), 'ok');
   const reg = await call('Karan', 'grc_incident_regulatory_set', { ...org, p_incident: inc, p: { regimes: ['NIS2', 'GDPR'], personal_data: true, significant: true, aware_at: new Date(clock - 3600e3).toISOString() } });
   assert.deepEqual(reg.notifications.map(n => `${n.regime} ${n.stage}`), ['GDPR 1 · Notify the CNIL', 'GDPR 2 · Inform data subjects (if high risk)', 'NIS2 1 · Early warning', 'NIS2 2 · Incident notification', 'NIS2 3 · Final report']);
   assert.equal(Date.parse(reg.notifications[2].due_at), clock - 3600e3 + DAY, 'the NIS2 early warning is due 24 h after awareness');
@@ -383,9 +383,9 @@ test('every writer used by the pages runs against the simulated backend', async 
   assert.equal(alert.message, 'R1: Cloud availability reached 99.2. Critical threshold reached.');
   const fromAlert = await call('Karan', 'grc_incident_from_alert', { ...org, p_alert_id: alert.id });
   assert.equal((await as('Karan', 'grc_monitoring', org)).alerts[0].incident.id, fromAlert);
-  assert.ok((await as('Pavan', 'grc_my_notifications', { p_limit: 10 })).items.some(n => n.kind === 'kri_critical'), 'the risk owner is alerted');
+  assert.ok((await as('Pierre', 'grc_my_notifications', { p_limit: 10 })).items.some(n => n.kind === 'kri_critical'), 'the risk owner is alerted');
   // Register, controls, EBIOS, quantification, vendors, continuity, policies.
-  assert.equal(await call('Karan', 'grc_risk_save', { ...org, p: { id: 'NT-R8', likelihood: 2, impact: 4, owner_id: emp('Srija') } }), 'NT-R8');
+  assert.equal(await call('Karan', 'grc_risk_save', { ...org, p: { id: 'NT-R8', likelihood: 2, impact: 4, owner_id: emp('Sarah') } }), 'NT-R8');
   assert.ok((await call('Karan', 'grc_monitor_run', org)).length >= 10);
   assert.equal((await call('Karan', 'grc_control_test_record', { ...org, p_control: 'NT-C01', p_result: 'pass', p_detail: 'Policy set approved by the CEO on file.' })).result, 'pass');
   const item = await call('Karan', 'grc_ebios_item_save', { ...org, p_id: null, p: { workshop: 4, kind: 'operational_scenario', ref: 'SO4', title: 'Supplier portal takeover', data: { likelihood: 2 } } });
@@ -400,9 +400,9 @@ test('every writer used by the pages runs against the simulated backend', async 
   assert.deepEqual(await call('Karan', 'grc_policy_attest', { ...org, p_policy: policy.id }), { ok: true });
   assert.ok((await as('Karan', 'grc_policy', { ...org, p_id: policy.id })).my_attestation);
   // Delegation and notifications.
-  const del = await call('Vandana', 'grc_delegate', { ...org, p_to: emp('Srija'), p_until: new Date(clock + 3 * DAY).toISOString(), p_reason: 'Board travel' });
-  assert.equal((await as('Srija', 'grc_session')).memberships[0].delegated_roles[0].role, 'Chief Executive Officer (CEO)');
-  assert.equal(await call('Vandana', 'grc_revoke_delegation', { p_id: del }), 'revoked');
+  const del = await call('Vanessa', 'grc_delegate', { ...org, p_to: emp('Sarah'), p_until: new Date(clock + 3 * DAY).toISOString(), p_reason: 'Board travel' });
+  assert.equal((await as('Sarah', 'grc_session')).memberships[0].delegated_roles[0].role, 'Chief Executive Officer (CEO)');
+  assert.equal(await call('Vanessa', 'grc_revoke_delegation', { p_id: del }), 'revoked');
   assert.ok(await call('Karan', 'grc_notifications_mark', { p_ids: null, p_mode: 'read' }) > 0);
   assert.equal((await as('Karan', 'grc_my_notifications', { p_limit: 50 })).unread, 0);
   // Administration.
@@ -434,16 +434,16 @@ test('incident transitions follow investigator and closing rules', async () => {
   setup();
   const inc = SEED.incidents.find(i => i.ref === 'INC-1058');
   await rejects(as('Thomas', 'grc_incident_transition', { p_id: inc.id, p_status: 'investigating', p_note: 'x' }), 'DENIED', /only the assigned investigator or a security role/);
-  assert.equal(await as('Nandini', 'grc_incident_transition', { p_id: inc.id, p_status: 'investigating', p_note: 'Correlated with the SIEM alert.' }), 'investigating');
-  await rejects(as('Nandini', 'grc_incident_transition', { p_id: inc.id, p_status: 'investigating', p_note: 'again' }), 'DENIED', /investigation has already started/);
-  const act = await as('Nandini', 'grc_propose_action', { p_org: 'NT', p: { action_type: 'payment_hold', title: 'Hold payment', incident_id: inc.id, amount: 184500 } });
-  await rejects(as('Vijay', 'grc_incident_transition', { p_id: inc.id, p_status: 'closed', p_note: 'done' }), 'DENIED', /1 linked action\(s\) are not completed or cancelled/);
-  await as('Nandini', 'grc_cancel_action', { p_id: act, p_reason: 'Duplicate' });
-  assert.equal(await as('Vijay', 'grc_incident_transition', { p_id: inc.id, p_status: 'closed', p_note: 'Contained and verified.' }), 'closed');
+  assert.equal(await as('Nadia', 'grc_incident_transition', { p_id: inc.id, p_status: 'investigating', p_note: 'Correlated with the SIEM alert.' }), 'investigating');
+  await rejects(as('Nadia', 'grc_incident_transition', { p_id: inc.id, p_status: 'investigating', p_note: 'again' }), 'DENIED', /investigation has already started/);
+  const act = await as('Nadia', 'grc_propose_action', { p_org: 'NT', p: { action_type: 'payment_hold', title: 'Hold payment', incident_id: inc.id, amount: 184500 } });
+  await rejects(as('Victor', 'grc_incident_transition', { p_id: inc.id, p_status: 'closed', p_note: 'done' }), 'DENIED', /1 linked action\(s\) are not completed or cancelled/);
+  await as('Nadia', 'grc_cancel_action', { p_id: act, p_reason: 'Duplicate' });
+  assert.equal(await as('Victor', 'grc_incident_transition', { p_id: inc.id, p_status: 'closed', p_note: 'Contained and verified.' }), 'closed');
   const detail = await as('Karan', 'grc_incident', { p_id: inc.id });
   assert.equal(detail.status, 'closed');
   assert.deepEqual(detail.timeline.slice(-2).map(e => e.event), ['action_cancelled', 'incident_closed']);
-  assert.ok((await as('Vandana', 'grc_my_notifications', { p_limit: 5 })).items.some(n => n.kind === 'incident_closed'));
+  assert.ok((await as('Vanessa', 'grc_my_notifications', { p_limit: 5 })).items.some(n => n.kind === 'incident_closed'));
   const scen = (await as('Karan', 'grc_scenarios', { p_org: 'NT' })).find(s => s.code === 'A');
   assert.equal(scen.steps.find(s => s.check === 'investigating').done, true);
   assert.equal(scen.steps.find(s => s.check === 'closed').done, true);
@@ -451,21 +451,21 @@ test('incident transitions follow investigator and closing rules', async () => {
 
 test('risk register saves update scores, owners and the ledger', async () => {
   setup();
-  await rejects(as('Thomas', 'grc_risk_save', { p_org: 'NT', p: { id: 'NT-R7', likelihood: 4, owner_id: emp('Srija') } }), 'DENIED', /Managing the risk register requires permission "risk.manage"/);
-  assert.equal(await as('Karan', 'grc_risk_save', { p_org: 'NT', p: { id: 'NT-R7', likelihood: 4, impact: 4, owner_id: emp('Vijay') } }), 'NT-R7');
+  await rejects(as('Thomas', 'grc_risk_save', { p_org: 'NT', p: { id: 'NT-R7', likelihood: 4, owner_id: emp('Sarah') } }), 'DENIED', /Managing the risk register requires permission "risk.manage"/);
+  assert.equal(await as('Karan', 'grc_risk_save', { p_org: 'NT', p: { id: 'NT-R7', likelihood: 4, impact: 4, owner_id: emp('Victor') } }), 'NT-R7');
   const r7 = (await as('Karan', 'grc_risks', { p_org: 'NT' })).find(r => r.id === 'NT-R7');
-  assert.deepEqual([r7.score, r7.level, r7.owner.name], [16, 'Critical', 'Vijay Bhosale']);
-  assert.deepEqual(r7.raci.filter(x => x.raci === 'A').map(x => x.employee.name), ['Vijay Bhosale']);
+  assert.deepEqual([r7.score, r7.level, r7.owner.name], [16, 'Critical', 'Victor Bonnet']);
+  assert.deepEqual(r7.raci.filter(x => x.raci === 'A').map(x => x.employee.name), ['Victor Bonnet']);
   // A legacy-linked risk keeps its scores in the legacy register.
-  await as('Karan', 'grc_risk_save', { p_org: 'NT', p: { id: 'NT-R1', likelihood: 2, owner_id: emp('Pavan') } });
+  await as('Karan', 'grc_risk_save', { p_org: 'NT', p: { id: 'NT-R1', likelihood: 2, owner_id: emp('Pierre') } });
   assert.equal((await as('Karan', 'grc_risks', { p_org: 'NT' })).find(r => r.id === 'NT-R1').score, 8);
   // New risk: id from the shared reference sequence, owner notified.
-  const id = await as('Karan', 'grc_risk_save', { p_org: 'NT', p: { title: 'Key supplier insolvency', likelihood: 2, impact: 3, owner_id: emp('Pavan'), category: 'Third party' } });
+  const id = await as('Karan', 'grc_risk_save', { p_org: 'NT', p: { title: 'Key supplier insolvency', likelihood: 2, impact: 3, owner_id: emp('Pierre'), category: 'Third party' } });
   assert.equal(id, 'NT-R1059');
-  const created = (await as('Pavan', 'grc_risks', { p_org: 'NT' })).find(r => r.id === id);
+  const created = (await as('Pierre', 'grc_risks', { p_org: 'NT' })).find(r => r.id === id);
   assert.deepEqual([created.code, created.score, created.origin], ['R1059', 6, 'governance_upgrade']);
-  assert.ok((await as('Pavan', 'grc_my_notifications', { p_limit: 5 })).items.some(n => n.kind === 'risk_assigned' && n.entity_id === id));
-  await rejects(as('Karan', 'grc_risk_save', { p_org: 'NT', p: { title: 'Bad scale', likelihood: 5, impact: 2, owner_id: emp('Pavan') } }), 'VALIDATION', /1–4 scale/);
+  assert.ok((await as('Pierre', 'grc_my_notifications', { p_limit: 5 })).items.some(n => n.kind === 'risk_assigned' && n.entity_id === id));
+  await rejects(as('Karan', 'grc_risk_save', { p_org: 'NT', p: { title: 'Bad scale', likelihood: 5, impact: 2, owner_id: emp('Pierre') } }), 'VALIDATION', /1–4 scale/);
   const audit = await as('Karan', 'grc_audit', { p_org: 'NT', p_limit: 3 });
   assert.deepEqual(audit.items.map(e => e.event), ['risk_identified', 'risk_updated', 'risk_updated']);
 });
@@ -534,8 +534,8 @@ test('the demo works when browser storage is blocked', async () => {
   globalThis.localStorage = new BlockedStorage();
   demoSession.resetDemoPersonaMemory();
   assert.equal(backend.getDemoPersona().full_name, 'Karan Deshmukh');
-  backend.setDemoPersona(emp('Srija'));
-  assert.equal(backend.getDemoPersona().full_name, 'Srija Poudapally');
+  backend.setDemoPersona(emp('Sarah'));
+  assert.equal(backend.getDemoPersona().full_name, 'Sarah Perrin');
   const id = await backend.demoRpc('grc_propose_action', { p_org: 'NT', p: { action_type: 'treatment_task', title: 'In-memory only', accountable_id: emp('Julie') } });
   assert.ok((await backend.demoRpc('grc_actions', { p_org: 'NT' })).some(a => a.id === id));
   await backend.resetDemoData();
@@ -581,9 +581,9 @@ test('timestamps and dates are rebased onto the visitor clock, consistently in a
 test('overlays, handlers and change events extend the demo backend', async () => {
   setup();
   const offOverlay = backend.registerDemoOverlay('grc_home', (r, args, ctx) => ({ ...r, demo_note: `${ctx.persona.full_name} · ${args.p_org}` }));
-  assert.equal((await as('Vijay', 'grc_home', { p_org: 'NT' })).demo_note, 'Vijay Bhosale · NT');
+  assert.equal((await as('Victor', 'grc_home', { p_org: 'NT' })).demo_note, 'Victor Bonnet · NT');
   offOverlay();
-  assert.equal((await as('Vijay', 'grc_home', { p_org: 'NT' })).demo_note, undefined);
+  assert.equal((await as('Victor', 'grc_home', { p_org: 'NT' })).demo_note, undefined);
 
   const offHandler = backend.registerDemoHandler('grc_sentinel_status', async (args, ctx) => ({ ok: true, who: ctx.persona.employee_id, risks: (await ctx.call('grc_risks', { p_org: 'NT' })).length, args }));
   const r = await as('Karan', 'grc_sentinel_status', { x: 1 });

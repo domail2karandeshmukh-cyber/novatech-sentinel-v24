@@ -1,6 +1,6 @@
 # NOVATECH V2 — executive command centre demo
 
-**V2.3 remote-presenter addition:** Pavan can request the final Mac shutdown from another laptop on the same Wi-Fi. For complete step-by-step setup, read the **V2.3 — Pavan's remote presenter workflow** section of [README.md](README.md). This uses a locally generated HTTPS controller with a five-minute pairing code, 30-minute session, and explicit Mac-side approval. It is not yet a shared multi-user risk dashboard. Test with `npm run remote:preview` before `npm run remote:live`; `npm run remote:install:preview` or `npm run remote:install:live` optionally installs a Mac background LaunchAgent.
+**V2.3 remote-presenter addition:** Pierre can request the final Mac shutdown from another laptop on the same Wi-Fi. For complete step-by-step setup, read the **V2.3 — Pierre's remote presenter workflow** section of [README.md](README.md). This uses a locally generated HTTPS controller with a five-minute pairing code, 30-minute session, and explicit Mac-side approval. It is not yet a shared multi-user risk dashboard. Test with `npm run remote:preview` before `npm run remote:live`; `npm run remote:install:preview` or `npm run remote:install:live` optionally installs a Mac background LaunchAgent.
 
 This is a **new, isolated classroom rehearsal** inside the existing NOVATECH React application. All original routes, Supabase policies, and source files are preserved. The default scenario performs no physical operations. An optional separately started Mac Helper can request a real shutdown after the full rehearsal and explicit confirmations.
 
@@ -20,8 +20,8 @@ Open the development address displayed by Vite (usually `http://localhost:5173`)
 1. Start with **Ransomware containment** selected. Explain that this is a fictional company and a synthetic event feed.
 2. Click **Launch live scenario**. Show the critical risk score, exposure amount, incident clock and evidence stream.
 3. Under **Decision workbench**, click **Fill from playbook**, then acknowledge the signal as Karan, Risk Lead.
-4. Click **Assume demo role** when prompted. Nandini records the cybersecurity assessment; Srija validates the financial impact.
-5. Switch to the Director and review the authorization gate. You can choose **Return for revision** (sends work back to Nandini) or **Approve treatment** (advances to containment).
+4. Click **Assume demo role** when prompted. Nadia records the cybersecurity assessment; Sarah validates the financial impact.
+5. Switch to the Director and review the authorization gate. You can choose **Return for revision** (sends work back to Nadia) or **Approve treatment** (advances to containment).
 6. As IT Operations, check the explicit **simulation-only** consent and click **Simulate containment**. Explain that this stage cannot shut down the MacBook.
 7. Switch to Independent Reviewer, verify evidence, then Risk Lead to close the incident.
 8. Open **Evidence ledger** to inspect the actor-stamped history and **Export JSON**.
@@ -55,7 +55,7 @@ The **Decision chain** tab displays the ownership chain and status of all seven 
 1. Click the **sliders/settings icon beside the speaker** in the upper-right toolbar, or **NOVA VOICE** in the left sidebar.
 2. Set **English (India)** as the preferred accent. NOVA prefers a locally installed `en-IN` voice; when none is installed, it falls back to another available English voice. The available accent depends on your Mac and browser.
 3. Select **Story mode** for warm, human-sounding handoffs, or **Executive mode** for short formal briefings. Adjust speed if needed.
-4. Under **Pronounce Indian names naturally**, edit the spoken spellings for Karan Deshmukh, Nandini, Srija, Vijay, Pavan and NOVATECH. Click the speaker beside a name to hear the result.
+4. Under **Pronounce Indian names naturally**, edit the spoken spellings for Karan Deshmukh, Nadia, Sarah, Victor, Pierre and NOVATECH. Click the speaker beside a name to hear the result.
 5. Click **Test voice** for a full briefing sample. Close settings and enable the speaker button to narrate each new decision gate.
 
 The microphone is **not** required for these spoken announcements. Speech uses the browser's installed voices, not a paid cloud TTS service; it cannot guarantee the same human-like output on every device. Settings are saved in local browser storage. All visible names and evidence records preserve their original spelling.

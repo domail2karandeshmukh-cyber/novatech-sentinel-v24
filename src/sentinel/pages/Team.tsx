@@ -31,8 +31,8 @@ function marksFor(scenarioId: ScenarioId, p: PersonId): Record<GateKey, Mark> {
 }
 
 const NEVER: Record<PersonId, string> = {
-  karan: 'Approve an action he coordinates', vijay: 'Verify anything he executed', vandana: 'Execute an action',
-  nandini: 'Approve her own proposal', srija: 'Approve a hold she requested', pavan: 'Approve or verify his own work',
+  karan: 'Approve an action he coordinates', victor: 'Verify anything he executed', vanessa: 'Execute an action',
+  nadia: 'Approve her own proposal', sarah: 'Approve a hold she requested', pierre: 'Approve or verify his own work',
 };
 
 export default function Team() {

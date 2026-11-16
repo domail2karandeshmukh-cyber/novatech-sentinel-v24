@@ -142,13 +142,13 @@ export function Guide() {
           <Card title="Demonstration script (Scenario A — about 6 minutes)">
             <ol className="small" style={{ margin: 0, paddingLeft: 18 }}>
               <li><b>Karan</b> starts Scenario A in the Scenario Center.</li>
-              <li><b>Nandini</b> opens the incident and starts the investigation.</li>
-              <li><b>Vijay</b> records the security assessment; <b>Srija</b> records the financial assessment.</li>
-              <li><b>Nandini</b> proposes two responses: disable account fin.user07, and hold the €184,500 payment. The policy route is shown before she submits.</li>
-              <li>Show the refusals: Vijay cannot approve the payment hold; Pavan cannot execute before approval.</li>
-              <li><b>Vijay</b> assesses and approves the account action. <b>Srija</b> assesses and approves the payment hold; <b>Vandana</b> approves as CEO because it is ≥ €100,000.</li>
-              <li><b>Pavan</b> executes the account action; <b>Léa</b> (Accounts Payable) applies the hold.</li>
-              <li><b>Vijay</b> and <b>Srija</b> verify. Try verifying without the call-back confirmation first — it fails.</li>
+              <li><b>Nadia</b> opens the incident and starts the investigation.</li>
+              <li><b>Victor</b> records the security assessment; <b>Sarah</b> records the financial assessment.</li>
+              <li><b>Nadia</b> proposes two responses: disable account fin.user07, and hold the €184,500 payment. The policy route is shown before she submits.</li>
+              <li>Show the refusals: Victor cannot approve the payment hold; Pierre cannot execute before approval.</li>
+              <li><b>Victor</b> assesses and approves the account action. <b>Sarah</b> assesses and approves the payment hold; <b>Vanessa</b> approves as CEO because it is ≥ €100,000.</li>
+              <li><b>Pierre</b> executes the account action; <b>Léa</b> (Accounts Payable) applies the hold.</li>
+              <li><b>Victor</b> and <b>Sarah</b> verify. Try verifying without the call-back confirmation first — it fails.</li>
               <li><b>Karan</b> closes the incident and opens the Audit Trail → Verify integrity.</li>
             </ol>
           </Card>

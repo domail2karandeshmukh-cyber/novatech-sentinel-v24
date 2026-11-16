@@ -11,7 +11,7 @@ export type WhatIfId = 'ceo-away' | 'ceo-returns' | 'executor-approves' | 'reque
 export const WHAT_IFS: { id: WhatIfId; label: string; question: string }[] = [
   { id: 'ceo-away', label: 'The CEO is unavailable', question: 'What if the CEO is unavailable?' },
   { id: 'ceo-returns', label: 'The CEO sends it back', question: 'What if the CEO refuses and returns it?' },
-  { id: 'executor-approves', label: 'Pavan approves his own action', question: 'What if the executor tries to approve?' },
+  { id: 'executor-approves', label: 'Pierre approves his own action', question: 'What if the executor tries to approve?' },
   { id: 'requester-approves', label: 'The requester approves', question: 'What if the requester tries to approve?' },
 ];
 export const isWhatIf = (v: unknown): v is WhatIfId => WHAT_IFS.some(w => w.id === v);
@@ -38,16 +38,16 @@ export function whatIf(scenarioId: ScenarioId, id: WhatIfId): WhatIfResult {
   const pending = base.approvals.find(a => a.status === 'pending') ?? base.approvals[0];
   switch (id) {
     case 'ceo-away': {
-      const out = reduce(base, { type: 'unavailable', person: 'vandana' }, at()).run;
-      const exec = out.approvals.find(a => a.approver === 'vandana');
+      const out = reduce(base, { type: 'unavailable', person: 'vanessa' }, at()).run;
+      const exec = out.approvals.find(a => a.approver === 'vanessa');
       if (exec?.status === 'blocked') return { verdict: 'blocked', headline: 'Blocked — nobody eligible may stand in for the CEO.', lines: [exec.blockedReason ?? '', ...route(out)], checks: [] };
-      return { verdict: 'delegated', headline: `Delegated to ${actorName(exec?.acting ?? 'srija')}, time-boxed and recorded.`, lines: [...route(out), 'The deputy faces the same separation-of-duties checks as the CEO.'], checks: exec ? sodForApproval(out, exec.id, exec.acting) : [] };
+      return { verdict: 'delegated', headline: `Delegated to ${actorName(exec?.acting ?? 'sarah')}, time-boxed and recorded.`, lines: [...route(out), 'The deputy faces the same separation-of-duties checks as the CEO.'], checks: exec ? sodForApproval(out, exec.id, exec.acting) : [] };
     }
     case 'ceo-returns': {
       let run = base;
-      for (const a of run.approvals) if (a.status === 'pending' && a.approver !== 'vandana') run = reduce(run, { type: 'decide', step: a.id, actor: a.acting, decision: 'approve', note: s.notes.security ?? 'Security sign-off for the scoped action.' }, at()).run;
-      const ex = run.approvals.find(a => a.approver === 'vandana' && a.status === 'pending');
-      const out = ex ? reduce(run, { type: 'decide', step: ex.id, actor: 'vandana', decision: 'return', note: 'Narrow the scope and resubmit with evidence.' }, at()).run : run;
+      for (const a of run.approvals) if (a.status === 'pending' && a.approver !== 'vanessa') run = reduce(run, { type: 'decide', step: a.id, actor: a.acting, decision: 'approve', note: s.notes.security ?? 'Security sign-off for the scoped action.' }, at()).run;
+      const ex = run.approvals.find(a => a.approver === 'vanessa' && a.status === 'pending');
+      const out = ex ? reduce(run, { type: 'decide', step: ex.id, actor: 'vanessa', decision: 'return', note: 'Narrow the scope and resubmit with evidence.' }, at()).run : run;
       return { verdict: 'returned', headline: 'Returned for revision — nothing can be executed.', lines: [`The incident goes back to gate 2, ${actorName(gateActor(out, 'assess'))}’s cyber assessment.`, 'Every earlier approval must be given again on the revised proposal.', 'The return and its reason are written to the ledger.'], checks: [] };
     }
     case 'executor-approves': {

@@ -223,7 +223,7 @@ writeFileSync(join(outDir, 'parity.json'), rowsJson({
   calls: manifest,
 }));
 // Persona baseline: the people who can sign in to NT, available synchronously (no fixture download needed).
-const PERSONA_ORDER = ['Karan Deshmukh', 'Vijay Bhosale', 'Vandana Madem', 'Nandini Vadlamudi', 'Srija Poudapally', 'Pavan Sanam',
+const PERSONA_ORDER = ['Karan Deshmukh', 'Victor Bonnet', 'Vanessa Mallet', 'Nadia Vasseur', 'Sarah Perrin', 'Pierre Sauvage',
   'Léa Moreau', 'Thomas Bernard', 'Camille Laurent', 'Julie Martin', 'Internal Auditor (Professor access)'];
 const personas = seed.employees.filter(x => x.has_login && x.active)
   .sort((x, y) => PERSONA_ORDER.indexOf(x.full_name) - PERSONA_ORDER.indexOf(y.full_name))

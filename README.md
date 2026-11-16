@@ -95,14 +95,14 @@ Version 2.4 brings three parts together in one web application:
 
 | Code | Risk | Owner | L | I | Score | Level | Target score | Treatment |
 | --- | --- | --- | :-: | :-: | :-: | --- | :-: | --- |
-| R1 | Cloud outage / business continuity | Pavan Sanam (IT Operations) | 4 | 4 | 16 | Critical | 8 | Reduce |
-| R2 | Account compromise / cyber identity | Vijay Bhosale (CISO) | 3 | 4 | 12 | Critical | 6 | Reduce |
+| R1 | Cloud outage / business continuity | Pierre Sauvage (IT Operations) | 4 | 4 | 16 | Critical | 8 | Reduce |
+| R2 | Account compromise / cyber identity | Victor Bonnet (CISO) | 3 | 4 | 12 | Critical | 6 | Reduce |
 | R3 | Human error / onboarding / training | Camille Laurent\* (HR) | 3 | 3 | 9 | High | 6 | Reduce |
 | R4 | Operational capacity / SLA failure | Julie Martin\* (Client Delivery) | 4 | 3 | 12 | Critical | 6 | Reduce |
 | R5 | Supplier / subcontractor failure | Marc Dubois\* (Procurement) | 3 | 3 | 9 | High | 6 | Reduce / Transfer |
 | R6 | Legal / compliance obligations | Sophie Girard\* (Legal & Compliance) | 2 | 3 | 6 | Moderate | 4 | Reduce |
-| R7 | Supplier payment fraud (business email compromise) | Srija Poudapally (CFO) | 3 | 4 | 12 | Critical | 6 | Reduce |
-| R8 | Unauthorised access to finance systems | Srija Poudapally (CFO) | 2 | 4 | 8 | High | 4 | Reduce |
+| R7 | Supplier payment fraud (business email compromise) | Sarah Perrin (CFO) | 3 | 4 | 12 | Critical | 6 | Reduce |
+| R8 | Unauthorised access to finance systems | Sarah Perrin (CFO) | 2 | 4 | 8 | High | 4 | Reduce |
 
 \* Fictional NOVATECH employee, not a Group 1 member. R1–R6 come from the group's original analysis; R7 and R8
 were added for Finance in the governance upgrade. Four risks (R1, R2, R4 and R7) are outside the board's
@@ -116,11 +116,11 @@ and a signed form, and the gates are completed in order.
 | # | Gate | Guiding question | Owner in the ransomware scenario |
 | :-: | --- | --- | --- |
 | 1 | Detect & take ownership | Is this real, and who owns it? | Karan Deshmukh, Risk Coordinator |
-| 2 | Cybersecurity assessment | What is technically happening, and what is the safest treatment? | Nandini Vadlamudi, Cybersecurity Analyst |
-| 3 | Financial impact | What could this cost the business? | Srija Poudapally, CFO |
-| 4 | Executive authorization | Who is allowed to approve this, and do they? | Vijay Bhosale (CISO) and Vandana Madem (CEO) |
-| 5 | Authorised IT action | Do exactly what was approved, nothing more. | Pavan Sanam, IT Operations Manager |
-| 6 | Independent verification | Did it work? Checked by someone who did not do it. | Vijay Bhosale, CISO |
+| 2 | Cybersecurity assessment | What is technically happening, and what is the safest treatment? | Nadia Vasseur, Cybersecurity Analyst |
+| 3 | Financial impact | What could this cost the business? | Sarah Perrin, CFO |
+| 4 | Executive authorization | Who is allowed to approve this, and do they? | Victor Bonnet (CISO) and Vanessa Mallet (CEO) |
+| 5 | Authorised IT action | Do exactly what was approved, nothing more. | Pierre Sauvage, IT Operations Manager |
+| 6 | Independent verification | Did it work? Checked by someone who did not do it. | Victor Bonnet, CISO |
 | 7 | Risk closure | What risk remains, and who owns the follow-up? | Karan Deshmukh, Risk Coordinator |
 
 The workflow can be rehearsed with three scenarios:
@@ -225,7 +225,7 @@ works only with local tools that the Mac's owner installs and starts himself:
 
 - **Same-Mac helper** (`npm run helper:mac:live`) listens on `127.0.0.1` only and needs a temporary session
   code.
-- **Private-LAN remote agent** (`npm run remote:live`) lets Pavan send a *request* from his laptop on the same
+- **Private-LAN remote agent** (`npm run remote:live`) lets Pierre send a *request* from his laptop on the same
   Wi-Fi. He pairs with a six-digit code (valid for five minutes, five attempts) over HTTPS after checking the
   certificate fingerprint, and the pairing expires after 30 minutes.
 - **Native approval on the device.** Every real request ends in a macOS confirmation on the Mac itself, with
@@ -346,11 +346,11 @@ presents one part of the story.
 | Member | Role in the NOVATECH case | Accountable for | Presentation segment |
 | --- | --- | --- | --- |
 | **Karan Deshmukh** | Project Manager / Risk Coordinator | Risk programme and register; incident ownership and closure; coordination of every hand-off | Introduction; final demonstration and conclusion |
-| **Vijay Bhosale** | RSSI / CISO | Security policy and cyber risk appetite; security authorisation of disruptive actions; independent technical verification | Security leadership |
-| **Nandini Vadlamudi** | Cybersecurity Analyst | Detection and triage; incident investigation; cybersecurity action plan | Cybersecurity investigation |
-| **Srija Poudapally** | Finance Director (CFO / DAF) | Financial impact assessment; payment controls and dual control on payments; finance action plan | Financial analysis |
-| **Vandana Madem** | Chief Executive Officer | Company-level decisions; executive authorisation of high-impact actions (€100,000 or more) | Executive approval |
-| **Pavan Sanam** | IT Operations Manager | Authorised technical execution only; infrastructure, endpoints and failover | IT execution |
+| **Victor Bonnet** | RSSI / CISO | Security policy and cyber risk appetite; security authorisation of disruptive actions; independent technical verification | Security leadership |
+| **Nadia Vasseur** | Cybersecurity Analyst | Detection and triage; incident investigation; cybersecurity action plan | Cybersecurity investigation |
+| **Sarah Perrin** | Finance Director (CFO / DAF) | Financial impact assessment; payment controls and dual control on payments; finance action plan | Financial analysis |
+| **Vanessa Mallet** | Chief Executive Officer | Company-level decisions; executive authorisation of high-impact actions (€100,000 or more) | Executive approval |
+| **Pierre Sauvage** | IT Operations Manager | Authorised technical execution only; infrastructure, endpoints and failover | IT execution |
 
 Other NOVATECH people in the application (for example Thomas Bernard, Léa Moreau and the Internal Auditor) are
 fictional and labelled as such.
@@ -400,7 +400,7 @@ browser; **Settings** can reset it.
   case-study estimates, not historical loss data.
 - **Presenter synchronisation** works only between windows of the same browser on the same computer.
 - **Voices** depend on the browser and device; no recorded or cloud voice is bundled.
-- **Not yet tested on real hardware:** Pavan's Windows-to-Mac request over the classroom Wi-Fi, and the opt-in
+- **Not yet tested on real hardware:** Pierre's Windows-to-Mac request over the classroom Wi-Fi, and the opt-in
   SwiftUI approval window, which has never been compiled against the Apple SDK. The default macOS dialog path is
   unchanged.
 - **Cloud relay incomplete.** `api/remote.js` and the browser panel on `/endpoint` are present, but in this

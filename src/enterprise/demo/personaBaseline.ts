@@ -36,7 +36,7 @@ export const BASELINE_PERSONAS: readonly DemoPersona[] = [
   },
   {
     "employee_id": "95718b0b-2b78-475c-bb62-ae8c261df445",
-    "full_name": "Vijay Bhosale",
+    "full_name": "Victor Bonnet",
     "role": "RSSI / CISO",
     "role_id": "NT-rssi",
     "department": "Cybersecurity Leadership",
@@ -58,12 +58,12 @@ export const BASELINE_PERSONAS: readonly DemoPersona[] = [
       "quant.manage"
     ],
     "authority_level": 4,
-    "email": "vijay@novatech.example",
+    "email": "victor@novatech.example",
     "active": true
   },
   {
     "employee_id": "01164889-61d4-4853-9b70-ae0653666e58",
-    "full_name": "Vandana Madem",
+    "full_name": "Vanessa Mallet",
     "role": "Chief Executive Officer (CEO)",
     "role_id": "NT-ceo",
     "department": "Executive Management",
@@ -76,12 +76,12 @@ export const BASELINE_PERSONAS: readonly DemoPersona[] = [
       "governance.oversight"
     ],
     "authority_level": 5,
-    "email": "vandana@novatech.example",
+    "email": "vanessa@novatech.example",
     "active": true
   },
   {
     "employee_id": "9bbce94b-f06a-44fe-8474-ac82a441153e",
-    "full_name": "Nandini Vadlamudi",
+    "full_name": "Nadia Vasseur",
     "role": "Cybersecurity Analyst",
     "role_id": "NT-analyst",
     "department": "Cybersecurity Operations",
@@ -95,12 +95,12 @@ export const BASELINE_PERSONAS: readonly DemoPersona[] = [
       "kri.record"
     ],
     "authority_level": 2,
-    "email": "nandini@novatech.example",
+    "email": "nadia@novatech.example",
     "active": true
   },
   {
     "employee_id": "ee54158e-d9a8-4c34-bcfb-4d58ebf19e60",
-    "full_name": "Srija Poudapally",
+    "full_name": "Sarah Perrin",
     "role": "Finance Director (CFO / DAF)",
     "role_id": "NT-cfo",
     "department": "Finance (DAF)",
@@ -113,12 +113,12 @@ export const BASELINE_PERSONAS: readonly DemoPersona[] = [
       "quant.manage"
     ],
     "authority_level": 4,
-    "email": "srija@novatech.example",
+    "email": "sarah@novatech.example",
     "active": true
   },
   {
     "employee_id": "5eaf3b6d-ea45-4fbb-97c2-435c726772c0",
-    "full_name": "Pavan Sanam",
+    "full_name": "Pierre Sauvage",
     "role": "IT Operations Manager",
     "role_id": "NT-itops",
     "department": "IT Operations",
@@ -132,7 +132,7 @@ export const BASELINE_PERSONAS: readonly DemoPersona[] = [
       "kri.record"
     ],
     "authority_level": 3,
-    "email": "pavan@novatech.example",
+    "email": "pierre@novatech.example",
     "active": true
   },
   {

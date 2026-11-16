@@ -52,13 +52,13 @@ test('Vercel Marketplace KV_REST_API names are accepted', async () => {
   globalThis.fetch = mockRedis();
   try {
     assert.equal((await api('health', { method: 'GET' })).available, true);
-    assert.equal((await api('open', { headers: { 'x-novatech-device-key': 'b'.repeat(64) }, body: { code:'654321', controllerName:'Pavan Sanam', workflowClosed:true, approved:true, scenarioId:'ransomware' } })).registered, true);
+    assert.equal((await api('open', { headers: { 'x-novatech-device-key': 'b'.repeat(64) }, body: { code:'654321', controllerName:'Pierre Sauvage', workflowClosed:true, approved:true, scenarioId:'ransomware' } })).registered, true);
   } finally {
     globalThis.fetch = previousFetch;
     keys.forEach((k, i) => { if (old[i] === undefined) delete process.env[k]; else process.env[k] = old[i]; });
   }
 });
-test('Mac-owned code -> Pavan token -> single request -> Mac poll -> recorded approval', async () => {
+test('Mac-owned code -> Pierre token -> single request -> Mac poll -> recorded approval', async () => {
   const previous = globalThis.fetch;
   const before = ['UPSTASH_REDIS_REST_URL','UPSTASH_REDIS_REST_TOKEN','NOVATECH_CLOUD_DEVICE_KEY'].map(k => process.env[k]);
   process.env.UPSTASH_REDIS_REST_URL = 'https://redis.test';
@@ -68,7 +68,7 @@ test('Mac-owned code -> Pavan token -> single request -> Mac poll -> recorded ap
   try {
     assert.equal((await api('health', { method: 'GET' })).available, true);
     const macHeaders = { 'x-novatech-device-key': 'a'.repeat(64) };
-    assert.equal((await api('open', { headers: macHeaders, body: { code: '123456', controllerName: 'Pavan Sanam', workflowClosed: true, approved: true, scenarioId: 'ransomware', governance: { incidentId: 'NT-SEC-041' } } })).registered, true);
+    assert.equal((await api('open', { headers: macHeaders, body: { code: '123456', controllerName: 'Pierre Sauvage', workflowClosed: true, approved: true, scenarioId: 'ransomware', governance: { incidentId: 'NT-SEC-041' } } })).registered, true);
     assert.equal((await api('pair', { body: { code: '000000' } })).code, 403);
     const paired = await api('pair', { body: { code: '123456' } });
     assert.match(paired.token, /^[a-f0-9]{64}$/);
@@ -94,7 +94,7 @@ test('Mac-owned code -> Pavan token -> single request -> Mac poll -> recorded ap
 });
 test('Cloud agent never executes when preview mode is selected', async () => {
   let executed = 0;
-  const responses = [{ request: { id: 'b'.repeat(32), name: 'Pavan Sanam', expiresAt: Date.now() + 10000 } }, { recorded: true }];
+  const responses = [{ request: { id: 'b'.repeat(32), name: 'Pierre Sauvage', expiresAt: Date.now() + 10000 } }, { recorded: true }];
   const relay = createCloudRelay({ config: { url: 'https://demo.test', deviceKey: 'a'.repeat(64) }, live: false, approval: { approver: 'applescript' },
     platform: 'darwin', execute: async () => { executed++; return { status: 'requested' }; },
     fetchImpl: async () => ({ ok: true, json: async () => responses.shift() }), logger: { log() {}, error() {} } });

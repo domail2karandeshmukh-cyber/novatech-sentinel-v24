@@ -36,14 +36,14 @@ test('every signed step of the closed ransomware run survives the agent validato
   assert.equal(accepted.approvals.length, record.approvals.length, 'no approval row was dropped');
   assert.equal(accepted.incidentId, 'NT-SEC-041');
   assert.deepEqual(accepted.approvals.map(a => a.person), [
-    'Karan Deshmukh', 'Nandini Vadlamudi', 'Srija Poudapally', 'Vijay Bhosale', 'Vandana Madem', 'Pavan Sanam', 'Vijay Bhosale', 'Karan Deshmukh',
+    'Karan Deshmukh', 'Nadia Vasseur', 'Sarah Perrin', 'Victor Bonnet', 'Vanessa Mallet', 'Pierre Sauvage', 'Victor Bonnet', 'Karan Deshmukh',
   ]);
 });
 
 test('the pairing body opens a pairing window on the real agent class, with the record attached', () => {
   const run = closedRun();
   const pairing = new RemotePairing({ clock: () => clock, getCode: () => '123456', getToken: () => 't'.repeat(64) });
-  const status = pairing.activate(pairingBody(run, 'Pavan Sanam'));
+  const status = pairing.activate(pairingBody(run, 'Pierre Sauvage'));
   assert.equal(status.pairingCode, '123456');
   assert.equal(status.governance?.incidentId, 'NT-SEC-041');
   assert.equal(status.governance?.approvals.length, 8);
@@ -54,7 +54,7 @@ test('an unfinished run is refused by the agent, exactly as in V2.3', () => {
   let run = ok(reduce(blankRun('ransomware'), { type: 'start' }, at()));
   run = ok(reduce(run, { type: 'record', gate: 'detect', actor: gateActor(run, 'detect'), note: s.notes.detect }, at()));
   const pairing = new RemotePairing();
-  assert.throws(() => pairing.activate(pairingBody(run, 'Pavan Sanam')), /Finish the director-approved ransomware workflow/);
+  assert.throws(() => pairing.activate(pairingBody(run, 'Pierre Sauvage')), /Finish the director-approved ransomware workflow/);
 });
 
 test('long fields are clipped, never dropped', () => {

@@ -35,9 +35,9 @@ export const ACCENTS: { code: Accent; label: string }[] = [
 export const DEFAULT_LEXICON: Record<string, string> = {
   NOVATECH: 'Nova-tech',
   'NOVA': 'Nova',
-  'Vandana Madem': 'Van-da-naa Ma-dem',
-  'Nandini Vadlamudi': 'Nan-di-nee Vad-la-mu-dee',
-  'Pavan Sanam': 'Pa-van Sa-num',
+  'Vanessa Mallet': 'Vanessa Mallet',
+  'Nadia Vasseur': 'Nadia Vasseur',
+  'Pierre Sauvage': 'Pierre Sauvage',
 };
 /** Built-in respellings for non-Indian voices only (Indian voices already say these names well). */
 const NAME_RESPELL: [string, string][] = [
@@ -397,5 +397,5 @@ export function say(text: string, opts: { key?: string; speaker?: string; force?
 }
 
 export function replayLast() { if (state.lastLine) say(state.lastLine.text, { key: state.lastLine.key, speaker: state.lastLine.speaker, force: true }); }
-export function previewVoice(sample?: string) { say(sample ?? 'Hello, I am NOVA. Karan Deshmukh, Vijay Bhosale, Vandana Madem, Nandini Vadlamudi, Srija Poudapally and Pavan Sanam are ready.', { force: true }); }
+export function previewVoice(sample?: string) { say(sample ?? 'Hello, I am NOVA. Karan Deshmukh, Victor Bonnet, Vanessa Mallet, Nadia Vasseur, Sarah Perrin and Pierre Sauvage are ready.', { force: true }); }
 export function clearTranscript() { set({ transcript: [] }); }

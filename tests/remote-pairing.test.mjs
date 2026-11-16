@@ -16,7 +16,7 @@ function manager() {
   return { pairing, tick: ms => { now += ms; } };
 }
 
-const approve = { workflowClosed: true, approved: true, scenarioId: 'ransomware', controllerName: 'Pavan' };
+const approve = { workflowClosed: true, approved: true, scenarioId: 'ransomware', controllerName: 'Pierre' };
 
 test('Mac must explicitly mark its ransomware rehearsal approved and closed', () => {
   const { pairing } = manager();
@@ -59,7 +59,7 @@ test('a single 30-minute bearer session expires and is revoked immediately', () 
   pairing.activate(approve);
   const { token, expiresAt } = pairing.redeem('439281');
   assert.equal(pairing.localStatus().connected, true);
-  assert.equal(pairing.authorize(token).name, 'Pavan');
+  assert.equal(pairing.authorize(token).name, 'Pierre');
   assert.throws(() => pairing.authorize('invalid'), /expired or been revoked/);
   tick(SESSION_DURATION_MS - 1000);
   assert.equal(pairing.authorize(token).expiresAt, expiresAt);
@@ -76,7 +76,7 @@ test('preview cannot shut down anything; live calls only the injected mocked exe
   pairing.activate(approve);
   const { token } = pairing.redeem('439281');
   let calls = 0;
-  const executor = async name => { calls++; assert.equal(name, 'Pavan'); return { status: 'cancelled' }; };
+  const executor = async name => { calls++; assert.equal(name, 'Pierre'); return { status: 'cancelled' }; };
   await assert.rejects(() => pairing.request(token, { confirmation: 'NO' }, { live: false, executor }), /confirm/i);
   assert.deepEqual(await pairing.request(token, { confirmation: REMOTE_CONFIRMATION }, { live: false, executor }), { status: 'preview' });
   assert.equal(calls, 0);

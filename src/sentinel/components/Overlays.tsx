@@ -119,7 +119,7 @@ export function PowerOffScreen({ kind, onClose, onNext }: { kind: 'simulated' | 
         <Power size={30} aria-hidden="true" />
         <span className="s-poweroff-k">{s.ref} · final step · {kind === 'live' ? 'Karan’s Mac is shutting down' : kind === 'preview' ? 'safe preview — nothing shuts down' : 'simulated'}</span>
         <h2>Powered off by its owner.</h2>
-        <p>Pavan requested it. Karan authorized it on the device. Nothing happened automatically — and every step is in the ledger.</p>
+        <p>Pierre requested it. Karan authorized it on the device. Nothing happened automatically — and every step is in the ledger.</p>
         {head && <small className="s-mono">Ledger #{head.seq} · {head.hash.slice(0, 16)}</small>}
         <p className="s-poweroff-end">See the threat. Own the decision. Prove the response.</p>
         {kind !== 'live' && <span className="s-sim lg">{kind === 'preview' ? 'PREVIEW MODE — THE MAC STAYS ON' : LOCAL_HOST ? 'REHEARSAL — NO DEVICE INVOLVED' : 'SIMULATED — ON THE REAL MAC THE SCREEN IS NOW OFF'}</span>}

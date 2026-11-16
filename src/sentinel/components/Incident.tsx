@@ -209,10 +209,10 @@ function AuthorizePanel({ run }: { run: Run }) {
           </div>
           <p className="s-policy"><LockKeyhole size={16} /><span><b>{step.title}.</b> {step.rule}</span></p>
           {step.delegation && <p className="s-policy info"><UserCheck size={16} /><span>{step.delegation.reason}</span></p>}
-          {run.unavailable.includes('vandana') && step.approver === 'vandana' && (
+          {run.unavailable.includes('vanessa') && step.approver === 'vanessa' && (
             <p className={`s-policy ${step.status === 'blocked' ? 'crit' : 'info'}`} role="status">
               <CircleAlert size={16} />
-              <span><b>CEO unavailable — emergency continuity route.</b> Vijay is the first candidate for delegated executive authority; the engine checks every conflict before assigning him. If Vijay already gave the CISO approval, Srija is considered instead. If Vijay cannot act and Srija requested this payment hold, or no independent deputy is eligible, authorization is blocked. No invoice or payment is released automatically, and no Mac action proceeds without the separate device-owner confirmation. This is a simulated classroom delegation policy, not a real corporate authorization.</span>
+              <span><b>CEO unavailable — emergency continuity route.</b> Victor is the first candidate for delegated executive authority; the engine checks every conflict before assigning him. If Victor already gave the CISO approval, Sarah is considered instead. If Victor cannot act and Sarah requested this payment hold, or no independent deputy is eligible, authorization is blocked. No invoice or payment is released automatically, and no Mac action proceeds without the separate device-owner confirmation. This is a simulated classroom delegation policy, not a real corporate authorization.</span>
             </p>
           )}
           {s.id === 'payments' && (

@@ -22,10 +22,10 @@ export const LANGUAGES: { code: VoiceLocale; label: string }[] = [
 
 export const DEFAULT_LEXICON: Record<string, string> = {
   'Karan Deshmukh': 'Kuh-run Desh-mookh',
-  Nandini: 'Nun-di-nee',
-  Srija: 'Sree-jah',
-  Vijay: 'Vee-jay',
-  Pavan: 'Puh-vun',
+  Nadia: 'Nah-dee-ah',
+  Sarah: 'Sah-rah',
+  Victor: 'Vik-tor',
+  Pierre: 'Pee-air',
   NOVATECH: 'Nova-tech',
 };
 
@@ -94,8 +94,8 @@ export function stageNarration(run: DemoRun, stage: Stage | null, scenario: Scen
   if (style === 'professional') return `Stage ${run.step + 1} of seven. ${stage.name}. ${stage.person} is the assigned owner. ${stage.prompt}`;
   const conversational: Record<Stage['key'], string> = {
     detect: `Heads up, team. We've detected a ${scenario.name.toLowerCase()} signal. Karan Deshmukh, let's acknowledge it and get the right people involved.`,
-    assess: `Nandini, over to you. Let's understand what is happening technically, what is affected, and which containment action is safe to propose.`,
-    finance: `Srija, your view matters here. We need to translate the incident into a business decision. The modelled exposure is ${scenario.exposure.toLocaleString('en-IN')} euros.`,
+    assess: `Nadia, over to you. Let's understand what is happening technically, what is affected, and which containment action is safe to propose.`,
+    finance: `Sarah, your view matters here. We need to translate the incident into a business decision. The modelled exposure is ${scenario.exposure.toLocaleString('en-IN')} euros.`,
     authorise: `We have both assessments. Director, it's your call. Please review the reasoning before approving anything disruptive. You can also send it back for revision.`,
     contain: `Approval is recorded. IT Operations, you're up. The next step is a safe simulation of the approved response. No real device is switched off.`,
     verify: `Good progress. Now an independent reviewer checks the evidence. Execution and verification stay separate, because trust needs proof.`,

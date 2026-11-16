@@ -180,7 +180,7 @@ export function Readiness({ run, now }: { run: Run; now: number }) {
     <ul className="s-ready" data-tour="cmd-readiness">
       {rows.map(r => (
         <li key={r.plan.dept}>
-          <div className="s-row between"><span><b>{r.plan.name.replace(' plan', '')}</b> <span className="s-small">· {r.plan.owner === 'karan' ? 'Karan' : r.plan.owner === 'vijay' ? 'Vijay' : r.plan.owner === 'vandana' ? 'Vandana' : r.plan.owner === 'nandini' ? 'Nandini' : r.plan.owner === 'srija' ? 'Srija' : 'Pavan'}</span></span><span className="s-small s-num">{r.done}/{r.total}{r.overdue ? <span className="s-crimson"> · {r.overdue} overdue</span> : ''}</span></div>
+          <div className="s-row between"><span><b>{r.plan.name.replace(' plan', '')}</b> <span className="s-small">· {r.plan.owner === 'karan' ? 'Karan' : r.plan.owner === 'victor' ? 'Victor' : r.plan.owner === 'vanessa' ? 'Vanessa' : r.plan.owner === 'nadia' ? 'Nadia' : r.plan.owner === 'sarah' ? 'Sarah' : 'Pierre'}</span></span><span className="s-small s-num">{r.done}/{r.total}{r.overdue ? <span className="s-crimson"> · {r.overdue} overdue</span> : ''}</span></div>
           <div className={`s-meter ${r.pct === 100 ? '' : 'active'}`} role="meter" aria-valuemin={0} aria-valuemax={100} aria-valuenow={r.pct} aria-label={`${r.plan.name}: incident tasks complete`}><i style={{ width: `${Math.max(2, r.pct)}%` }} /></div>
         </li>
       ))}

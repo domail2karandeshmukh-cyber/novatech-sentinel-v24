@@ -1,6 +1,6 @@
 /**
  * Rules of the public-preview rehearsal of the final act — pure functions, no device, no timers.
- * Karan (Mac owner) opens a 5-minute pairing code after the seven gates; Pavan pairs from Windows for a 30-minute
+ * Karan (Mac owner) opens a 5-minute pairing code after the seven gates; Pierre pairs from Windows for a 30-minute
  * session and can only send a request; the owner has 30 seconds to decide. Anything late, missing or revoked fails
  * safe: the (simulated) Mac stays on.
  */
@@ -10,7 +10,7 @@ export type MacSim = { phase: MacPhase; code: string; codeUntil: number; session
 export type MacAction =
   | { type: 'open'; code: string } | { type: 'pair' } | { type: 'request' }
   | { type: 'decide'; decision: 'approved' | 'rejected' } | { type: 'revoke' } | { type: 'tick' };
-export type MacLog = { actor: 'karan' | 'pavan' | 'system'; title: string; note: string };
+export type MacLog = { actor: 'karan' | 'pierre' | 'system'; title: string; note: string };
 
 export const PAIRING_MS = 5 * 60_000;
 export const SESSION_MS = 30 * 60_000;
@@ -39,10 +39,10 @@ export function macStep(m: MacSim, a: MacAction, now: number, eligible: boolean)
       return { mac: { ...blankMacSim(m.seq), phase: 'code', code: a.code, codeUntil: now + PAIRING_MS }, log: { actor: 'karan', title: 'Karan opened a 5-minute pairing window', note: 'Pairing opened by the Mac owner after the seven gates.' } };
     case 'pair':
       if (!can.pair) return null;
-      return { mac: { ...m, phase: 'paired', sessionUntil: now + SESSION_MS }, log: { actor: 'pavan', title: 'Pavan paired from his Windows laptop', note: '30-minute session started.' } };
+      return { mac: { ...m, phase: 'paired', sessionUntil: now + SESSION_MS }, log: { actor: 'pierre', title: 'Pierre paired from his Windows laptop', note: '30-minute session started.' } };
     case 'request':
       if (!can.request) return null;
-      return { mac: { ...m, phase: 'pending', deadline: now + DECISION_MS, result: null }, log: { actor: 'pavan', title: 'Pavan requested the power-off of FIN-WS-07 (stand-in Mac)', note: 'Request only, for forensic imaging and re-imaging — the Mac owner must decide locally.' } };
+      return { mac: { ...m, phase: 'pending', deadline: now + DECISION_MS, result: null }, log: { actor: 'pierre', title: 'Pierre requested the power-off of FIN-WS-07 (stand-in Mac)', note: 'Request only, for forensic imaging and re-imaging — the Mac owner must decide locally.' } };
     case 'decide':
       // A decision that arrives after the deadline is too late: the timeout already applies.
       if (!can.decide) return null;
@@ -54,7 +54,7 @@ export function macStep(m: MacSim, a: MacAction, now: number, eligible: boolean)
       };
     case 'revoke':
       if (!can.revoke) return null;
-      return { mac: blankMacSim(m.seq), log: { actor: 'karan', title: 'Karan revoked the remote session', note: 'Pavan’s access ended immediately.' } };
+      return { mac: blankMacSim(m.seq), log: { actor: 'karan', title: 'Karan revoked the remote session', note: 'Pierre’s access ended immediately.' } };
     case 'tick':
       if (m.phase === 'pending' && now > m.deadline) return { mac: { ...m, phase: 'result', result: 'timeout' }, log: { actor: 'system', title: 'Mac owner did not answer — request timed out', note: 'Thirty seconds passed without a decision; the Mac stays on.' } };
       if (m.phase === 'code' && now > m.codeUntil) return { mac: blankMacSim(m.seq), log: null };

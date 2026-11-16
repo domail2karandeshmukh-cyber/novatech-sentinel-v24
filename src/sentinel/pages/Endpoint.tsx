@@ -29,7 +29,7 @@ export default function Endpoint() {
     <div className="s-page s-endpoint">
       <div className="s-pagehead">
         <div><h1 className="s-h1">Final step: power off for re-imaging</h1>
-          <p className="s-lead" style={{ marginTop: 8 }}>The last follow-up of NT-SEC-041. FIN-WS-07 was isolated first so its memory evidence survived; after verification and closure the endpoint may be powered off for forensic imaging and re-imaging. <b>Karan’s MacBook is a classroom stand-in for FIN-WS-07.</b> Pavan can request shutdown from Windows through the public cloud relay or private LAN; only the Mac owner can approve. The simulation below never touches a device.</p></div>
+          <p className="s-lead" style={{ marginTop: 8 }}>The last follow-up of NT-SEC-041. FIN-WS-07 was isolated first so its memory evidence survived; after verification and closure the endpoint may be powered off for forensic imaging and re-imaging. <b>Karan’s MacBook is a classroom stand-in for FIN-WS-07.</b> Pierre can request shutdown from Windows through the public cloud relay or private LAN; only the Mac owner can approve. The simulation below never touches a device.</p></div>
         {LOCAL ? <span className="s-chip active"><Radio size={14} />Local copy on this computer</span> : <span className="s-chip active"><Radio size={14} />Public demo + opt-in real request</span>}
       </div>
 
@@ -42,7 +42,7 @@ export default function Endpoint() {
         <section className="s-panel" aria-labelledby="h-arch">
           <div className="s-panel-head"><h2 id="h-arch" className="s-h3">Who controls each step</h2></div>
           <ol className="s-chainflow">
-            <li><Laptop size={18} /><span><b>Pavan’s Windows laptop</b><small>Edge or Chrome. Pairs with a 6-digit code (valid 5 min, max 5 tries), then holds a 30-minute session. Can only send a request.</small></span></li>
+            <li><Laptop size={18} /><span><b>Pierre’s Windows laptop</b><small>Edge or Chrome. Pairs with a 6-digit code (valid 5 min, max 5 tries), then holds a 30-minute session. Can only send a request.</small></span></li>
             <li><Wifi size={18} /><span><b>Secure connection</b><small>The tested cloud relay uses outbound HTTPS from the Mac—no exposed Mac port. A separately installed private-LAN controller is also available.</small></span></li>
             <li><MonitorSmartphone size={18} /><span><b>Karan’s Mac — local helper</b><small>Runs at login. Opens pairing only when Karan asks, only after the seven gates. Revocable at any moment.</small></span></li>
             <li><ShieldCheck size={18} /><span><b>Native approval on the Mac</b><small>Reject is the default; 30-second timeout; close or ignore = rejected. The SwiftUI window is opt-in; the proven macOS dialog stays the fallback.</small></span></li>
@@ -58,7 +58,7 @@ export default function Endpoint() {
       <section className="s-panel" data-tour="ep-safety" style={{ marginTop: 16 }} aria-labelledby="h-safe">
         <div className="s-panel-head"><h2 id="h-safe" className="s-h3">Every failure keeps the Mac on</h2></div>
         <ul className="s-safety">
-          {['Reject is the default button; Return and Escape both reject', 'No answer within 30 seconds = rejected', 'Closing the window = rejected', 'Pairing revoked or expired = request refused', 'Wrong or missing session token = refused', 'Helper crash or approval window failure = rejected', 'Public website can only queue a fixed request; it cannot directly control the Mac', 'Pavan can never run commands, browse files or approve on Karan’s behalf'].map(t => <li key={t}><ShieldCheck size={15} />{t}</li>)}
+          {['Reject is the default button; Return and Escape both reject', 'No answer within 30 seconds = rejected', 'Closing the window = rejected', 'Pairing revoked or expired = request refused', 'Wrong or missing session token = refused', 'Helper crash or approval window failure = rejected', 'Public website can only queue a fixed request; it cannot directly control the Mac', 'Pierre can never run commands, browse files or approve on Karan’s behalf'].map(t => <li key={t}><ShieldCheck size={15} />{t}</li>)}
         </ul>
         <p className="s-small" style={{ marginBottom: 0 }}>Verified so far: Karan’s real Windows-to-Mac cloud request, macOS owner confirmation and shutdown. SwiftUI is optional and not part of that verified path. Full steps: <Link to="/guide" className="s-linkbtn">Demo guide</Link>.</p>
       </section>
@@ -82,12 +82,12 @@ function Simulation({ eligible }: { eligible: boolean }) {
           {!eligible && <span className="s-small">Locked until the ransomware workflow is closed.</span>}
         </div>
         <div className={`s-sim-step ${['paired', 'pending', 'result'].includes(st.phase) ? 'done' : ''}`}>
-          <span className="s-label">2 · Pavan, on Windows</span>
+          <span className="s-label">2 · Pierre, on Windows</span>
           {st.phase === 'code' ? <button className="s-btn" disabled={!can.pair} onClick={macSim.pair}>Enter the code and pair</button>
             : st.sessionUntil ? <div><b className="s-teal">Paired</b><span className="s-small"> · session {clock(Math.max(0, st.sessionUntil - now))} left</span></div> : <span className="s-small">Waiting for a code</span>}
         </div>
         <div className={`s-sim-step ${['pending', 'result'].includes(st.phase) ? 'done' : ''}`}>
-          <span className="s-label">3 · Pavan sends the request</span>
+          <span className="s-label">3 · Pierre sends the request</span>
           {can.request ? <button className="s-btn danger" onClick={macSim.request}>Request shutdown (request only)</button> : <span className="s-small">{st.phase === 'pending' ? 'Waiting for Karan’s decision…' : 'Needs an active session'}</span>}
         </div>
         <div className="s-sim-step">
@@ -99,7 +99,7 @@ function Simulation({ eligible }: { eligible: boolean }) {
       {st.phase === 'result' && (
         <div className={`s-sim-result r-${st.result}`} role="status">
           {st.result === 'approved' ? <><Check size={18} /><span><b>Authorized by the owner, on the device.</b> On Karan’s real Mac the helper now asks macOS to shut down (macOS may still ask about unsaved work). Here nothing shuts down.</span></>
-            : st.result === 'rejected' ? <><CircleX size={18} /><span><b>Rejected.</b> The Mac stays on. Pavan sees “Karan rejected the shutdown request”.</span></>
+            : st.result === 'rejected' ? <><CircleX size={18} /><span><b>Rejected.</b> The Mac stays on. Pierre sees “Karan rejected the shutdown request”.</span></>
               : <><CircleX size={18} /><span><b>Timed out after 30 seconds.</b> Treated as a rejection: the Mac stays on.</span></>}
         </div>
       )}
@@ -137,7 +137,7 @@ function NativePreview({ secondsLeft, sessionUntil, onDecide }: { secondsLeft: n
           <div className="s-native-ring" role="timer" aria-label={`${secondsLeft} seconds left before automatic rejection`} style={{ ['--p' as string]: `${pct}%` }}><b className="s-num">{secondsLeft}</b><small>s</small></div>
           <dl className="s-native-kv">
             <dt>Device</dt><dd>Karan’s MacBook Air · stand-in for FIN-WS-07 · owner Karan Deshmukh</dd>
-            <dt>Requested by</dt><dd><Avatar id="pavan" size="sm" /> Pavan Sanam <small>(name from the paired LAN session — not enterprise sign-in)</small></dd>
+            <dt>Requested by</dt><dd><Avatar id="pierre" size="sm" /> Pierre Sauvage <small>(name from the paired LAN session — not enterprise sign-in)</small></dd>
             <dt>Incident</dt><dd><span className="s-mono">{s.ref}</span> · {s.title}</dd>
             <dt>Reason</dt><dd>Power off the isolated endpoint for forensic imaging and re-imaging — closure follow-up, memory evidence already verified</dd>
             <dt>Connection</dt><dd>Paired LAN session · TLS · expires {new Date(sessionUntil).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}</dd>
@@ -156,7 +156,7 @@ function NativePreview({ secondsLeft, sessionUntil, onDecide }: { secondsLeft: n
 }
 
 /** What the projector shows during the real final act: status only. The one-time code, the controller link and the
- *  certificate fingerprint stay on Karan's own screen, so nobody in the room can pair before Pavan. */
+ *  certificate fingerprint stay on Karan's own screen, so nobody in the room can pair before Pierre. */
 function LiveStatusOnStage() {
   const [remote, setRemote] = useState<RemoteStatus | null>(null);
   // The ending appears when the agent records the owner's approval after this screen opened (never for older events).
@@ -177,13 +177,13 @@ function LiveStatusOnStage() {
     void load(); const t = window.setInterval(() => void load(), 1500); return () => window.clearInterval(t);
   }, []);
   const status = !remote ? 'Karan’s Mac is controlling pairing from his own screen.'
-    : remote.connected ? `${remote.controllerName ?? 'Pavan'} is paired. Any request appears as an approval window on Karan’s Mac — Reject is the default.`
-      : remote.pairingCode ? 'A one-time pairing code is open on Karan’s Mac (shown only to Pavan, not on this screen).'
+    : remote.connected ? `${remote.controllerName ?? 'Pierre'} is paired. Any request appears as an approval window on Karan’s Mac — Reject is the default.`
+      : remote.pairingCode ? 'A one-time pairing code is open on Karan’s Mac (shown only to Pierre, not on this screen).'
         : 'Pairing is closed. Karan opens it from his Mac when the seven gates are complete.';
   return (
     <section className="s-panel raised" style={{ marginTop: 16 }} aria-labelledby="h-live-stage">
       <div className="s-panel-head"><div><h2 id="h-live-stage" className="s-h3">Live pairing — Karan’s Mac</h2><p className="s-small" style={{ margin: '3px 0 0' }}>Codes, links and fingerprints are never shown on the projector.</p></div>
-        <span className={`s-chip ${remote?.connected ? 'ok' : ''}`}>{remote?.connected ? 'Pavan paired' : remote?.pairingCode ? 'Code open on the Mac' : 'Not paired'}</span></div>
+        <span className={`s-chip ${remote?.connected ? 'ok' : ''}`}>{remote?.connected ? 'Pierre paired' : remote?.pairingCode ? 'Code open on the Mac' : 'Not paired'}</span></div>
       <p style={{ margin: 0 }}>{status}</p>
       {ending && <PowerOffScreen kind={ending} onClose={ending === 'preview' ? () => { openedAt.current = Date.now(); setEnding(null); } : undefined} />}
     </section>
@@ -196,7 +196,7 @@ function LiveControls({ eligible }: { eligible: boolean }) {
   const toast = useToast();
   const now = useNow();
   const [remote, setRemote] = useState<RemoteStatus | null>(null);
-  const [presenter, setPresenter] = useState('Pavan Sanam');
+  const [presenter, setPresenter] = useState('Pierre Sauvage');
   const [busy, setBusy] = useState(false);
   const refresh = useCallback(async () => {
     try {
@@ -215,7 +215,7 @@ function LiveControls({ eligible }: { eligible: boolean }) {
       const r = await fetch(`${ADMIN_URL}${path}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(6000) });
       const j: { error?: string } = await r.json();
       if (!r.ok) throw new Error(j.error || 'The Mac refused the request.');
-      toast('ok', path === '/pair' ? 'New code active for five minutes. Pavan gets 30 minutes after pairing.' : 'Remote access revoked.');
+      toast('ok', path === '/pair' ? 'New code active for five minutes. Pierre gets 30 minutes after pairing.' : 'Remote access revoked.');
       await refresh();
     } catch (e) { toast('error', e instanceof Error ? e.message : 'Request failed.'); }
     finally { setBusy(false); }
@@ -234,13 +234,13 @@ function LiveControls({ eligible }: { eligible: boolean }) {
             {!eligible && <p className="s-policy warn"><LockKeyhole size={16} /><span>Close the director-approved ransomware workflow first.</span></p>}
             <label className="s-field"><span>Authorised presenter name</span><input className="s-input" value={presenter} maxLength={48} onChange={e => setPresenter(e.target.value)} /></label>
             <button className="s-btn primary" disabled={!eligible || busy || remote.busy} onClick={() => void act('/pair')}>{remote.pairingCode || remote.connected ? 'Create a new pairing code' : 'Enable remote pairing'}</button>
-            {remote.pairingCode && <div className="s-code-card"><span className="s-label">One-time code — show only to Pavan</span><div className="s-code s-num">{remote.pairingCode}</div><span className="s-small">Expires in {clock(codeLeft)}</span></div>}
+            {remote.pairingCode && <div className="s-code-card"><span className="s-label">One-time code — show only to Pierre</span><div className="s-code s-num">{remote.pairingCode}</div><span className="s-small">Expires in {clock(codeLeft)}</span></div>}
             {remote.connected && <p className="s-policy ok"><Check size={16} /><span>{remote.controllerName} is paired · {clock(sessionLeft)} left</span></p>}
             {remote.governance && <p className="s-policy info"><ShieldCheck size={16} /><span>The Mac holds the governance record for {remote.governance.incidentId ?? 'this incident'} ({remote.governance.approvals.length} signed steps). The approval window shows it to Karan.</span></p>}
-            <ConfirmButton className="s-btn ghost" confirmLabel="Click again: Pavan needs a new code" onConfirm={() => void act('/revoke')}><XCircle size={15} />Revoke access</ConfirmButton>
+            <ConfirmButton className="s-btn ghost" confirmLabel="Click again: Pierre needs a new code" onConfirm={() => void act('/revoke')}><XCircle size={15} />Revoke access</ConfirmButton>
           </div>
           <div className="s-stack">
-            <span className="s-label">Controller link for Pavan (same Wi-Fi)</span>
+            <span className="s-label">Controller link for Pierre (same Wi-Fi)</span>
             <div className="s-row"><code className="s-url">{remote.remoteUrl}</code><button className="s-iconbtn" aria-label="Copy link" onClick={() => { void navigator.clipboard?.writeText(remote.remoteUrl); toast('ok', 'Link copied. Verify the fingerprint together before pairing.'); }}><Copy size={16} /></button></div>
             <span className="s-label">Certificate SHA-256 fingerprint — compare in person</span>
             <code className="s-fp">{remote.fingerprint}</code>

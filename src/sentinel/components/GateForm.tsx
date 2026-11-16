@@ -128,7 +128,7 @@ export function nextHop(run: Run, gate: GateKey): { actors: ActorId[]; title: st
   const s = scenarioOf(run);
   const i = GATES.findIndex(g => g.key === gate);
   const next = GATES[i + 1];
-  if (!next) return { actors: ['vandana'], title: 'After-action report and board pack', key: 'report' };
+  if (!next) return { actors: ['vanessa'], title: 'After-action report and board pack', key: 'report' };
   if (next.key === 'authorize') return { actors: s.approvals.map(a => a.approver), title: next.title, key: next.key };
   return { actors: [gateActor(run, next.key as Exclude<GateKey, 'authorize'>)], title: next.title, key: next.key };
 }

@@ -109,10 +109,10 @@ export const DELEGATION_POLICY: Partial<Record<PersonId, { covers: string; appro
   // In the fictional classroom policy, the CISO is first in the executive continuity line,
   // but may NEVER countersign a security decision he already approved. The CFO is the
   // independent fallback for that case; she may not approve her own payment request.
-  vandana: { covers: 'Executive authorization (temporary, scenario-checked continuity authority)', approvalDeputies: ['vijay', 'srija'] },
+  vanessa: { covers: 'Executive authorization (temporary, scenario-checked continuity authority)', approvalDeputies: ['victor', 'sarah'] },
   // The CISO's deputy is the security analyst first (competence), then the CEO; SoD skips either when conflicted.
-  vijay: { covers: 'Security authorization and verification', approvalDeputies: ['nandini', 'vandana'], gateDeputy: { gate: 'verify', to: 'karan' } },
-  pavan: { covers: 'Authorised IT action', approvalDeputies: [], gateDeputy: { gate: 'execute', to: 'thomas' } },
+  victor: { covers: 'Security authorization and verification', approvalDeputies: ['nadia', 'vanessa'], gateDeputy: { gate: 'verify', to: 'karan' } },
+  pierre: { covers: 'Authorised IT action', approvalDeputies: [], gateDeputy: { gate: 'execute', to: 'thomas' } },
 };
 
 /** Who must act on a non-authorization gate, after applying delegation for unavailable people. */

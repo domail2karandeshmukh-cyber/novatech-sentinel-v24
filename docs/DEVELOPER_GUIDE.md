@@ -58,7 +58,7 @@ per-deployment address can ask visitors to log in to Vercel.
 | `/incident` | The live seven-gate incident: Detect → Cyber assessment → Financial impact → Executive authorization → IT action → Independent verification → Risk closure |
 | `/soc`, `/response`, `/team` | Security operations, department action plans and RACI, authority map and delegation |
 | `/evidence`, `/report` | Hash-chained local ledger (verify, tamper test, export) and the after-action report |
-| `/endpoint` | The final step: Pavan requests the power-off for re-imaging from Windows, Karan decides on the Mac (simulated on the public site) |
+| `/endpoint` | The final step: Pierre requests the power-off for re-imaging from Windows, Karan decides on the Mac (simulated on the public site) |
 | `/present` | Presenter Mode: nine shows × 2/5/8/12/20/30 minutes, console + audience windows, phone script, Q&A |
 | `/settings` | NOVA voice lab, pronunciations, sound cues, theme, projector contrast, reduced motion, reset |
 | `/home`, `/risks`, `/ebios`, `/quant`, `/compliance`, `/controls`, `/policies`, `/incidents`, `/actions`, `/approvals`, `/vendors`, `/continuity`, `/board`, `/audit`, `/reports`, `/scenarios`, `/access`, `/organisation`, `/assets`, `/departments`, `/workspace`, `/live`, `/briefing` | The **case workspace**: the original NOVATECH IRM pages inside the same shell. Each menu lists them under “Case workspace”, separate from the incident rehearsal |
@@ -66,9 +66,9 @@ per-deployment address can ask visitors to log in to Vercel.
 | `/v2-demo` | The untouched V2.3 rehearsal (fallback) |
 
 The six people and their authority are the same everywhere (UI, voice, RACI, tasks, presenter, report):
-Karan Deshmukh — Project Manager / Risk Coordinator · Vijay Bhosale — RSSI / CISO · Vandana Madem — Chief
-Executive Officer · Nandini Vadlamudi — Cybersecurity Analyst · Srija Poudapally — Finance Director
-(CFO / DAF) · Pavan Sanam — IT Operations Manager.
+Karan Deshmukh — Project Manager / Risk Coordinator · Victor Bonnet — RSSI / CISO · Vanessa Mallet — Chief
+Executive Officer · Nadia Vasseur — Cybersecurity Analyst · Sarah Perrin — Finance Director
+(CFO / DAF) · Pierre Sauvage — IT Operations Manager.
 
 ## Presenting
 
@@ -82,7 +82,7 @@ notes. Skipped gates never complete on their own; the console offers a labelled 
 and costs: [docs/VOICE.md](VOICE.md).
 
 Nobody logs in. Karan's Mac runs the console and the projector window; everyone else reads their part on their
-phone (`/present/script`); Pavan's Windows laptop is needed only to send the real power-off request at the end.
+phone (`/present/script`); Pierre's Windows laptop is needed only to send the real power-off request at the end.
 The header persona switcher is a presentation convenience, not authentication.
 
 Every hand-off is a signed form, not a bare submit button: severity (Critical — P1 to Low — P4), evidence and
@@ -95,7 +95,7 @@ signed form is sealed in the ledger (the hash covers it) and can be opened on Ev
 The 20- and 30-minute versions add the case workspace on the projector (risk register, compliance,
 quantification, board view, continuity; at 30 minutes also EBIOS RM, controls and vendors). Every show that
 reaches the end finishes with the final step: the workstation stayed powered on and isolated until its memory
-was imaged, then Pavan requests the power-off for re-imaging and Karan decides on the device. Nothing powers
+was imaged, then Pierre requests the power-off for re-imaging and Karan decides on the device. Nothing powers
 off automatically.
 
 What the projector does on its own: frames each spotlight above the lower third with a caption placed where
@@ -113,7 +113,7 @@ The public site only simulates it. The real request needs the local agent on Kar
 (`http://localhost:5173/present`) so the closed incident and the pairing card live in the same browser; the
 run sheet is in [docs/DEMO_SCRIPT.md](DEMO_SCRIPT.md). The projector shows the pairing status only —
 never the code, the controller link or the fingerprint. The SwiftUI approval window is **opt-in**; the proven macOS dialog stays the default:
-see [docs/NATIVE_COMPANION.md](NATIVE_COMPANION.md). Pavan's Windows-to-Mac LAN test and the SwiftUI
+see [docs/NATIVE_COMPANION.md](NATIVE_COMPANION.md). Pierre's Windows-to-Mac LAN test and the SwiftUI
 window have **not yet been run on real hardware**.
 
 ## Tests
@@ -140,9 +140,9 @@ Node test runner.
 
 ## V2.3 remote presenter workflow (unchanged)
 
-### Pavan's remote presenter workflow
+### Pierre's remote presenter workflow
 
-**This uses the same local risk demonstration, with a separate remote controller for the final shutdown request.** It is *not* yet a synchronized, multi-user risk dashboard. Pavan can request shutdown only after Karan completes and authorizes the seven-stage classroom rehearsal on the Mac.
+**This uses the same local risk demonstration, with a separate remote controller for the final shutdown request.** It is *not* yet a synchronized, multi-user risk dashboard. Pierre can request shutdown only after Karan completes and authorizes the seven-stage classroom rehearsal on the Mac.
 
 Both laptops must be on the same reachable **private Wi-Fi/LAN**. The remote controller is never exposed through Vercel or a public server. Don't port-forward it to the internet.
 
@@ -151,17 +151,17 @@ Both laptops must be on the same reachable **private Wi-Fi/LAN**. The remote con
 1. On Karan's Mac, run `npm run dev` and open `http://localhost:5173/v2-demo`.
 2. In a second Terminal in the project folder, start `npm run remote:preview`. This starts the local pairing service and the **HTTPS** remote controller but **never sends a native shutdown command**.
 3. Complete all seven ransomware gates, switch to the simulated **IT Operations** role, open **Remote Presenter** (near the bottom), and click **Enable remote pairing**. Keep the displayed six-digit code private. It expires after **five minutes** if unused.
-4. On Pavan's laptop (connected to the *same Wi-Fi*), open the exact HTTPS URL shown on Karan's page, for example `https://192.168.x.x:43872`.
+4. On Pierre's laptop (connected to the *same Wi-Fi*), open the exact HTTPS URL shown on Karan's page, for example `https://192.168.x.x:43872`.
 5. The agent uses a newly generated **self-signed certificate** for encrypted LAN communication. Chrome may warn that it is not publicly trusted. Before proceeding, compare the certificate's SHA-256 fingerprint in Chrome's certificate details against the fingerprint on Karan's screen, ideally in person. **Do not proceed if the fingerprints differ or cannot be verified.**
-6. Pavan enters the six-digit code. Only five incorrect attempts are allowed. A successful pairing lasts **30 minutes**, after which Pavan must pair again.
-7. Pavan checks the acknowledgement and clicks **Request shutdown from Mac**. In PREVIEW mode the dashboard should report success without any shutdown or macOS dialog.
+6. Pierre enters the six-digit code. Only five incorrect attempts are allowed. A successful pairing lasts **30 minutes**, after which Pierre must pair again.
+7. Pierre checks the acknowledgement and clicks **Request shutdown from Mac**. In PREVIEW mode the dashboard should report success without any shutdown or macOS dialog.
 
 ### B. Explicitly enable a real shutdown
 
 1. Stop the foreground preview agent (`Control+C`) and restart with `npm run remote:live` on **Karan's Mac**. This requires macOS.
-2. On Karan's NOVATECH page, click **Refresh status**, create a **new pairing code**, and let Pavan pair again. The old pairing does not survive a restart.
-3. Karan saves work. Pavan clicks **Request shutdown from Mac** and confirms in his browser.
-4. Karan's **Mac itself** displays the AppleScript/macOS shutdown confirmation. **Cancel is the default** and it times out after 30 seconds. Only if Karan clicks **Shut Down Mac** will the agent ask macOS to shut down; macOS may still require permissions or close-blocking apps to be resolved. Pavan cannot bypass this on-device approval.
+2. On Karan's NOVATECH page, click **Refresh status**, create a **new pairing code**, and let Pierre pair again. The old pairing does not survive a restart.
+3. Karan saves work. Pierre clicks **Request shutdown from Mac** and confirms in his browser.
+4. Karan's **Mac itself** displays the AppleScript/macOS shutdown confirmation. **Cancel is the default** and it times out after 30 seconds. Only if Karan clicks **Shut Down Mac** will the agent ask macOS to shut down; macOS may still require permissions or close-blocking apps to be resolved. Pierre cannot bypass this on-device approval.
 
 ### C. Optional Mac background agent (no Terminal left open)
 

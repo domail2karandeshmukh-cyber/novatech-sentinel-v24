@@ -41,8 +41,8 @@ A separate reviewer audited every route and flow against the brief. Fixed:
 - **Projector readability**: larger base type and projector contrast in the audience window; spotlight
   captions placed where they never cover the spotlighted content; sound captions in the top band; a two-second
   card names each new speaker and the question their part answers.
-- **Fair speaking time** in the 8-minute show: Karan 142 s (introduction and finale), Nandini 86 s, Vijay,
-  Srija, Vandana and Pavan 63 s each. The title card lists the people who actually speak in the chosen show.
+- **Fair speaking time** in the 8-minute show: Karan 142 s (introduction and finale), Nadia 86 s, Victor,
+  Sarah, Vanessa and Pierre 63 s each. The title card lists the people who actually speak in the chosen show.
 - **New in the console**: drive the simulated Mac rehearsal on the projector; **Challenge the controls** during
   questions — CEO unavailable, CEO sends it back, the executor or the requester tries to approve — answered by
   the engine on a private copy, never recorded.
@@ -63,7 +63,7 @@ What the team asked for, and what changed:
   minutes. The extra scenes put the case workspace on the projector with a spotlight: risk register, compliance,
   quantification, board view and continuity (20 and 30 minutes), plus EBIOS RM, controls and vendors (30
   minutes). Speaking time stays fair: between 156 s and 284 s each at 20 minutes, between 243 s and 375 s at 30
-  (8 minutes: Karan 105 s, Vijay 83 s, Nandini 83 s, Pavan 78 s, Srija 69 s, Vandana 61 s).
+  (8 minutes: Karan 105 s, Victor 83 s, Nadia 83 s, Pierre 78 s, Sarah 69 s, Vanessa 61 s).
   Scripts: `docs/DEMO_SCRIPT_20.md`, `docs/DEMO_SCRIPT_30.md`.
 - **Hand-offs are signed forms, not a submit button.** Severity (Critical — P1 to Low — P4) at detection and
   assessment; confidence, spread, MITRE ATT&CK techniques, indicators and an evidence checklist at assessment;
@@ -81,8 +81,8 @@ What the team asked for, and what changed:
   the klaxon, not over it.
 - **The final step is the power-off, and the story explains why.** The workstation stays powered on and
   isolated until its memory is imaged (a condition the CISO attaches); verification confirms the image; closure
-  hands Pavan the follow-up “Power off and re-image FIN-WS-07”. The complete show (5 to 30 minutes) now ends on
-  that step: Pavan requests the power-off from Windows and Karan decides on the device. On approval the
+  hands Pierre the follow-up “Power off and re-image FIN-WS-07”. The complete show (5 to 30 minutes) now ends on
+  that step: Pierre requests the power-off from Windows and Karan decides on the device. On approval the
   projector shows “Powered off by its owner”, labelled REHEARSAL, SIMULATED or PREVIEW. Nothing powers off
   automatically: Reject is the default, a timeout cancels, and only the local setup on Karan’s Mac can power it
   off. The console suggests taking questions before the last scene.
@@ -95,7 +95,7 @@ What the team asked for, and what changed:
 - **The eleven professor questions** each have an owner, a short answer and the page that proves it, in the
   console and on the phone script; the projector’s lower third shows who answers.
 - **Who needs what — nobody logs in**, on the Present page: Karan’s Mac runs the console and the projector,
-  phones are optional for the script, Pavan’s Windows laptop sends the real request at the end, and the
+  phones are optional for the script, Pierre’s Windows laptop sends the real request at the end, and the
   projector shows the audience view only.
 
 ## Tests that ran (in the build container, 27–28 October 2026)
@@ -151,7 +151,7 @@ Browser checks of the earlier rounds:
   of this exact source passed on Node 22.
 - **Interim preview in Claude** (hash-routed build of the same code): the viewer allows no second window,
   printing or downloads; use one-screen Presenter Mode there.
-- **Not tested on real hardware yet**: Pavan’s Windows laptop requesting over the classroom Wi-Fi, and the
+- **Not tested on real hardware yet**: Pierre’s Windows laptop requesting over the classroom Wi-Fi, and the
   SwiftUI approval window (never compiled against the Apple SDK). The macOS dialog path that Karan already used
   is unchanged and remains the default.
 - **Real final step needs the local copy**: present from `http://localhost:5173` on Karan’s Mac when the

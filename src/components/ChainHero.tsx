@@ -8,11 +8,11 @@ import '../styles/chain.css';
  * Driven by a small step counter so the loop is deterministic and pausable.
  */
 const STAGES = [
-  { k: 'Detect', who: 'Nandini', role: 'Security Analyst', icon: <Radar size={22} />, line: 'Alert confirmed' },
-  { k: 'Assess', who: 'Vijay · Srija', role: 'RSSI · CFO', icon: <ShieldCheck size={22} />, line: 'Severity 4' },
-  { k: 'Authorise', who: 'Vijay · Vandana', role: 'RSSI · CEO', icon: <Stamp size={22} />, line: 'Dual control' },
-  { k: 'Execute', who: 'Pavan', role: 'IT Operations', icon: <Wrench size={22} />, line: 'Authorised role only' },
-  { k: 'Verify', who: 'Vijay', role: 'Independent', icon: <ClipboardCheck size={22} />, line: 'Not the executor' },
+  { k: 'Detect', who: 'Nadia', role: 'Security Analyst', icon: <Radar size={22} />, line: 'Alert confirmed' },
+  { k: 'Assess', who: 'Victor · Sarah', role: 'RSSI · CFO', icon: <ShieldCheck size={22} />, line: 'Severity 4' },
+  { k: 'Authorise', who: 'Victor · Vanessa', role: 'RSSI · CEO', icon: <Stamp size={22} />, line: 'Dual control' },
+  { k: 'Execute', who: 'Pierre', role: 'IT Operations', icon: <Wrench size={22} />, line: 'Authorised role only' },
+  { k: 'Verify', who: 'Victor', role: 'Independent', icon: <ClipboardCheck size={22} />, line: 'Not the executor' },
 ];
 const HASHES = ['7c1e94b2', 'd0a35f88', '3b9ce4a1', 'f26d8b07', 'a91c5e3d'];
 const TICK = 1500;      // ms per step

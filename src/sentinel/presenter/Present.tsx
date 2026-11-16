@@ -58,7 +58,7 @@ export default function Present() {
             <li key={i}><span className="n s-num">{i + 1}</span><span className="t"><b>{r.segment}</b><small>{r.focus}</small></span>
               <select className="s-select" aria-label={`Speaker for ${r.segment}`} value={p.relay[i]} onChange={e => setSlot(i, e.target.value as PersonId)}>{TEAM.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}</select></li>
           ))}</ol>
-          <button className="s-btn ghost sm" onClick={() => presenter.setRelay(['karan', 'vijay', 'nandini', 'srija', 'vandana', 'pavan', 'karan'])}>Restore class order</button>
+          <button className="s-btn ghost sm" onClick={() => presenter.setRelay(['karan', 'victor', 'nadia', 'sarah', 'vanessa', 'pierre', 'karan'])}>Restore class order</button>
         </section>
       </div>
 
@@ -93,7 +93,7 @@ export default function Present() {
         <ul className="s-whoneeds">
           <li><Avatar id="karan" /><span><b>Karan’s Mac</b><small>Runs everything: the private console on the laptop screen and the audience window on the projector.</small></span></li>
           <li><Smartphone size={18} /><span><b>Everyone’s phone (optional)</b><small>The phone script: your lines, your keywords, the professor questions you answer.</small></span></li>
-          <li><Avatar id="pavan" /><span><b>Pavan’s Windows laptop</b><small>Only for the final step: pair with the code from Karan’s screen and send the power-off request. It can never command the Mac.</small></span></li>
+          <li><Avatar id="pierre" /><span><b>Pierre’s Windows laptop</b><small>Only for the final step: pair with the code from Karan’s screen and send the power-off request. It can never command the Mac.</small></span></li>
           <li><MonitorPlay size={18} /><span><b>Projector</b><small>The audience view only: live screens, spotlights, captions. Never notes, codes or the script.</small></span></li>
         </ul>
       </section>

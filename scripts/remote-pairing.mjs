@@ -60,7 +60,7 @@ export class RemotePairing {
     this.audit = [];
   }
 
-  activate({ workflowClosed, approved, scenarioId, controllerName = 'Pavan', governance }) {
+  activate({ workflowClosed, approved, scenarioId, controllerName = 'Pierre', governance }) {
     if (workflowClosed !== true || approved !== true || scenarioId !== 'ransomware') throw new Error('Finish the director-approved ransomware workflow before pairing.');
     const name = String(controllerName).trim();
     if (!/^[\p{L}\p{N} .'-]{1,48}$/u.test(name)) throw new Error('Enter a valid presenter name (1–48 characters).');

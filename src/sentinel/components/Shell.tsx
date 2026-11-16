@@ -28,7 +28,7 @@ export const SENTINEL_NAV: NavGroup[] = [
   { key: 'response', label: 'Response', blurb: 'Who does what, by when, with which approval.', items: [
     { to: '/response', label: 'Department plans', desc: 'Cyber, Finance, IT, Executive, Risk', icon: <ListChecks size={17} /> },
     { to: '/inbox', label: 'Team Inbox', desc: 'Simulated sign-in, assigned tasks and notifications', icon: <BellRing size={17} /> },
-    { to: '/endpoint', label: 'Endpoint action', desc: 'Pavan’s request, Karan’s Mac approval', icon: <MonitorSmartphone size={17} /> },
+    { to: '/endpoint', label: 'Endpoint action', desc: 'Pierre’s request, Karan’s Mac approval', icon: <MonitorSmartphone size={17} /> },
   ] },
   { key: 'assurance', label: 'Assurance', blurb: 'Evidence the board and the auditor can trust.', items: [
     { to: '/evidence', label: 'Evidence ledger', desc: 'Hash-chained record of every decision', icon: <Fingerprint size={17} /> },

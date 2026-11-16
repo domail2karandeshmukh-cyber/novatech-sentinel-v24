@@ -30,7 +30,7 @@ export type PresenterState = {
   fill: { gate: string; at: number } | null;
 };
 
-export const DEFAULT_RELAY: PersonId[] = ['karan', 'vijay', 'nandini', 'srija', 'vandana', 'pavan', 'karan'];
+export const DEFAULT_RELAY: PersonId[] = ['karan', 'victor', 'nadia', 'sarah', 'vanessa', 'pierre', 'karan'];
 
 export function blankPresenter(): PresenterState {
   return {

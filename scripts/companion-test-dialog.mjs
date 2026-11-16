@@ -11,12 +11,12 @@ import { APPROVER_SWIFTUI, requestOwnerApproval, resolveApprover } from './mac-a
 
 const SAMPLE_GOVERNANCE = [
   { gate: 'Detect', person: 'Karan Deshmukh', role: 'Risk Coordinator', decision: 'Acknowledged' },
-  { gate: 'Cyber assessment', person: 'Nandini Vadlamudi', role: 'Cybersecurity Analyst', decision: 'Isolation proposed' },
-  { gate: 'Financial impact', person: 'Srija Poudapally', role: 'CFO / DAF', decision: 'Exposure validated' },
-  { gate: 'Security authorization', person: 'Vijay Bhosale', role: 'RSSI / CISO', decision: 'Authorized' },
-  { gate: 'Executive authorization', person: 'Vandana Madem', role: 'Chief Executive Officer', decision: 'Authorized' },
-  { gate: 'IT action', person: 'Pavan Sanam', role: 'IT Operations Manager', decision: 'Executed (simulated)' },
-  { gate: 'Verification', person: 'Vijay Bhosale', role: 'RSSI / CISO', decision: 'Independently verified' },
+  { gate: 'Cyber assessment', person: 'Nadia Vasseur', role: 'Cybersecurity Analyst', decision: 'Isolation proposed' },
+  { gate: 'Financial impact', person: 'Sarah Perrin', role: 'CFO / DAF', decision: 'Exposure validated' },
+  { gate: 'Security authorization', person: 'Victor Bonnet', role: 'RSSI / CISO', decision: 'Authorized' },
+  { gate: 'Executive authorization', person: 'Vanessa Mallet', role: 'Chief Executive Officer', decision: 'Authorized' },
+  { gate: 'IT action', person: 'Pierre Sauvage', role: 'IT Operations Manager', decision: 'Executed (simulated)' },
+  { gate: 'Verification', person: 'Victor Bonnet', role: 'RSSI / CISO', decision: 'Independently verified' },
   { gate: 'Closure', person: 'Karan Deshmukh', role: 'Risk Coordinator', decision: 'Closed' },
 ];
 
@@ -46,7 +46,7 @@ async function main() {
   const timeoutSeconds = Number(option('timeout') ?? 30);
   const meta = {
     ownerName: 'Karan Deshmukh',
-    requesterName: 'Pavan Sanam',
+    requesterName: 'Pierre Sauvage',
     requesterContext: 'Paired LAN session — identity is the name entered at pairing, not enterprise SSO',
     incidentId: 'NT-SEC-041',
     scenario: 'Ransomware on a finance workstation (FIN-WS-07)',

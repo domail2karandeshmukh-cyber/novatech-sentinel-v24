@@ -1,7 +1,7 @@
 # NOVA voice — how it works and what it would cost
 
 NOVA is Sentinel's co-presenter voice. It speaks short, name-aware lines when something happens in the
-incident ("Vijay has authorized the security side") and a few scene cues in Presenter Mode. Every line is
+incident ("Victor has authorized the security side") and a few scene cues in Presenter Mode. Every line is
 also shown as a caption, so nothing depends on sound.
 
 ## What runs today (free, no keys)
@@ -15,7 +15,7 @@ device. No text leaves the computer, nothing is billed and no API key exists any
 | Accent preference | Settings | English (India) by default. Hindi and Marathi voices can be chosen if installed. |
 | Pronunciations | Settings → Pronunciations | Editable respellings applied to every voice (NOVATECH → "Nova-tech"). Team names get built-in respellings only on non-Indian voices, because Indian voices already say them well. |
 | Rate, pitch, volume, mute | Settings and the header voice button | Saved per browser. |
-| Story or executive style | Settings | Story lines name the person ("Srija has priced the exposure"); executive lines are shorter. |
+| Story or executive style | Settings | Story lines name the person ("Sarah has priced the exposure"); executive lines are shorter. |
 | Automatic / on cue / off | Presenter console | Automatic speaks scene cues and incident events; on cue waits for "Speak cue"; off stays silent. |
 | Captions and transcript | Caption bar, Settings → Transcript | Word-by-word highlight while speaking; the last lines can be replayed. |
 | Interruptions | Console "Silence", key **M**, scene changes | A new scene stops the previous line. |

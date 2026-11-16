@@ -15,7 +15,7 @@ const CUES: Cue[] = ['start', 'critical', 'acknowledge', 'approvalRequested', 'a
 const CUE_EVENT: Partial<Record<Cue, string>> = {
   start: 'Opening', critical: 'New critical incident', acknowledge: 'Risk acknowledged', approvalRequested: 'Approval requested', approvalGranted: 'Approval granted',
   approvalReturned: 'Approval returned / rejected', actionStarted: 'Technical action started', verified: 'Verification successful', closed: 'Final incident closure',
-  remoteRequest: 'Remote request from Pavan', consentPending: 'Mac consent pending', cancelled: 'Request cancelled / timed out',
+  remoteRequest: 'Remote request from Pierre', consentPending: 'Mac consent pending', cancelled: 'Request cancelled / timed out',
 };
 
 export default function Settings() {

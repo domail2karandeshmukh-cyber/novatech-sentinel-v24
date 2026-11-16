@@ -14,7 +14,7 @@ final class RequestParserTests: XCTestCase {
             "requestId": requestId,
             "deviceName": "Karans-MacBook-Air.local",
             "ownerName": "Karan Deshmukh",
-            "requesterName": "Pavan Sanam",
+            "requesterName": "Pierre Sauvage",
             "requesterContext": "Paired LAN session — identity is the name entered at pairing, not enterprise SSO",
             "incidentId": "NT-SEC-041",
             "scenario": "Ransomware on a finance workstation",
@@ -29,7 +29,7 @@ final class RequestParserTests: XCTestCase {
         ])
         XCTAssertEqual(request.requestId, requestId)
         XCTAssertEqual(request.ownerName, "Karan Deshmukh")
-        XCTAssertEqual(request.requesterName, "Pavan Sanam")
+        XCTAssertEqual(request.requesterName, "Pierre Sauvage")
         XCTAssertEqual(request.incidentId, "NT-SEC-041")
         XCTAssertEqual(request.governance, [GovernanceEntry(gate: "Detect", person: "Karan Deshmukh", role: "Risk Coordinator", decision: "Acknowledged")])
         XCTAssertEqual(request.mode, .live)
@@ -76,11 +76,11 @@ final class RequestParserTests: XCTestCase {
     func testStringsAreSingleLineStrippedOfControlAndBidiCharactersAndClamped() throws {
         let request = try parse([
             "requestId": requestId,
-            "requesterName": "  Pavan\n\tSanam\u{202E}evil\u{200B}  ",
+            "requesterName": "  Pierre\n\tSauvage\u{202E}evil\u{200B}  ",
             "reason": String(repeating: "x", count: 500),
             "scenario": "\u{0007}\u{2028}",
         ])
-        XCTAssertEqual(request.requesterName, "Pavan Sanamevil")
+        XCTAssertEqual(request.requesterName, "Pierre Sauvageevil")
         XCTAssertEqual(request.reason.count, ApprovalLimits.maxTextLength)
         XCTAssertEqual(request.scenario, ApprovalRequest.notProvided, "a string that is only control characters is treated as missing")
     }
@@ -89,7 +89,7 @@ final class RequestParserTests: XCTestCase {
         XCTAssertEqual(RequestParser.sanitize("a  \u{00A0} b"), "a b")
         XCTAssertNil(RequestParser.sanitize("   "))
         XCTAssertEqual(RequestParser.sanitize("abcd efgh", maxLength: 5), "abcd")
-        XCTAssertEqual(RequestParser.sanitize("Vijay Bhosale — RSSI / CISO"), "Vijay Bhosale — RSSI / CISO")
+        XCTAssertEqual(RequestParser.sanitize("Victor Bonnet — RSSI / CISO"), "Victor Bonnet — RSSI / CISO")
     }
 
     func testTimeoutIsClampedAndOnlyNumbersCount() throws {
@@ -140,10 +140,10 @@ final class RequestParserTests: XCTestCase {
 
     func testLoadsARequestFile() throws {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("novatech-request-\(UUID().uuidString).json")
-        try Data("{\"requestId\":\"\(requestId)\",\"requesterName\":\"Pavan Sanam\"}".utf8).write(to: url)
+        try Data("{\"requestId\":\"\(requestId)\",\"requesterName\":\"Pierre Sauvage\"}".utf8).write(to: url)
         defer { try? FileManager.default.removeItem(at: url) }
         let request = try RequestInput.load(arguments: ["approver", "--request-file", url.path]).get()
-        XCTAssertEqual(request.requesterName, "Pavan Sanam")
+        XCTAssertEqual(request.requesterName, "Pierre Sauvage")
         XCTAssertThrowsError(try RequestInput.load(arguments: ["approver", "--request-file", url.path + ".missing"]).get())
     }
 }

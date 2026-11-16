@@ -172,7 +172,7 @@ export default function DemoApp() {
           <div className="v2-sidebar-bottom">
             <button className="v2-voice-side-cta" onClick={() => setVoiceSettingsOpen(true)}><Volume2 size={17}/><span><b>NOVA VOICE</b><small>Indian English · custom pronunciation</small></span><Settings2 size={15}/></button>
             <button className="v2-voice-side-cta" onClick={() => document.getElementById('v2-mac-control')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}><MonitorOff size={17}/><span><b>MAC CONTROL</b><small>Optional local shutdown helper</small></span><ArrowRight size={15}/></button>
-            <button className="v2-voice-side-cta" onClick={() => document.getElementById('v2-remote-control')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}><Wifi size={17}/><span><b>REMOTE PRESENTER</b><small>Pavan · 30-minute pairing</small></span><ArrowRight size={15}/></button>
+            <button className="v2-voice-side-cta" onClick={() => document.getElementById('v2-remote-control')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}><Wifi size={17}/><span><b>REMOTE PRESENTER</b><small>Pierre · 30-minute pairing</small></span><ArrowRight size={15}/></button>
             <div className="v2-secure-note"><ShieldCheck size={15} /><span>LOCAL DEMO MODE<br/><small>No production writes</small></span></div>
             {import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY &&
               <a href="/" className="v2-back-link">Original platform <ArrowRight size={14} /></a>}
@@ -251,7 +251,7 @@ export default function DemoApp() {
         </main>
       </div>
       {feedback && <div role="status" className={`v2-toast ${feedback.type}`}><span>{feedback.type === 'ok' ? <Check size={16}/> : <CircleAlert size={16}/>}</span>{feedback.text}<button onClick={() => setFeedback(null)} aria-label="Dismiss"><X size={15}/></button></div>}
-      <VoiceStudio open={voiceSettingsOpen} onClose={closeVoiceSettings} preferences={voiceStudio.preferences} onChange={voiceStudio.setPreferences} voices={voiceStudio.voices} supported={voiceStudio.supported} onTest={() => voiceStudio.speak('Hello Karan Deshmukh. Nandini has completed the cybersecurity review. Srija, please check the financial impact before the director approves the response.')} onTestName={name => voiceStudio.speak(`Hello ${name}. Your decision is now ready for review.`)} />
+      <VoiceStudio open={voiceSettingsOpen} onClose={closeVoiceSettings} preferences={voiceStudio.preferences} onChange={voiceStudio.setPreferences} voices={voiceStudio.voices} supported={voiceStudio.supported} onTest={() => voiceStudio.speak('Hello Karan Deshmukh. Nadia has completed the cybersecurity review. Sarah, please check the financial impact before the director approves the response.')} onTestName={name => voiceStudio.speak(`Hello ${name}. Your decision is now ready for review.`)} />
       {started && !completed && !isMine && <div className="v2-floating-handoff"><span>Awaiting <b>{currentOwner?.person}</b></span><button onClick={() => { if (stage) setRole(stage.role); setNote(''); }}><Users size={14}/> Assume demo role <ArrowRight size={14}/></button></div>}
       {activeRole && <div className="v2-sr-only" aria-live="polite">Current persona: {activeRole.person}. {stage ? `Next decision: ${stage.name}` : 'No pending decision'}.</div>}
     </div>
@@ -269,8 +269,8 @@ function IntelligenceOverview({ run, scenarioId, onRole }: { run: DemoRun; scena
   const points = trend.map((value, i) => `${(i / (trend.length - 1) * 500).toFixed(1)},${(100 - value).toFixed(1)}`).join(' ');
   const fill = `0,100 ${points} 500,100`;
   const owners = [
-    { role: 'Cybersecurity' as Role, person: 'Nandini', gate: 1, color: 'teal' },
-    { role: 'Finance' as Role, person: 'Srija', gate: 2, color: 'violet' },
+    { role: 'Cybersecurity' as Role, person: 'Nadia', gate: 1, color: 'teal' },
+    { role: 'Finance' as Role, person: 'Sarah', gate: 2, color: 'violet' },
     { role: 'Director' as Role, person: 'Executive Director', gate: 3, color: 'amber' },
     { role: 'IT Operations' as Role, person: 'IT Operations', gate: 4, color: 'blue' },
   ];

@@ -4,10 +4,10 @@ import { blankRun, SCENARIOS, STAGES, startRun } from '../src/v2/demoEngine.ts';
 import { applyPronunciations, DEFAULT_VOICE_PREFERENCES, loadVoicePreferences, pickVoice, saveVoicePreferences, stageNarration, VOICE_STORAGE_KEY } from '../src/v2/voiceEngine.ts';
 
 test('pronunciation dictionary changes only spoken names, including longest matches first', () => {
-  const changed = applyPronunciations('Karan Deshmukh asked Nandini to contact Srija. Karan Deshmukh agreed.', {
-    Karan: 'Kuh-run', 'Karan Deshmukh': 'Kuh-run Desh-mookh', Nandini: 'Nun-di-nee', Srija: 'Sree-jah',
+  const changed = applyPronunciations('Karan Deshmukh asked Nadia to contact Sarah. Karan Deshmukh agreed.', {
+    Karan: 'Kuh-run', 'Karan Deshmukh': 'Kuh-run Desh-mookh', Nadia: 'Nah-dee-ah', Sarah: 'Sah-rah',
   });
-  assert.equal(changed, 'Kuh-run Desh-mookh asked Nun-di-nee to contact Sree-jah. Kuh-run Desh-mookh agreed.');
+  assert.equal(changed, 'Kuh-run Desh-mookh asked Nah-dee-ah to contact Sah-rah. Kuh-run Desh-mookh agreed.');
 });
 
 test('voice preference prioritises Indian English and respects a manually selected voice', () => {
@@ -26,11 +26,11 @@ test('voice settings are validated and persisted in local storage', () => {
   globalThis.localStorage = { getItem: k => memory.get(k) ?? null, setItem: (k, v) => memory.set(k, v) };
   saveVoicePreferences({ ...DEFAULT_VOICE_PREFERENCES, rate: .86 });
   assert.equal(loadVoicePreferences().rate, .86);
-  memory.set(VOICE_STORAGE_KEY, JSON.stringify({ rate: 300, locale: 'invalid', lexicon: { Nandini: 'Nun-dee-nee' } }));
+  memory.set(VOICE_STORAGE_KEY, JSON.stringify({ rate: 300, locale: 'invalid', lexicon: { Nadia: 'Nah-dee-ah' } }));
   const safe = loadVoicePreferences();
   assert.equal(safe.rate, 1.15);
   assert.equal(safe.locale, 'en-IN');
-  assert.equal(safe.lexicon.Nandini, 'Nun-dee-nee');
+  assert.equal(safe.lexicon.Nadia, 'Nah-dee-ah');
   delete globalThis.localStorage;
 });
 
@@ -38,7 +38,7 @@ test('narration includes owners, contextual impact and style differences', () =>
   const run = { ...startRun(blankRun('ransomware')), step: 2 };
   const story = stageNarration(run, STAGES[2], SCENARIOS[0], 'story');
   const executive = stageNarration(run, STAGES[2], SCENARIOS[0], 'professional');
-  assert.match(story, /Srija/);
+  assert.match(story, /Sarah/);
   assert.match(story, /2,40,000 euros/);
   assert.match(executive, /Stage 3 of seven/);
   assert.notEqual(story, executive);

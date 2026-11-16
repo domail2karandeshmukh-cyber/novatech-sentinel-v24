@@ -45,7 +45,7 @@ export function useMacSimEffects() {
     else if (mac.phase === 'paired') play('acknowledge');
     else if (mac.phase === 'pending') {
       play('remoteRequest'); window.setTimeout(() => play('consentPending'), 900);
-      say('Pavan has requested the power-off from his laptop. Karan, your Mac is asking for your decision. Reject is the default.', { key: `rq-${mac.seq}` });
+      say('Pierre has requested the power-off from his laptop. Karan, your Mac is asking for your decision. Reject is the default.', { key: `rq-${mac.seq}` });
     } else if (mac.phase === 'result') {
       play(mac.result === 'approved' ? 'powerOff' : 'cancelled');
       say(mac.result === 'approved' ? 'Karan has authorized the power-off. On the real Mac, this is the moment it shuts down. Every step is in the ledger.'

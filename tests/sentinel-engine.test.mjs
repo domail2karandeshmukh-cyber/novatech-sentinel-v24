@@ -39,11 +39,11 @@ test('sha256 matches the FIPS 180-4 test vectors', () => {
 test('canonical roster: six people, exact names and roles', () => {
   assert.deepEqual(TEAM.map(p => `${p.name} — ${p.role}`), [
     'Karan Deshmukh — Project Manager / Risk Coordinator',
-    'Vijay Bhosale — RSSI / CISO',
-    'Vandana Madem — Chief Executive Officer',
-    'Nandini Vadlamudi — Cybersecurity Analyst',
-    'Srija Poudapally — Finance Director (CFO / DAF)',
-    'Pavan Sanam — IT Operations Manager',
+    'Victor Bonnet — RSSI / CISO',
+    'Vanessa Mallet — Chief Executive Officer',
+    'Nadia Vasseur — Cybersecurity Analyst',
+    'Sarah Perrin — Finance Director (CFO / DAF)',
+    'Pierre Sauvage — IT Operations Manager',
   ]);
 });
 
@@ -52,7 +52,7 @@ test('each scenario has its own treatment, route and plans (no copy-paste)', () 
   assert.equal(kinds.size, 3);
   assert.equal(scenarioById('ransomware').approvals.length, 2);
   assert.equal(scenarioById('payments').approvals.length, 1);
-  assert.equal(scenarioById('payments').requester, 'srija');
+  assert.equal(scenarioById('payments').requester, 'sarah');
   for (const s of SCENARIOS) {
     assert.ok(s.notes.detect.length > 40 && s.notes.close.length > 40);
     assert.equal(new Set(s.plans.map(p => p.dept)).size, 5);
@@ -65,7 +65,7 @@ test('full ransomware rehearsal closes with an intact hash chain and actor-stamp
   assert.equal(run.status, 'closed');
   assert.equal(run.gate, 7);
   const actors = run.ledger.map(e => e.actorName);
-  for (const name of ['Karan Deshmukh', 'Nandini Vadlamudi', 'Srija Poudapally', 'Vijay Bhosale', 'Vandana Madem', 'Pavan Sanam']) assert.ok(actors.includes(name), name);
+  for (const name of ['Karan Deshmukh', 'Nadia Vasseur', 'Sarah Perrin', 'Victor Bonnet', 'Vanessa Mallet', 'Pierre Sauvage']) assert.ok(actors.includes(name), name);
   const v = verifyLedger(run.ledger);
   assert.equal(v.ok, true);
   assert.equal(v.checked, run.ledger.length);
@@ -77,73 +77,73 @@ test('full ransomware rehearsal closes with an intact hash chain and actor-stamp
 
 test('wrong person, short rationale and skipped gates are refused', () => {
   let run = ok(reduce(blankRun('ransomware'), { type: 'start' }, at()));
-  assert.match(reduce(run, { type: 'record', gate: 'detect', actor: 'nandini', note: NOTE }, at()).error, /Karan Deshmukh/);
+  assert.match(reduce(run, { type: 'record', gate: 'detect', actor: 'nadia', note: NOTE }, at()).error, /Karan Deshmukh/);
   assert.match(reduce(run, { type: 'record', gate: 'detect', actor: 'karan', note: 'short' }, at()).error, /12 characters/);
-  assert.match(reduce(run, { type: 'record', gate: 'execute', actor: 'pavan', note: NOTE, consent: true }, at()).error, /next gate/);
+  assert.match(reduce(run, { type: 'record', gate: 'execute', actor: 'pierre', note: NOTE, consent: true }, at()).error, /next gate/);
   run = ok(reduce(run, { type: 'record', gate: 'detect', actor: 'karan', note: NOTE }, at()));
-  assert.equal(nextAction(run).actor, 'nandini');
+  assert.equal(nextAction(run).actor, 'nadia');
 });
 
 test('ransomware needs CISO then CEO; the CEO can return the treatment for revision', () => {
   let run = runThrough('ransomware', 'impact');
-  assert.deepEqual(run.approvals.map(a => [a.id, a.acting, a.status]), [['security', 'vijay', 'pending'], ['executive', 'vandana', 'waiting']]);
-  assert.match(reduce(run, { type: 'decide', step: 'executive', actor: 'vandana', decision: 'approve', note: NOTE }, at()).error, /earlier approval/);
-  run = ok(reduce(run, { type: 'decide', step: 'security', actor: 'vijay', decision: 'approve', note: NOTE }, at()));
-  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'vandana', decision: 'return', note: 'Narrow the scope to the workstation only, please.' }, at()));
+  assert.deepEqual(run.approvals.map(a => [a.id, a.acting, a.status]), [['security', 'victor', 'pending'], ['executive', 'vanessa', 'waiting']]);
+  assert.match(reduce(run, { type: 'decide', step: 'executive', actor: 'vanessa', decision: 'approve', note: NOTE }, at()).error, /earlier approval/);
+  run = ok(reduce(run, { type: 'decide', step: 'security', actor: 'victor', decision: 'approve', note: NOTE }, at()));
+  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'vanessa', decision: 'return', note: 'Narrow the scope to the workstation only, please.' }, at()));
   assert.equal(GATES[run.gate].key, 'assess');
   assert.equal(run.revisions, 1);
   assert.equal(run.approvals.length, 0);
   assert.equal(run.ledger.at(-1).kind, 'returned');
-  assert.match(reduce(run, { type: 'record', gate: 'execute', actor: 'pavan', note: NOTE, consent: true }, at()).error, /next gate/);
+  assert.match(reduce(run, { type: 'record', gate: 'execute', actor: 'pierre', note: NOTE, consent: true }, at()).error, /next gate/);
 });
 
 test('payment hold: the CFO requests it, so only an independent approver (CEO) can approve', () => {
   let run = runThrough('payments', 'impact');
   assert.equal(run.approvals.length, 1);
-  assert.equal(run.approvals[0].acting, 'vandana');
-  const checks = sodForApproval(run, 'executive', 'srija');
+  assert.equal(run.approvals[0].acting, 'vanessa');
+  const checks = sodForApproval(run, 'executive', 'sarah');
   assert.equal(checks.find(c => c.rule.startsWith('Approver is not the requester')).ok, false);
-  // CEO unavailable: Vijay is the independent emergency executive deputy here;
+  // CEO unavailable: Victor is the independent emergency executive deputy here;
   // the CFO requested the hold and cannot approve it herself.
-  run = ok(reduce(run, { type: 'unavailable', person: 'vandana' }, at()));
-  assert.equal(run.approvals[0].acting, 'vijay');
+  run = ok(reduce(run, { type: 'unavailable', person: 'vanessa' }, at()));
+  assert.equal(run.approvals[0].acting, 'victor');
   assert.equal(run.approvals[0].status, 'pending');
   assert.ok(run.approvals[0].delegation);
-  assert.match(reduce(run, { type: 'decide', step: 'executive', actor: 'srija', decision: 'approve', note: NOTE }, at()).error, /Vijay Bhosale/);
-  run = ok(reduce(run, { type: 'available', person: 'vandana' }, at()));
+  assert.match(reduce(run, { type: 'decide', step: 'executive', actor: 'sarah', decision: 'approve', note: NOTE }, at()).error, /Victor Bonnet/);
+  run = ok(reduce(run, { type: 'available', person: 'vanessa' }, at()));
   assert.equal(run.approvals[0].status, 'pending');
-  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'vandana', decision: 'approve', note: NOTE }, at()));
+  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'vanessa', decision: 'approve', note: NOTE }, at()));
   assert.equal(GATES[run.gate].key, 'execute');
 });
 
-test('ransomware with the CEO unavailable uses the CFO, never Vijay twice', () => {
+test('ransomware with the CEO unavailable uses the CFO, never Victor twice', () => {
   let run = runThrough('ransomware', 'impact');
-  run = ok(reduce(run, { type: 'unavailable', person: 'vandana' }, at()));
-  assert.equal(run.approvals[1].acting, 'srija');
+  run = ok(reduce(run, { type: 'unavailable', person: 'vanessa' }, at()));
+  assert.equal(run.approvals[1].acting, 'sarah');
   assert.ok(run.approvals[1].delegation);
-  run = ok(reduce(run, { type: 'decide', step: 'security', actor: 'vijay', decision: 'approve', note: NOTE }, at()));
-  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'srija', decision: 'approve', note: NOTE }, at()));
+  run = ok(reduce(run, { type: 'decide', step: 'security', actor: 'victor', decision: 'approve', note: NOTE }, at()));
+  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'sarah', decision: 'approve', note: NOTE }, at()));
   assert.equal(GATES[run.gate].key, 'execute');
   assert.ok(run.ledger.some(e => e.kind === 'delegated'));
 });
 
 test('ransomware with the CISO unavailable blocks: the analyst deputy requested it, the CEO already holds the other approval', () => {
   let run = runThrough('ransomware', 'impact');
-  run = ok(reduce(run, { type: 'unavailable', person: 'vijay' }, at()));
+  run = ok(reduce(run, { type: 'unavailable', person: 'victor' }, at()));
   assert.equal(run.approvals[0].status, 'blocked');
-  assert.match(run.approvals[0].blockedReason, /Nandini Vadlamudi is ineligible/);
-  assert.match(run.approvals[0].blockedReason, /Vandana Madem is ineligible/);
+  assert.match(run.approvals[0].blockedReason, /Nadia Vasseur is ineligible/);
+  assert.match(run.approvals[0].blockedReason, /Vanessa Mallet is ineligible/);
   assert.equal(run.approvals[1].status, 'waiting');
   assert.ok(run.ledger.some(e => e.kind === 'sod_blocked'));
 });
 
 test('IT Operations Manager unavailable: the Systems Administrator executes, the CISO still verifies', () => {
   let run = runThrough('cloud', 'authorize');
-  run = ok(reduce(run, { type: 'unavailable', person: 'pavan' }, at()));
+  run = ok(reduce(run, { type: 'unavailable', person: 'pierre' }, at()));
   assert.equal(gateActor(run, 'execute'), 'thomas');
   assert.match(reduce(run, { type: 'record', gate: 'execute', actor: 'thomas', note: NOTE }, at()).error, /simulated/);
   run = ok(reduce(run, { type: 'record', gate: 'execute', actor: 'thomas', note: NOTE, consent: true }, at()));
-  run = ok(reduce(run, { type: 'record', gate: 'verify', actor: 'vijay', note: NOTE }, at()));
+  run = ok(reduce(run, { type: 'record', gate: 'verify', actor: 'victor', note: NOTE }, at()));
   assert.equal(run.records.execute.by, 'thomas');
 });
 

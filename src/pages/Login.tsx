@@ -6,12 +6,12 @@ import { Notice } from '../components/ui';
 import { initials } from '../lib/format';
 
 const DIRECTORY = [
-  { email: 'vandana@novatech.example', name: 'Vandana Madem', role: 'CEO' },
-  { email: 'vijay@novatech.example', name: 'Vijay Bhosale', role: 'RSSI / CISO' },
-  { email: 'srija@novatech.example', name: 'Srija Poudapally', role: 'Finance Director' },
+  { email: 'vanessa@novatech.example', name: 'Vanessa Mallet', role: 'CEO' },
+  { email: 'victor@novatech.example', name: 'Victor Bonnet', role: 'RSSI / CISO' },
+  { email: 'sarah@novatech.example', name: 'Sarah Perrin', role: 'Finance Director' },
   { email: 'karan@novatech.example', name: 'Karan Deshmukh', role: 'Risk Coordinator' },
-  { email: 'pavan@novatech.example', name: 'Pavan Sanam', role: 'IT Operations' },
-  { email: 'nandini@novatech.example', name: 'Nandini Vadlamudi', role: 'Security Analyst' },
+  { email: 'pierre@novatech.example', name: 'Pierre Sauvage', role: 'IT Operations' },
+  { email: 'nadia@novatech.example', name: 'Nadia Vasseur', role: 'Security Analyst' },
   { email: 'lea.moreau@novatech.example', name: 'Léa Moreau', role: 'Accounts Payable' },
   { email: 'thomas.bernard@novatech.example', name: 'Thomas Bernard', role: 'Sysadmin' },
   { email: 'auditor@novatech.example', name: 'Internal Auditor', role: 'Read-only reviewer' },
@@ -20,11 +20,11 @@ const DIRECTORY = [
 const NODES: [number, number][] = [[640, 110], [760, 280], [660, 450], [820, 610], [700, 800], [200, 260], [440, 180], [700, 120], [900, 260], [1120, 160], [1260, 380], [1180, 700], [860, 780], [520, 820], [60, 420], [1360, 600]];
 // eslint-disable-next-line
 export const CHAIN_UNUSED = [
-  ['NV', 'Nandini detects', 'A rule flags a suspicious €184,500 payment'],
-  ['VB', 'Vijay assesses', 'Security impact, within RSSI authority only'],
-  ['SP', 'Srija and Vandana approve', 'Finance authority, CEO dual control above €100k'],
+  ['NV', 'Nadia detects', 'A rule flags a suspicious €184,500 payment'],
+  ['VB', 'Victor assesses', 'Security impact, within RSSI authority only'],
+  ['SP', 'Sarah and Vanessa approve', 'Finance authority, CEO dual control above €100k'],
   ['LM', 'Léa executes', 'Only an authorised executor, only after approval'],
-  ['VB', 'Vijay verifies', 'Checked against data, never by the person who did it'],
+  ['VB', 'Victor verifies', 'Checked against data, never by the person who did it'],
 ];
 
 export default function Login() {

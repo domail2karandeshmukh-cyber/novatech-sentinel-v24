@@ -4,7 +4,7 @@
  *
  *   node src/enterprise/demo/tools/parity-sql.mjs <capture-dir> [persona …] > parity.sql
  *
- * (Optional persona codes restrict the statement, e.g. `karan vijay`, to check a few personas.)
+ * (Optional persona codes restrict the statement, e.g. `karan victor`, to check a few personas.)
  *
  * Run the statement against the NOVATECH project and save the "manifest" value as
  * <capture-dir>/parity_manifest.json, then rebuild the fixtures (tools/build-fixtures.mjs).
@@ -24,8 +24,8 @@ const cap = name => JSON.parse(readFileSync(join(capDir, name), 'utf8'));
 const c = cap('c_ops.json'), e = cap('e_controls.json'), f = cap('f_frameworks.json'), h = cap('h_resilience.json'), i = cap('i_policies.json');
 
 const ALL_PERSONAS = [
-  ['karan', 'Karan Deshmukh'], ['vijay', 'Vijay Bhosale'], ['vandana', 'Vandana Madem'], ['nandini', 'Nandini Vadlamudi'], ['srija', 'Srija Poudapally'],
-  ['pavan', 'Pavan Sanam'], ['lea', 'Léa Moreau'], ['thomas', 'Thomas Bernard'], ['camille', 'Camille Laurent'], ['julie', 'Julie Martin'],
+  ['karan', 'Karan Deshmukh'], ['victor', 'Victor Bonnet'], ['vanessa', 'Vanessa Mallet'], ['nadia', 'Nadia Vasseur'], ['sarah', 'Sarah Perrin'],
+  ['pierre', 'Pierre Sauvage'], ['lea', 'Léa Moreau'], ['thomas', 'Thomas Bernard'], ['camille', 'Camille Laurent'], ['julie', 'Julie Martin'],
   ['auditor', 'Internal Auditor (Professor access)'],
 ];
 const only = process.argv.slice(3);

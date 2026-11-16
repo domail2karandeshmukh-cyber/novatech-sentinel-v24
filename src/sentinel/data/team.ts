@@ -1,9 +1,9 @@
 /**
- * Canonical NOVATECH Group 1 roster — the single source of truth for names, roles and authority.
- * Verified against the original application (Landing, Login, Present, ChainHero) and the
- * production NOVATECH database (grc.employees, org NT). Do not rename or re-role anyone here.
+ * Canonical NOVATECH roster — the single source of truth for names, roles and authority.
+ * Roles, authority levels and employee ids match the captured demo data (grc.employees, org NT).
+ * Apart from the project owner, every person here is a fictional persona. Do not re-role anyone here.
  */
-export type PersonId = 'karan' | 'vijay' | 'vandana' | 'nandini' | 'srija' | 'pavan';
+export type PersonId = 'karan' | 'victor' | 'vanessa' | 'nadia' | 'sarah' | 'pierre';
 export type SecondaryId = 'thomas' | 'lea' | 'camille' | 'julie' | 'sophie' | 'marc' | 'auditor';
 export type ActorId = PersonId | SecondaryId;
 
@@ -40,44 +40,44 @@ export const TEAM: Person[] = [
     slides: 'Slides 1 and 8–9', spoken: 'Curran Desh-mookh',
   },
   {
-    id: 'vijay', name: 'Vijay Bhosale', first: 'Vijay', initials: 'VB',
+    id: 'victor', name: 'Victor Bonnet', first: 'Victor', initials: 'VB',
     role: 'RSSI / CISO', short: 'CISO', department: 'Cybersecurity (RSSI office)', authority: 4,
     employeeId: '95718b0b-2b78-475c-bb62-ae8c261df445', hue: '#35D6C1',
     owns: ['Security policy and risk appetite for cyber risk', 'Security authorisation of disruptive actions', 'Independent technical verification (never of his own execution)'],
     stage: 'Explains security governance, authorises the security side of the response and verifies the evidence.',
-    slides: 'Slides 2–3', spoken: 'Vee-jay Bho-saa-lay',
+    slides: 'Slides 2–3', spoken: 'Victor Bonnet',
   },
   {
-    id: 'vandana', name: 'Vandana Madem', first: 'Vandana', initials: 'VM',
+    id: 'vanessa', name: 'Vanessa Mallet', first: 'Vanessa', initials: 'VM',
     role: 'Chief Executive Officer', short: 'CEO', department: 'Executive Management', authority: 5,
     employeeId: '01164889-61d4-4853-9b70-ae0653666e58', hue: '#E0B8FF',
     owns: ['Company-level decisions', 'Executive authorisation of high-impact actions (≥ €100,000)', 'Dual control with the CISO or CFO'],
     stage: 'Takes the executive decision: approve the treatment or return it for revision.',
-    slides: 'Slide 6', spoken: 'Van-da-naa Ma-dem',
+    slides: 'Slide 6', spoken: 'Vanessa Mallet',
   },
   {
-    id: 'nandini', name: 'Nandini Vadlamudi', first: 'Nandini', initials: 'NV',
+    id: 'nadia', name: 'Nadia Vasseur', first: 'Nadia', initials: 'NV',
     role: 'Cybersecurity Analyst', short: 'Cyber Analyst', department: 'Security Operations (SOC)', authority: 2,
     employeeId: '9bbce94b-f06a-44fe-8474-ac82a441153e', hue: '#5FD3F3',
     owns: ['Detection and triage', 'Incident investigation', 'Cybersecurity action plan'],
     stage: 'Investigates the alert, establishes technical reality and proposes the treatment.',
-    slides: 'Slide 4', spoken: 'Nan-di-nee Vad-la-mu-dee',
+    slides: 'Slide 4', spoken: 'Nadia Vasseur',
   },
   {
-    id: 'srija', name: 'Srija Poudapally', first: 'Srija', initials: 'SP',
+    id: 'sarah', name: 'Sarah Perrin', first: 'Sarah', initials: 'SP',
     role: 'Finance Director (CFO / DAF)', short: 'CFO', department: 'Finance', authority: 4,
     employeeId: 'ee54158e-d9a8-4c34-bcfb-4d58ebf19e60', hue: '#FFCA70',
     owns: ['Financial impact assessment', 'Payment controls and dual control on payments', 'Finance action plan'],
     stage: 'Puts a number on the exposure and decides how financial loss is contained.',
-    slides: 'Slide 5', spoken: 'Shree-jaa Pow-duh-pul-lee',
+    slides: 'Slide 5', spoken: 'Sarah Perrin',
   },
   {
-    id: 'pavan', name: 'Pavan Sanam', first: 'Pavan', initials: 'PS',
+    id: 'pierre', name: 'Pierre Sauvage', first: 'Pierre', initials: 'PS',
     role: 'IT Operations Manager', short: 'IT Ops Manager', department: 'IT Operations', authority: 3,
     employeeId: '5eaf3b6d-ea45-4fbb-97c2-435c726772c0', hue: '#9FE6A0',
     owns: ['Authorised technical execution only', 'Infrastructure, endpoints and failover', 'The final remote request from his Windows laptop to Karan’s Mac'],
     stage: 'Executes only what was authorised, then requests the final power-off for re-imaging from his Windows laptop.',
-    slides: 'Slide 7', spoken: 'Pa-van Sa-num',
+    slides: 'Slide 7', spoken: 'Pierre Sauvage',
   },
 ];
 
@@ -109,10 +109,10 @@ export function actorRole(id: ActorId | 'system'): string {
 /** Default classroom speaking order (editable in Presenter Mode). */
 export const DEFAULT_RELAY: { person: PersonId; segment: string; focus: string }[] = [
   { person: 'karan', segment: 'Introduction', focus: 'NOVATECH’s growth, the new risks it creates and why Sentinel exists.' },
-  { person: 'vijay', segment: 'Security leadership', focus: 'Risk scoring, appetite thresholds and why segregation of duties matters.' },
-  { person: 'nandini', segment: 'Cybersecurity investigation', focus: 'The alert, the affected endpoint and the technical evidence.' },
-  { person: 'srija', segment: 'Financial analysis', focus: 'The modelled exposure, payment continuity and the finance action plan.' },
-  { person: 'vandana', segment: 'Executive approval', focus: 'Approve the treatment or return it for revision; scope and authority.' },
-  { person: 'pavan', segment: 'IT execution', focus: 'Execute only what was authorised; the remote request from Windows.' },
+  { person: 'victor', segment: 'Security leadership', focus: 'Risk scoring, appetite thresholds and why segregation of duties matters.' },
+  { person: 'nadia', segment: 'Cybersecurity investigation', focus: 'The alert, the affected endpoint and the technical evidence.' },
+  { person: 'sarah', segment: 'Financial analysis', focus: 'The modelled exposure, payment continuity and the finance action plan.' },
+  { person: 'vanessa', segment: 'Executive approval', focus: 'Approve the treatment or return it for revision; scope and authority.' },
+  { person: 'pierre', segment: 'IT execution', focus: 'Execute only what was authorised; the remote request from Windows.' },
   { person: 'karan', segment: 'Final demonstration and conclusion', focus: 'Verification, closure, the Mac owner’s decision and the after-action report.' },
 ];

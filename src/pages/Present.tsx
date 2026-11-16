@@ -52,7 +52,7 @@ export default function Present() {
     lastIdx.current = curIdx;
   }, [curIdx, run?.id]); // eslint-disable-line
 
-  const ROSTER = ['Karan Deshmukh', 'Nandini Vadlamudi', 'Vijay Bhosale', 'Srija Poudapally', 'Vandana Madem', 'Pavan Sanam'];
+  const ROSTER = ['Karan Deshmukh', 'Nadia Vasseur', 'Victor Bonnet', 'Sarah Perrin', 'Vanessa Mallet', 'Pierre Sauvage'];
   const activeNames = new Set<string>();
 
   useEffect(() => { if (current && current.org_id !== org && has) setOrg(org); }, [org, has]); // eslint-disable-line

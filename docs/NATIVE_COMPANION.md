@@ -8,13 +8,13 @@ This guide is for Karan, the owner of the demonstration Mac. It explains an **op
 
 ## 1. What it is
 
-At the moment, when Pavan asks your Mac to shut down, macOS shows a small grey AppleScript dialog. The **SwiftUI companion** is a small Mac app that replaces that dialog with a full NOVATECH-styled approval window. The window shows:
+At the moment, when Pierre asks your Mac to shut down, macOS shows a small grey AppleScript dialog. The **SwiftUI companion** is a small Mac app that replaces that dialog with a full NOVATECH-styled approval window. The window shows:
 
 - **NOVATECH SENTINEL · ENDPOINT ACTION AUTHORIZATION** at the top, and a **LIVE · REAL SHUTDOWN** badge (or **PREVIEW · NO SHUTDOWN** during tests).
 - A two-step status line: **Remote request received**, then **Owner approval pending**.
 - A red countdown ring (30 seconds by default).
 - Your Mac's name and you as the owner.
-- Who is asking (for example *Pavan Sanam*), with a yellow note: *"Paired LAN session — identity is the name entered at pairing, not enterprise SSO"*. The name is whatever was typed when pairing was set up. It is not proof of who someone is.
+- Who is asking (for example *Pierre Sauvage*), with a yellow note: *"Paired LAN session — identity is the name entered at pairing, not enterprise SSO"*. The name is whatever was typed when pairing was set up. It is not proof of who someone is.
 - The incident (*NT-SEC-041*), the scenario and the reason.
 - The governance chain (Detect → Cyber assessment → … → Closure), clearly marked **"Classroom governance record — simulated"**.
 - A red consequence box: **"Shuts down this Mac. Open apps will close — save your work first."**
@@ -30,13 +30,13 @@ The companion is **only a question on screen**. It does not run commands, it doe
 ## 2. How a request flows (and every way it stays ON)
 
 ```
-Pavan clicks "Request shutdown"  →  Remote request received
+Pierre clicks "Request shutdown"  →  Remote request received
                                   →  Owner approval pending (window + countdown on your Mac)
                                   →  your answer:
                                        Reject / Return / Esc / close window  → Mac stays ON
                                        Do nothing until the countdown ends   → Mac stays ON (timeout)
                                        Authorize Shutdown (after 1.5 s)      → macOS is asked to shut down
-                                  →  Pavan's page shows the result
+                                  →  Pierre's page shows the result
 ```
 
 The design is **fail closed**. The Mac only shuts down after a clear, deliberate **Authorize**. In every one of these cases it stays on:
@@ -46,7 +46,7 @@ The design is **fail closed**. The Mac only shuts down after a clear, deliberate
 | You click **Reject**, press **Return**, press **Esc** or close the window | Rejected, Mac stays on |
 | Nobody answers before the countdown ends | Timeout, Mac stays on |
 | You click **Revoke access** in NOVATECH while the window is open | Window closes, Mac stays on |
-| Pavan's 30-minute session ends while the window is open | Window closes, Mac stays on |
+| Pierre's 30-minute session ends while the window is open | Window closes, Mac stays on |
 | The companion is missing, crashes, freezes or prints anything unexpected | Error, Mac stays on |
 | The companion's answer does not match this exact request | Error, Mac stays on |
 | The agent hears nothing for 35 seconds (30 s + 5 s safety margin) | Agent closes the window: timeout, Mac stays on |
@@ -97,7 +97,7 @@ If the build fails, nothing changes: NOVATECH keeps using the macOS dialog. Copy
 npm run companion:test-dialog
 ```
 
-This opens the real window with sample data (incident NT-SEC-041, requester Pavan Sanam, owner Karan Deshmukh and the full governance chain). The window is in **PREVIEW** mode and says that nothing will shut down. Terminal confirms: *"This test NEVER shuts down your Mac."* The test script contains no shutdown code at all.
+This opens the real window with sample data (incident NT-SEC-041, requester Pierre Sauvage, owner Karan Deshmukh and the full governance chain). The window is in **PREVIEW** mode and says that nothing will shut down. Terminal confirms: *"This test NEVER shuts down your Mac."* The test script contains no shutdown code at all.
 
 Run it several times and check each answer. Terminal prints the result each time:
 
@@ -120,7 +120,7 @@ The window now says **LIVE · REAL SHUTDOWN**, but this is still only a test and
 
 ---
 
-## 6. Switch it on for Pavan's remote requests
+## 6. Switch it on for Pierre's remote requests
 
 The companion is used only when you **ask for it** and it has been **built**. Otherwise the agent automatically keeps the macOS dialog.
 
@@ -138,7 +138,7 @@ Owner approval: SwiftUI companion
 
 If it says `Owner approval: macOS dialog (default)`, the line below it explains why (for example, *"not built yet"*). In that case the proven macOS dialog is used, and nothing breaks.
 
-To test without any shutdown first, use `npm run remote:preview -- --approver=swiftui`. In preview mode **no window appears at all**, and Pavan's page simply reports "Preview passed".
+To test without any shutdown first, use `npm run remote:preview -- --approver=swiftui`. In preview mode **no window appears at all**, and Pierre's page simply reports "Preview passed".
 
 ### Option B: background agent (LaunchAgent, no Terminal needed)
 
@@ -148,7 +148,7 @@ npm run remote:install:live -- --approver=swiftui
 
 The installer confirms *"Owner approval: SwiftUI companion (opt-in)"*. The agent's start-up text, including the "Owner approval" line, is written to `~/Library/Application Support/NOVATECH Remote Agent/agent.log`.
 
-### Option C: Mac Control on this Mac (no Pavan)
+### Option C: Mac Control on this Mac (no Pierre)
 
 ```bash
 npm run helper:mac:live -- --approver=swiftui
@@ -179,9 +179,9 @@ The original macOS dialog code has not been changed in any way.
 2. [ ] Start your presentation **full screen** (browser or Keynote), then run the test dialog again from Terminal. Confirm the window appears **on top** of the full-screen presentation.
 3. [ ] Connect the **projector** (mirrored and extended, if you use both). Confirm the window is centred and fully visible, and that both buttons are on screen.
 4. [ ] *(Optional)* Turn on VoiceOver (Command+F5) and listen to the countdown and button labels. Turn it off again.
-5. [ ] With Pavan: `npm run remote:live -- --approver=swiftui`, then pair as usual. Pavan requests a shutdown and you click **Reject**. His page must say the request was rejected and your Mac stays on.
-6. [ ] Pavan requests again and you **do nothing**: the window times out and your Mac stays on.
-7. [ ] Pavan requests again and, while the window is open, you click **Revoke access** in NOVATECH: the window disappears and your Mac stays on.
+5. [ ] With Pierre: `npm run remote:live -- --approver=swiftui`, then pair as usual. Pierre requests a shutdown and you click **Reject**. His page must say the request was rejected and your Mac stays on.
+6. [ ] Pierre requests again and you **do nothing**: the window times out and your Mac stays on.
+7. [ ] Pierre requests again and, while the window is open, you click **Revoke access** in NOVATECH: the window disappears and your Mac stays on.
 8. [ ] Only when you are ready to really shut down: **save everything**, then click **Authorize Shutdown** once it unlocks.
 
 If anything looks wrong at any step, roll back (section 7). The macOS dialog you have already tested is always available.
@@ -210,7 +210,7 @@ If anything looks wrong at any step, roll back (section 7). The macOS dialog you
 | A **real shutdown** approved through the SwiftUI window | **Not tested** |
 | Background LaunchAgent with `--approver=swiftui` | **Not tested** (needs macOS) |
 | Original macOS dialog path | Unchanged. You reported that a real shutdown through it worked |
-| **Pavan's real Windows → Mac test over the classroom Wi-Fi** | **Still pending**, for both the macOS dialog and the companion |
+| **Pierre's real Windows → Mac test over the classroom Wi-Fi** | **Still pending**, for both the macOS dialog and the companion |
 
 Until you complete section 8 on your own Mac, treat the SwiftUI window as **unverified** and keep the macOS dialog as your plan for class.
 
@@ -222,7 +222,7 @@ When the web app opens pairing (`POST http://127.0.0.1:43873/pair`), it may add 
 
 ```json
 {
-  "workflowClosed": true, "approved": true, "scenarioId": "ransomware", "controllerName": "Pavan Sanam",
+  "workflowClosed": true, "approved": true, "scenarioId": "ransomware", "controllerName": "Pierre Sauvage",
   "governance": {
     "incidentId": "NT-SEC-041",
     "scenario": "Ransomware on a finance workstation",

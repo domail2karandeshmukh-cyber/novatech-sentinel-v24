@@ -6,14 +6,14 @@ import { whatIf, WHAT_IFS } from '../src/sentinel/engine/whatif.ts';
 test('CEO unavailable on the ransomware case: delegated to the CFO, who passes every check', () => {
   const r = whatIf('ransomware', 'ceo-away');
   assert.equal(r.verdict, 'delegated');
-  assert.match(r.headline, /Srija Poudapally/);
+  assert.match(r.headline, /Sarah Perrin/);
   assert.ok(r.checks.length > 0 && r.checks.every(c => c.ok));
 });
 
-test('CEO unavailable on the payment fraud case: Vijay is eligible because Srija requested the hold', () => {
+test('CEO unavailable on the payment fraud case: Victor is eligible because Sarah requested the hold', () => {
   const r = whatIf('payments', 'ceo-away');
   assert.equal(r.verdict, 'delegated');
-  assert.match(r.headline, /Vijay Bhosale/);
+  assert.match(r.headline, /Victor Bonnet/);
   assert.ok(r.checks.every(c => c.ok));
 });
 
@@ -30,7 +30,7 @@ test('the requester trying to approve is refused', () => {
   assert.equal(r.verdict, 'refused');
   assert.ok(r.checks.some(c => c.rule === 'Approver is not the requester' && !c.ok));
   const f = whatIf('payments', 'requester-approves');
-  assert.match(f.headline, /Srija Poudapally requested/);
+  assert.match(f.headline, /Sarah Perrin requested/);
 });
 
 test('the CEO returning the treatment sends it back to the cyber assessment', () => {

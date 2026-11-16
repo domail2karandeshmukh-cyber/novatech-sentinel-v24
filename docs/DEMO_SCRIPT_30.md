@@ -18,7 +18,7 @@ Generated from the Presenter Mode scene library (`npm run script:export`). The l
 
 ## The final step: power off for re-imaging
 
-The story: FIN-WS-07 was **isolated first**, so its memory evidence survived. After verification and closure, the last follow-up powers it off for forensic imaging and re-imaging. For the demonstration, **Karan’s MacBook stands in for FIN-WS-07**. Nothing ever happens automatically: Pavan can only request it, and only Karan’s click on his own Mac authorizes it.
+The story: FIN-WS-07 was **isolated first**, so its memory evidence survived. After verification and closure, the last follow-up powers it off for forensic imaging and re-imaging. For the demonstration, **Karan’s MacBook stands in for FIN-WS-07**. Nothing ever happens automatically: Pierre can only request it, and only Karan’s click on his own Mac authorizes it.
 
 On the public link it is simulated: the projector ends on a black “Powered off by its owner” screen. For the real one:
 
@@ -26,7 +26,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 2. In a second Terminal: `npm run remote:preview` for rehearsals (the projector then shows the ending in preview mode, the Mac stays on); `npm run remote:live` only for the real demonstration (or the installed login agent). Save your work first — a confirmed live request powers the Mac off.
 3. Both laptops on the same private Wi-Fi. Guest or campus networks with client isolation block pairing: test the classroom network beforehand, or use a phone hotspot.
 4. Scene “The last follow-up, on a real device”: Karan opens the 5-minute code from **Final step** on his own screen (main window, not the projector). The projector only shows the pairing status — never the code, the link or the fingerprint.
-5. Pavan opens the controller link on Windows (Edge or Chrome), checks the certificate fingerprint with Karan in person, enters the code, then sends the request.
+5. Pierre opens the controller link on Windows (Edge or Chrome), checks the certificate fingerprint with Karan in person, enters the code, then sends the request.
 6. The Mac shows its own approval window — Reject is the default. Suggested beat: **reject the first request** (“the Mac stays on — that’s the point”), then authorize the second. The Mac shuts down and the show ends on a dark screen.
 7. **Questions:** the console reminds you before the final scene — take questions with evidence on screen *before* it; after the power-off, answer from the phone script (every answer is in it, with who answers).
 8. If pairing fails on the day, use **Mac rehearsal** in the console: the same steps, simulated and labelled, ending on the same power-off screen.
@@ -38,30 +38,30 @@ On the public link it is simulated: the projector ends on a black “Powered off
 | 1 | 00:00 | Karan Deshmukh | NOVATECH Sentinel — the enterprise nervous system | 58 s |
 | 2 | 00:58 | Karan Deshmukh | Eight risks, eight accountable owners | 58 s |
 | 3 | 01:56 | Karan Deshmukh | Six people, six authorities, one chain of custody | 46 s |
-| 4 | 02:42 | Vijay Bhosale | Four risks sit outside the board’s appetite | 75 s |
-| 5 | 03:57 | Vijay Bhosale | One control set, four frameworks | 63 s |
-| 6 | 05:00 | Vijay Bhosale | Controls that prove themselves | 58 s |
-| 7 | 05:58 | Vijay Bhosale | Why segregation of duties matters | 52 s |
-| 8 | 06:50 | Nandini Vadlamudi | EBIOS Risk Manager: what we expected | 63 s |
-| 9 | 07:53 | Nandini Vadlamudi | Inside the security operations view | 58 s |
-| 10 | 08:51 | Nandini Vadlamudi | Attention — a critical ransomware signal | 69 s |
-| 11 | 10:00 | Nandini Vadlamudi | A signal becomes an owned incident | 40 s |
-| 12 | 10:40 | Nandini Vadlamudi | Establish technical reality | 63 s |
-| 13 | 11:43 | Srija Poudapally | The register in euros | 92 s |
-| 14 | 13:15 | Srija Poudapally | €240,000 of modelled exposure | 92 s |
-| 15 | 14:47 | Srija Poudapally | What our suppliers can cost us | 58 s |
-| 16 | 15:45 | Srija Poudapally | Every department knows its next task | 52 s |
-| 17 | 16:37 | Vandana Madem | What the CEO needs on one screen | 58 s |
-| 18 | 17:35 | Vandana Madem | If the CEO is unavailable | 58 s |
-| 19 | 18:33 | Vandana Madem | Authority before disruption | 127 s |
-| 20 | 20:40 | Vandana Madem | What the board must decide | 58 s |
-| 21 | 21:38 | Pavan Sanam | If the cloud stops: continuity | 81 s |
-| 22 | 22:59 | Pavan Sanam | Execute exactly what was approved | 81 s |
-| 23 | 24:20 | Vijay Bhosale | Separate execution from proof | 46 s |
+| 4 | 02:42 | Victor Bonnet | Four risks sit outside the board’s appetite | 75 s |
+| 5 | 03:57 | Victor Bonnet | One control set, four frameworks | 63 s |
+| 6 | 05:00 | Victor Bonnet | Controls that prove themselves | 58 s |
+| 7 | 05:58 | Victor Bonnet | Why segregation of duties matters | 52 s |
+| 8 | 06:50 | Nadia Vasseur | EBIOS Risk Manager: what we expected | 63 s |
+| 9 | 07:53 | Nadia Vasseur | Inside the security operations view | 58 s |
+| 10 | 08:51 | Nadia Vasseur | Attention — a critical ransomware signal | 69 s |
+| 11 | 10:00 | Nadia Vasseur | A signal becomes an owned incident | 40 s |
+| 12 | 10:40 | Nadia Vasseur | Establish technical reality | 63 s |
+| 13 | 11:43 | Sarah Perrin | The register in euros | 92 s |
+| 14 | 13:15 | Sarah Perrin | €240,000 of modelled exposure | 92 s |
+| 15 | 14:47 | Sarah Perrin | What our suppliers can cost us | 58 s |
+| 16 | 15:45 | Sarah Perrin | Every department knows its next task | 52 s |
+| 17 | 16:37 | Vanessa Mallet | What the CEO needs on one screen | 58 s |
+| 18 | 17:35 | Vanessa Mallet | If the CEO is unavailable | 58 s |
+| 19 | 18:33 | Vanessa Mallet | Authority before disruption | 127 s |
+| 20 | 20:40 | Vanessa Mallet | What the board must decide | 58 s |
+| 21 | 21:38 | Pierre Sauvage | If the cloud stops: continuity | 81 s |
+| 22 | 22:59 | Pierre Sauvage | Execute exactly what was approved | 81 s |
+| 23 | 24:20 | Victor Bonnet | Separate execution from proof | 46 s |
 | 24 | 25:06 | Karan Deshmukh | Close the loop, keep the risk visible | 46 s |
 | 25 | 25:52 | Karan Deshmukh | Where is the audit history? | 40 s |
 | 26 | 26:32 | Karan Deshmukh | Who did what — and what remains | 58 s |
-| 27 | 27:30 | Pavan Sanam | The last follow-up, on a real device | 81 s |
+| 27 | 27:30 | Pierre Sauvage | The last follow-up, on a real device | 81 s |
 | 28 | 28:51 | Karan Deshmukh | Final step: the owner decides | 69 s |
 
 ## 1. NOVATECH Sentinel — the enterprise nervous system
@@ -77,7 +77,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 - **Expected:** The Command Center opens with today’s posture.
 - **Why it matters:** In ten seconds the audience knows the company and why governance matters.
 - **If something fails:** If the animation is slow, click “Skip intro” under the map (or set Motion to Reduced in Settings) — the static map tells the same story.
-- **Hand-off:** “Vijay will show you how we decide what is acceptable.”
+- **Hand-off:** “Victor will show you how we decide what is acceptable.”
 
 **Professor may ask:** Is this real company data?  
 **Answer:** NOVATECH is the fictional ESAIP case. The register R1–R8 comes from our Group 1 analysis; incidents, telemetry and money figures are simulated and labelled as such.
@@ -91,19 +91,19 @@ On the public link it is simulated: the projector ends on a black “Powered off
 **Keywords:** R1–R8 · likelihood × impact, 1–4 · one accountable owner · KRI and target · 4 critical
 
 - **Show:** The register: score, owner, indicator and treatment for each risk.
-- **Click:** Point at R1 (16, Pavan), R2 (12, Vijay) and R7 (12, Srija).
+- **Click:** Point at R1 (16, Pierre), R2 (12, Victor) and R7 (12, Sarah).
 - **Expected:** The audience sees owners from our six roles and from the case’s fictional managers.
 - **Why it matters:** Ownership is the foundation of every later decision.
 - **If something fails:** Read the top five from the Command Center instead.
 
 **Professor may ask:** Who owns this risk?  
-**Answer:** Every risk has exactly one accountable owner: R1 Pavan Sanam, R2 Vijay Bhosale, R7 and R8 Srija Poudapally; R3 to R6 belong to the case’s HR, Delivery, Procurement and Compliance managers.
+**Answer:** Every risk has exactly one accountable owner: R1 Pierre Sauvage, R2 Victor Bonnet, R7 and R8 Sarah Perrin; R3 to R6 belong to the case’s HR, Delivery, Procurement and Compliance managers.
 
 ## 3. Six people, six authorities, one chain of custody
 
 **Karan Deshmukh** — Project Manager / Risk Coordinator · Introduction · 46 s
 
-> Each of us plays our real NOVATECH role, and the platform enforces what that role may do. Vijay is our CISO, Vandana our CEO, Nandini our cybersecurity analyst, Srija our CFO and Pavan runs IT operations. Nobody approves their own request, and nobody verifies their own work.
+> Each of us plays our real NOVATECH role, and the platform enforces what that role may do. Victor is our CISO, Vanessa our CEO, Nadia our cybersecurity analyst, Sarah our CFO and Pierre runs IT operations. Nobody approves their own request, and nobody verifies their own work.
 
 **Keywords:** RSSI / CISO · CEO · Cybersecurity analyst · CFO / DAF · IT Ops executes only
 
@@ -112,14 +112,14 @@ On the public link it is simulated: the projector ends on a black “Powered off
 - **Expected:** Their gates and limits light up.
 - **Why it matters:** Separation of duties is the control the professor will test first.
 - **If something fails:** Name the six roles from the team strip on the landing page.
-- **Hand-off:** “Vijay, over to you.”
+- **Hand-off:** “Victor, over to you.”
 
 **Professor may ask:** Is the persona switch real authentication?  
 **Answer:** No. In the public demo it is a presentation convenience and is labelled as such. The enterprise workspace uses personal accounts and permissions enforced by the database.
 
 ## 4. Four risks sit outside the board’s appetite
 
-**Vijay Bhosale** — RSSI / CISO · Security leadership · 75 s
+**Victor Bonnet** — RSSI / CISO · Security leadership · 75 s
 
 > As CISO I start from appetite. We score likelihood times impact on a four-by-four scale; twelve or more is outside tolerance. Today that is cloud outage, account compromise, SLA capacity and supplier payment fraud — each with one accountable owner and a live indicator.
 
@@ -127,16 +127,16 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 - **Show:** Top-five exposures and the heatmap.
 - **Click:** Click R1 in the top-five list.
-- **Expected:** R1: score 16, cloud availability 99.7 % (warning), owner Pavan Sanam.
+- **Expected:** R1: score 16, cloud availability 99.7 % (warning), owner Pierre Sauvage.
 - **Why it matters:** Governance starts from an agreed tolerance, not from the crisis.
 - **If something fails:** Read the four red cells of the heatmap.
 
 **Professor may ask:** Who owns R2?  
-**Answer:** Vijay Bhosale, as CISO, owns account compromise. Every risk has exactly one accountable owner, shown in the register and the RACI.
+**Answer:** Victor Bonnet, as CISO, owns account compromise. Every risk has exactly one accountable owner, shown in the register and the RACI.
 
 ## 5. One control set, four frameworks
 
-**Vijay Bhosale** — RSSI / CISO · Security leadership · 63 s
+**Victor Bonnet** — RSSI / CISO · Security leadership · 63 s
 
 > Compliance is where security meets the law and our clients. We trace every requirement of ISO 27001, NIS2, GDPR and DORA to the controls that satisfy it: seventy percent overall, NIS2 the strongest. One control, one test, and the evidence is reused everywhere it applies.
 
@@ -153,7 +153,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 6. Controls that prove themselves
 
-**Vijay Bhosale** — RSSI / CISO · Security leadership · 58 s
+**Victor Bonnet** — RSSI / CISO · Security leadership · 58 s
 
 > Twenty-five controls, each with an owner, a test schedule and a measured effect on the risks it reduces. Eleven operate effectively and three are failing or warning right now. Monitoring reads real records — every approval is checked for segregation of duties, and the ledger chain is recomputed.
 
@@ -170,7 +170,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 7. Why segregation of duties matters
 
-**Vijay Bhosale** — RSSI / CISO · Security leadership · 52 s
+**Victor Bonnet** — RSSI / CISO · Security leadership · 52 s
 
 > The rule is simple and the system enforces it: the requester cannot approve, an approver cannot execute, and the executor cannot verify. From one hundred thousand euros, two different people must approve. If someone is away, delegation is recorded — and the same rules still apply to the deputy.
 
@@ -181,14 +181,14 @@ On the public link it is simulated: the projector ends on a black “Powered off
 - **Expected:** One Accountable per activity.
 - **Why it matters:** It stops both fraud and honest mistakes.
 - **If something fails:** State the four rules verbally.
-- **Hand-off:** “Now, what happens when an alert lands? Nandini.”
+- **Hand-off:** “Now, what happens when an alert lands? Nadia.”
 
-**Professor may ask:** Is Vijay independent if he approved?  
-**Answer:** Independent of the execution, yes: Pavan executed, Vijay did not, and the gate enforces it. Not of the approval — the verification gate discloses that openly instead of hiding it, and the CEO’s separate authorization limits the risk. For full independence the gate can go to internal audit: the route changes, the rule stays.
+**Professor may ask:** Is Victor independent if he approved?  
+**Answer:** Independent of the execution, yes: Pierre executed, Victor did not, and the gate enforces it. Not of the approval — the verification gate discloses that openly instead of hiding it, and the CEO’s separate authorization limits the risk. For full independence the gate can go to internal audit: the route changes, the rule stays.
 
 ## 8. EBIOS Risk Manager: what we expected
 
-**Nandini Vadlamudi** — Cybersecurity Analyst · Cybersecurity investigation · 63 s
+**Nadia Vasseur** — Cybersecurity Analyst · Cybersecurity investigation · 63 s
 
 > Before any alert, our EBIOS Risk Manager study — the ANSSI method, in five workshops — told us what to fear. The worst feared event is rated critical, G4: theft of client personal data. Three operational scenarios came out of it, including an attack through a finance workstation. That is exactly the kind of signal I am about to receive.
 
@@ -205,7 +205,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 9. Inside the security operations view
 
-**Nandini Vadlamudi** — Cybersecurity Analyst · Cybersecurity investigation · 58 s
+**Nadia Vasseur** — Cybersecurity Analyst · Cybersecurity investigation · 58 s
 
 > This is my view: the alert queue, the affected endpoint, the indicator timeline and the assets that depend on it. I can see at once whether the problem stays on one machine or starts to move.
 
@@ -222,7 +222,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 10. Attention — a critical ransomware signal
 
-**Nandini Vadlamudi** — Cybersecurity Analyst · Cybersecurity investigation · 69 s
+**Nadia Vasseur** — Cybersecurity Analyst · Cybersecurity investigation · 69 s
 
 > This is a synthetic EDR alert: twelve hundred files renamed in ninety seconds on a finance workstation in Angers. The alert tells us the asset, the modelled exposure and who must act first. The response clock is now running.
 
@@ -239,15 +239,15 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 11. A signal becomes an owned incident
 
-**Nandini Vadlamudi** — Cybersecurity Analyst · Cybersecurity investigation · 40 s
+**Nadia Vasseur** — Cybersecurity Analyst · Cybersecurity investigation · 40 s
 
 > Karan, as Risk Coordinator, takes ownership — that is gate one. Then the technical assessment comes to me. I preserve the evidence first, then check whether anything else is infected.
 
 **Keywords:** gate 1 · ownership · evidence first · memory capture · lateral movement · no spread yet
 
 - **Show:** The decision dock: next authorized person and the playbook note.
-- **Click:** Hand over to Karan → Fill from playbook (triage, severity, category) → Take ownership and send to Nandini.
-- **Expected:** Gate 1 sealed under Karan’s name; Nandini sees “From Karan” with the severity and her deadline.
+- **Click:** Hand over to Karan → Fill from playbook (triage, severity, category) → Take ownership and send to Nadia.
+- **Expected:** Gate 1 sealed under Karan’s name; Nadia sees “From Karan” with the severity and her deadline.
 - **Why it matters:** Every incident needs one owner from minute one.
 - **If something fails:** Use the “Do it for me” button in the console.
 
@@ -256,25 +256,25 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 12. Establish technical reality
 
-**Nandini Vadlamudi** — Cybersecurity Analyst · Cybersecurity investigation · 63 s
+**Nadia Vasseur** — Cybersecurity Analyst · Cybersecurity investigation · 63 s
 
 > Indicators are confirmed on this one workstation; no other host shows them yet. I recommend isolating it from the network while keeping it powered on, because shutting it down would destroy the evidence in memory. That proposal is my request — so I can never approve it myself.
 
 **Keywords:** indicators confirmed · isolate, do not shut down · memory evidence · proposal = request · I cannot approve it
 
 - **Show:** Treatment options: isolate (chosen) versus shut down, wait or pay — with the reasons.
-- **Click:** Hand over to Nandini → Fill from playbook (severity, spread, techniques, evidence, treatment) → Sign and send to Srija.
-- **Expected:** Gate 2 sealed with the full form; Srija receives it with a 45-minute deadline.
+- **Click:** Hand over to Nadia → Fill from playbook (severity, spread, techniques, evidence, treatment) → Sign and send to Sarah.
+- **Expected:** Gate 2 sealed with the full form; Sarah receives it with a 45-minute deadline.
 - **Why it matters:** The safest effective treatment, not the most dramatic one.
 - **If something fails:** Read the “Options considered” panel aloud.
-- **Hand-off:** “Srija, what does this cost us?”
+- **Hand-off:** “Sarah, what does this cost us?”
 
 **Professor may ask:** Why not just shut the workstation down?  
 **Answer:** Shutting down destroys volatile memory — attacker processes, sometimes keys — and does nothing about other infected hosts. Isolation contains the spread and keeps the evidence.
 
 ## 13. The register in euros
 
-**Srija Poudapally** — Finance Director (CFO / DAF) · Financial analysis · 92 s
+**Sarah Perrin** — Finance Director (CFO / DAF) · Financial analysis · 92 s
 
 > As CFO I translate risk into money. Each risk’s frequency and loss range is simulated ten thousand times. We expect about six hundred thousand euros of loss a year, and a one-in-ten-year loss of one point one million — inside our combined appetite of one point four million, but three categories are over their own limits. Our controls already avoid nearly six hundred thousand euros a year.
 
@@ -291,25 +291,25 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 14. €240,000 of modelled exposure
 
-**Srija Poudapally** — Finance Director (CFO / DAF) · Financial analysis · 92 s
+**Sarah Perrin** — Finance Director (CFO / DAF) · Financial analysis · 92 s
 
 > I translate the incident into money. The modelled maximum is two hundred and forty thousand euros: payroll delay, supplier penalties and recovery effort. Payroll runs in two days, so Finance switches to the offline backup file — that is in our finance action plan, with owners and deadlines.
 
 **Keywords:** €240k maximum · payroll in 2 days · backup payment file · finance action plan · ≈ €90k after treatment
 
 - **Show:** The exposure panel and the finance plan.
-- **Click:** Hand over to Srija → Fill from playbook (low / likely / maximum, what makes up the €240k) → Sign and request approval.
-- **Expected:** Gate 3 sealed; the approval route appears: Vijay, then Vandana.
+- **Click:** Hand over to Sarah → Fill from playbook (low / likely / maximum, what makes up the €240k) → Sign and request approval.
+- **Expected:** Gate 3 sealed; the approval route appears: Victor, then Vanessa.
 - **Why it matters:** Executives decide on money and continuity, not on file counts.
 - **If something fails:** Quote the figures from the incident header.
-- **Hand-off:** “Because it is above one hundred thousand euros, Vijay and Vandana must both decide.”
+- **Hand-off:** “Because it is above one hundred thousand euros, Victor and Vanessa must both decide.”
 
 **Professor may ask:** What is the financial impact?  
 **Answer:** €240,000 modelled maximum. After the approved isolation the residual score falls from 16 to 6, so the modelled exposure falls to about €90,000 — and only after execution.
 
 ## 15. What our suppliers can cost us
 
-**Srija Poudapally** — Finance Director (CFO / DAF) · Financial analysis · 58 s
+**Sarah Perrin** — Finance Director (CFO / DAF) · Financial analysis · 58 s
 
 > We spend about one point three million euros a year with ten suppliers, and three of them are critical. Two contracts have expired and two critical or high-tier suppliers have no exit plan — including our finance ERP. Each supplier is tiered, scored and linked to the processes it can stop, and the DORA register exports from here.
 
@@ -326,7 +326,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 16. Every department knows its next task
 
-**Srija Poudapally** — Finance Director (CFO / DAF) · Financial analysis · 52 s
+**Sarah Perrin** — Finance Director (CFO / DAF) · Financial analysis · 52 s
 
 > Each department has its own plan for this incident — person, task, due time, evidence and rollback. The chart shows open, completed and overdue work across the company, including the backlog that existed before the incident. Nothing is “someone’s job”.
 
@@ -343,7 +343,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 17. What the CEO needs on one screen
 
-**Vandana Madem** — Chief Executive Officer · Executive approval · 58 s
+**Vanessa Mallet** — Chief Executive Officer · Executive approval · 58 s
 
 > As CEO I do not read logs. I need three things: what is exposed in euros, what is waiting for my decision, and who is accountable. Sentinel puts the next authorized decision in one place, so nothing waits in someone’s inbox.
 
@@ -360,15 +360,15 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 18. If the CEO is unavailable
 
-**Vandana Madem** — Chief Executive Officer · Executive approval · 58 s
+**Vanessa Mallet** — Chief Executive Officer · Executive approval · 58 s
 
-> What if I am on a plane? My authority passes to Srija as acting CEO — recorded, time-boxed, and still checked: she did not request this action, so she may approve it. In the payment-fraud case she did request the hold, so the system refuses and the action stays blocked.
+> What if I am on a plane? My authority passes to Sarah as acting CEO — recorded, time-boxed, and still checked: she did not request this action, so she may approve it. In the payment-fraud case she did request the hold, so the system refuses and the action stays blocked.
 
 **Keywords:** recorded delegation · acting CEO: CFO · same rules for deputies · blocked if conflicted · no silent bypass
 
-- **Show:** The approval card after marking Vandana unavailable.
+- **Show:** The approval card after marking Vanessa unavailable.
 - **Click:** “Mark unavailable” on the CEO step, then mark her available again.
-- **Expected:** The executive step shows “delegated to Srija Poudapally”.
+- **Expected:** The executive step shows “delegated to Sarah Perrin”.
 - **Why it matters:** Availability problems must not become control gaps.
 - **If something fails:** Explain the delegation rule from the team page.
 
@@ -377,25 +377,25 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 19. Authority before disruption
 
-**Vandana Madem** — Chief Executive Officer · Executive approval · 127 s
+**Vanessa Mallet** — Chief Executive Officer · Executive approval · 127 s
 
-> Two signatures are required. Vijay authorizes the security side of a disruptive action; then, because the exposure is above one hundred thousand euros, I decide as CEO. I can approve this scope, or send it back for revision — and if I do, nothing disruptive is allowed.
+> Two signatures are required. Victor authorizes the security side of a disruptive action; then, because the exposure is above one hundred thousand euros, I decide as CEO. I can approve this scope, or send it back for revision — and if I do, nothing disruptive is allowed.
 
 **Keywords:** dual control · CISO, then CEO · scope: one workstation · approve or return · no ransom
 
 - **Show:** The approval route with its separation-of-duties checks.
-- **Click:** Hand over to Vijay → Fill from playbook (his conditions) → Approve; then Vandana → Fill → Approve with her conditions.
-- **Expected:** Gate 4 sealed by two different people; Pavan is next.
+- **Click:** Hand over to Victor → Fill from playbook (his conditions) → Approve; then Vanessa → Fill → Approve with her conditions.
+- **Expected:** Gate 4 sealed by two different people; Pierre is next.
 - **Why it matters:** Disruption needs authority, and authority needs two keys.
 - **If something fails:** Use “Do it for me” twice in the console.
-- **Hand-off:** “Pavan, you may execute — the authorized scope only.”
+- **Hand-off:** “Pierre, you may execute — the authorized scope only.”
 
 **Professor may ask:** What happens if the CEO rejects it?  
 **Answer:** The treatment returns to Cybersecurity, approvals are cleared and execution stays blocked. The ledger shows who returned it and why — we can show it live.
 
 ## 20. What the board must decide
 
-**Vandana Madem** — Chief Executive Officer · Executive approval · 58 s
+**Vanessa Mallet** — Chief Executive Officer · Executive approval · 58 s
 
 > This is the pack I take to the board: the risk profile, the exposure in euros, compliance, controls, incidents and continuity — generated from the same records, with the audit ledger recomputed at the moment it was produced. It ends with the decisions we need from the board.
 
@@ -412,7 +412,7 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 21. If the cloud stops: continuity
 
-**Pavan Sanam** — IT Operations Manager · IT execution · 81 s
+**Pierre Sauvage** — IT Operations Manager · IT execution · 81 s
 
 > I own R1, the cloud outage. Our business impact analysis gives every process a recovery time and a data-loss objective. Two processes are tier one: identity, and client hosting. Our last client-hosting test took six hours against a four-hour objective, and the identity provider is a single point of failure for four processes.
 
@@ -429,39 +429,39 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 22. Execute exactly what was approved
 
-**Pavan Sanam** — IT Operations Manager · IT execution · 81 s
+**Pierre Sauvage** — IT Operations Manager · IT execution · 81 s
 
 > I execute only the authorized scope, under change ticket 0412: isolate this one workstation and suspend its privileged session — and I keep it powered on, as the CISO’s condition says, so the memory evidence survives. Here the execution is simulated. I approved nothing, so I may execute; because I executed, I may not verify.
 
 **Keywords:** authorized scope only · simulated execution · explicit consent · executor ≠ approver · executor ≠ verifier
 
 - **Show:** The execution card with its consent checkbox.
-- **Click:** Hand over to Pavan → Fill from playbook (change ticket, steps, the approvers’ conditions) → Execute (simulated) and send to Vijay.
-- **Expected:** Gate 5 sealed; exposure drops to about €90,000; Vijay is the verifier.
+- **Click:** Hand over to Pierre → Fill from playbook (change ticket, steps, the approvers’ conditions) → Execute (simulated) and send to Victor.
+- **Expected:** Gate 5 sealed; exposure drops to about €90,000; Victor is the verifier.
 - **Why it matters:** Execution is where good decisions usually go wrong.
 - **If something fails:** Use “Do it for me” in the console.
-- **Hand-off:** “Vijay verifies — he did not touch it.”
+- **Hand-off:** “Victor verifies — he did not touch it.”
 
-**Professor may ask:** Could Pavan do more than approved?  
+**Professor may ask:** Could Pierre do more than approved?  
 **Answer:** Not in this workflow: the execution record states the approved scope and the verifier checks against it. In the enterprise workspace, execution is refused by the database before approval.
 
 ## 23. Separate execution from proof
 
-**Vijay Bhosale** — RSSI / CISO · Security leadership · 46 s
+**Victor Bonnet** — RSSI / CISO · Security leadership · 46 s
 
-> I now check the evidence against my checklist: isolation confirmed, no new encryption for fifteen minutes, privileged session revoked, memory image verified. I did not execute this action, so my check is independent of the execution — and the screen discloses that I also gave the security authorization; Vandana approved separately. Only then can Karan close the risk.
+> I now check the evidence against my checklist: isolation confirmed, no new encryption for fifteen minutes, privileged session revoked, memory image verified. I did not execute this action, so my check is independent of the execution — and the screen discloses that I also gave the security authorization; Vanessa approved separately. Only then can Karan close the risk.
 
 **Keywords:** independent check · evidence checklist · verifier ≠ executor · sealed · then closure
 
 - **Show:** The verification checklist.
-- **Click:** Hand over to Vijay → Fill from playbook (checklist, method, result) → Sign and send to Karan.
-- **Expected:** Gate 6 sealed by Vijay.
+- **Click:** Hand over to Victor → Fill from playbook (checklist, method, result) → Sign and send to Karan.
+- **Expected:** Gate 6 sealed by Victor.
 - **Why it matters:** Trust needs proof from someone else.
 - **If something fails:** Read the checklist aloud.
 - **Hand-off:** “Karan, the last gate is yours.”
 
-**Professor may ask:** Can Pavan verify his own work?  
-**Answer:** No — the system refuses it. Try it: switch to Pavan and the verify button explains the rule.
+**Professor may ask:** Can Pierre verify his own work?  
+**Answer:** No — the system refuses it. Try it: switch to Pierre and the verify button explains the rule.
 
 ## 24. Close the loop, keep the risk visible
 
@@ -516,14 +516,14 @@ On the public link it is simulated: the projector ends on a black “Powered off
 
 ## 27. The last follow-up, on a real device
 
-**Pavan Sanam** — IT Operations Manager · IT execution · 81 s
+**Pierre Sauvage** — IT Operations Manager · IT execution · 81 s
 
 > One closure follow-up is physical: power off FIN-WS-07 for forensic imaging and re-imaging. We waited on purpose — the memory evidence had to be captured and verified first. For this demonstration Karan’s MacBook stands in for FIN-WS-07. From my Windows laptop I can only request it: Karan opens a five-minute pairing code on his Mac, I pair over our private Wi-Fi, and I send the request.
 
 **Keywords:** power-off for re-imaging · only after evidence is verified · Mac = stand-in for FIN-WS-07 · request, never command · private Wi-Fi only
 
 - **Show:** Eligibility checks and the pairing card.
-- **Click:** Real devices: Karan opens pairing on his own screen (the code never shows on the projector); Pavan pairs from Windows and sends the request. Rehearsal: console → Mac rehearsal → Open pairing → Pair → Send the request.
+- **Click:** Real devices: Karan opens pairing on his own screen (the code never shows on the projector); Pierre pairs from Windows and sends the request. Rehearsal: console → Mac rehearsal → Open pairing → Pair → Send the request.
 - **Expected:** The request reaches the Mac and its approval window opens there.
 - **Why it matters:** Physical actions need stronger controls than clicks.
 - **If something fails:** If the classroom Wi-Fi blocks pairing, use the Mac rehearsal in the console — it is labelled simulated.
@@ -546,32 +546,32 @@ On the public link it is simulated: the projector ends on a black “Powered off
 - **Why it matters:** Final control stays with the device owner.
 - **If something fails:** If the real window does not appear within 30 seconds, say so and finish with the rehearsal on the projector.
 
-**Professor may ask:** Can Pavan shut down Karan’s Mac?  
+**Professor may ask:** Can Pierre shut down Karan’s Mac?  
 **Answer:** No. He can only send a request, inside a paired 30-minute session on the private Wi-Fi. The Mac’s own window decides: Reject is the default, 30 seconds without an answer is a rejection, and every failure keeps the Mac on. Nothing happens automatically.
 
 ## Professor questions (any time — press Q)
 
-**Who can approve this action?** — *Vandana Madem answers*  
+**Who can approve this action?** — *Vanessa Mallet answers*  
 Two layers. The standing rule per action type: endpoint isolation needs the CISO, a failover the CEO, a payment hold the CFO. On top, the incident rule: from €100,000 of modelled exposure the CEO approves as well (dual control), and a requester never approves their own request — so a hold requested by the CFO goes to the CEO.  
 *Evidence on screen:* Approval route, conditions and separation-of-duties checks
 
-**What happens if the CEO rejects it?** — *Vandana Madem answers*  
+**What happens if the CEO rejects it?** — *Vanessa Mallet answers*  
 It is returned for revision: the approvals are cleared, execution stays blocked and the proposal goes back to Cybersecurity. The ledger records who returned it and why. We can show it live with “Challenge the controls”.  
 *Evidence on screen:* “Return for revision” and the ledger
 
 **Who owns this risk?** — *Karan Deshmukh answers*  
-Every risk has exactly one accountable owner: R1 Pavan Sanam, R2 Vijay Bhosale, R7 and R8 Srija Poudapally. The incident itself is owned by Karan Deshmukh as Risk Coordinator, from the first minute to closure.  
+Every risk has exactly one accountable owner: R1 Pierre Sauvage, R2 Victor Bonnet, R7 and R8 Sarah Perrin. The incident itself is owned by Karan Deshmukh as Risk Coordinator, from the first minute to closure.  
 *Evidence on screen:* RACI matrix and register owners
 
-**Why is shutdown necessary?** — *Pavan Sanam answers*  
+**Why is shutdown necessary?** — *Pierre Sauvage answers*  
 Not to stop the attack — isolation did that at gate 5 and kept the memory evidence. Once the memory image is verified, we power the laptop off for forensic imaging and re-imaging: it stops anything still running on its disk and starts recovery. I request it; only the device owner can authorize it, on the device.  
 *Evidence on screen:* Final step: power off for re-imaging
 
-**Why not isolate the endpoint instead?** — *Nandini Vadlamudi answers*  
+**Why not isolate the endpoint instead?** — *Nadia Vasseur answers*  
 We did isolate first. Shutting down at the start would have destroyed the memory evidence — attacker processes, sometimes keys — and done nothing about other hosts. Isolation contained the spread; the power-off came only after the evidence was verified, as a recovery step.  
 *Evidence on screen:* “Options considered” panel and the CISO’s condition
 
-**What is the financial impact?** — *Srija Poudapally answers*  
+**What is the financial impact?** — *Sarah Perrin answers*  
 For the ransomware case: €60,000 low, €150,000 most likely, €240,000 modelled maximum — payroll delay, supplier penalties, recovery effort and possible GDPR exposure. After the approved isolation the residual score falls from 16 to 6, about €90,000.  
 *Evidence on screen:* The CFO’s signed form and the exposure panel
 
@@ -579,15 +579,15 @@ For the ransomware case: €60,000 low, €150,000 most likely, €240,000 model
 In the evidence ledger: every decision, with the full signed form, is chained to the previous one with SHA-256, and we can recompute the chain live. In the enterprise workspace the database refuses edits and deletions.  
 *Evidence on screen:* Verify chain · signed forms
 
-**What happens if the responsible person is unavailable?** — *Vandana Madem answers*  
+**What happens if the responsible person is unavailable?** — *Vanessa Mallet answers*  
 A named deputy receives recorded, time-boxed authority — and the same rules apply. If the deputy requested, executes or already approved, the step is blocked instead of letting the control lapse.  
 *Evidence on screen:* “Unavailable?” on an approval step
 
-**Is the role switch real authentication?** — *Vijay Bhosale answers*  
+**Is the role switch real authentication?** — *Victor Bonnet answers*  
 No. In this demo the role switch is a presentation convenience, and it is labelled as such. The original NOVATECH workspace uses personal accounts with permissions enforced by the database; in production we would add single sign-on with MFA.  
 *Evidence on screen:* Persona badge: demo persona, not authentication
 
-**Can Pavan shut down Karan’s Mac?** — *Pavan Sanam answers*  
+**Can Pierre shut down Karan’s Mac?** — *Pierre Sauvage answers*  
 No. I can only send a request, after all seven gates, inside a 30-minute paired session on the private Wi-Fi. Karan’s Mac shows its own window: Reject is the default, 30 seconds without an answer is a rejection, and every failure keeps the Mac on. Nothing happens automatically.  
 *Evidence on screen:* Pairing card and the owner’s approval window
 

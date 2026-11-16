@@ -71,7 +71,7 @@ export default async function handler(req, res) {
   try {
     if (action === 'open' && device(req)) {
       const body = await payload(req);
-      if (!validCode(body.code) || body.controllerName !== 'Pavan Sanam' || body.workflowClosed !== true || body.approved !== true || body.scenarioId !== 'ransomware') {
+      if (!validCode(body.code) || body.controllerName !== 'Pierre Sauvage' || body.workflowClosed !== true || body.approved !== true || body.scenarioId !== 'ransomware') {
         return clientError(res, 'Approved ransomware workflow and valid pairing code required.');
       }
       // A new Mac-owned code atomically invalidates any earlier cloud session.
@@ -94,9 +94,9 @@ export default async function handler(req, res) {
       if (!entry || !validCode(body.code) || !equals(entry.codeHash, sha(body.code))) return clientError(res, 'Pairing code is invalid or expired.', 403);
       const token = randomBytes(32).toString('hex');
       const expiresAt = Date.now() + SESSION_SECONDS * 1000;
-      await setJSON(key('session'), { tokenHash: sha(token), expiresAt, name: 'Pavan Sanam', governance: entry.governance }, SESSION_SECONDS);
+      await setJSON(key('session'), { tokenHash: sha(token), expiresAt, name: 'Pierre Sauvage', governance: entry.governance }, SESSION_SECONDS);
       await redis('DEL', key('pairing'));
-      return respond(res, 200, { token, name: 'Pavan Sanam', expiresAt });
+      return respond(res, 200, { token, name: 'Pierre Sauvage', expiresAt });
     }
     if (action === 'session' && req.method === 'GET') {
       const st = await session(req);

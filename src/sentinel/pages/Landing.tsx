@@ -12,16 +12,16 @@ import { scenarioOf } from '../engine/incident';
 import { play, unlockAudio } from '../audio/sfx';
 
 const GATE_OWNER: Record<string, string> = {
-  detect: 'Karan takes ownership', assess: 'Nandini investigates', impact: 'Srija prices the exposure',
-  authorize: 'Vijay and Vandana authorise', execute: 'Pavan executes the approved scope', verify: 'Vijay verifies — never the executor', close: 'Karan closes with residual risk',
+  detect: 'Karan takes ownership', assess: 'Nadia investigates', impact: 'Sarah prices the exposure',
+  authorize: 'Victor and Vanessa authorise', execute: 'Pierre executes the approved scope', verify: 'Victor verifies — never the executor', close: 'Karan closes with residual risk',
 };
 const SIGNS: Record<string, { signs: string; never: string }> = {
   karan: { signs: 'Ownership and closure of incidents', never: 'Approvals of actions he coordinates' },
-  vijay: { signs: 'Security authorization, verification independent of execution', never: 'Verification of anything he executed' },
-  vandana: { signs: 'Executive authorization — from €100,000, or when the usual approver requested the action', never: 'Execution' },
-  nandini: { signs: 'Detection, investigation, treatment proposals', never: 'Approval of her own proposal' },
-  srija: { signs: 'Financial impact and payment-hold requests', never: 'Approval of a hold she requested' },
-  pavan: { signs: 'Execution of authorised actions only', never: 'Approval or verification of his own work' },
+  victor: { signs: 'Security authorization, verification independent of execution', never: 'Verification of anything he executed' },
+  vanessa: { signs: 'Executive authorization — from €100,000, or when the usual approver requested the action', never: 'Execution' },
+  nadia: { signs: 'Detection, investigation, treatment proposals', never: 'Approval of her own proposal' },
+  sarah: { signs: 'Financial impact and payment-hold requests', never: 'Approval of a hold she requested' },
+  pierre: { signs: 'Execution of authorised actions only', never: 'Approval or verification of his own work' },
 };
 
 export default function Landing() {

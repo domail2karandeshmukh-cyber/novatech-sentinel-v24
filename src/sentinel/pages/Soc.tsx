@@ -45,13 +45,13 @@ export default function Soc() {
   const alerts: Alert[] = [
     ...(run.status !== 'ready' ? [{ id: s.ref, at: run.startedAt!, title: s.title, source: s.signal.split(' · ')[0], severity: s.severity === 'Critical' ? 'critical' as const : 'high' as const, asset: s.assetId, status: run.status === 'closed' ? 'Closed' : gateDone(run, 'execute') ? 'Contained' : 'Open — owned' }] : []),
     { id: 'AL-2291', at: iso(-42), title: 'Impossible-travel sign-in blocked by MFA', source: 'Identity provider', severity: 'medium', asset: 'M365-TEN', status: 'Auto-resolved' },
-    { id: 'AL-2288', at: iso(-95), title: 'VPN firmware out of date', source: 'Vulnerability scan', severity: 'medium', asset: 'VPN-GW-01', status: 'Task overdue (Pavan)' },
+    { id: 'AL-2288', at: iso(-95), title: 'VPN firmware out of date', source: 'Vulnerability scan', severity: 'medium', asset: 'VPN-GW-01', status: 'Task overdue (Pierre)' },
     { id: 'AL-2279', at: iso(-240), title: 'Backup job exceeded its window', source: 'Backup monitor', severity: 'low', asset: 'STBY-EU', status: 'Acknowledged' },
   ];
   return (
     <div className="s-page">
       <div className="s-pagehead">
-        <div><h1 className="s-h1">Security operations</h1><p className="s-lead" style={{ marginTop: 8 }}>Nandini’s view: the alert queue, what happened in order, and which assets depend on what. All telemetry here is synthetic.</p></div>
+        <div><h1 className="s-h1">Security operations</h1><p className="s-lead" style={{ marginTop: 8 }}>Nadia’s view: the alert queue, what happened in order, and which assets depend on what. All telemetry here is synthetic.</p></div>
         <Sim large />
       </div>
       <div className="s-soc-grid">

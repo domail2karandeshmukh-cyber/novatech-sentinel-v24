@@ -44,7 +44,7 @@ test('the full show ends with the power-off decided by the device owner', () => 
     assert.equal(scenes[scenes.length - 1].id, 'macApprove', `${d} min ends on the final step`);
     const ids = scenes.map(s => s.id);
     assert.ok(ids.indexOf('close') < ids.indexOf('macApprove'), `${d} min: closure comes before the power-off`);
-    if (ids.includes('macIntro')) assert.equal(ids.indexOf('macIntro'), ids.length - 2, `${d} min: Pavan’s request comes just before`);
+    if (ids.includes('macIntro')) assert.equal(ids.indexOf('macIntro'), ids.length - 2, `${d} min: Pierre’s request comes just before`);
   }
   assert.equal(buildShow('full', 2).at(-1).id, 'thanks');
   assert.match(showMeta('full').blurb, /power-off decided by the device owner/);
@@ -58,13 +58,13 @@ test('the long shows present the case workspace', () => {
 });
 
 test('all eleven professor questions have an owner, an answer and evidence', () => {
-  const expected = ['Who can approve this action?', 'What happens if the CEO rejects it?', 'Who owns this risk?', 'Why is shutdown necessary?', 'Why not isolate the endpoint instead?', 'What is the financial impact?', 'Where is the audit history?', 'What happens if the responsible person is unavailable?', 'Is the role switch real authentication?', 'Can Pavan shut down Karan’s Mac?', 'Is this real data?'];
+  const expected = ['Who can approve this action?', 'What happens if the CEO rejects it?', 'Who owns this risk?', 'Why is shutdown necessary?', 'Why not isolate the endpoint instead?', 'What is the financial impact?', 'Where is the audit history?', 'What happens if the responsible person is unavailable?', 'Is the role switch real authentication?', 'Can Pierre shut down Karan’s Mac?', 'Is this real data?'];
   assert.deepEqual(QUESTIONS.map(q => q.q), expected);
   for (const q of QUESTIONS) {
     assert.ok(TEAM.some(p => p.id === q.who), `${q.id} has an owner`);
     assert.ok(q.a.length > 80 && q.evidence.length > 4 && STAGE_ROUTES.includes(q.route), `${q.id} is complete`);
   }
   assert.match(QUESTIONS.find(q => q.id === 'why-shutdown').a, /isolation did that at gate 5/);
-  assert.match(QUESTIONS.find(q => q.id === 'pavan-mac').a, /Nothing happens automatically/);
+  assert.match(QUESTIONS.find(q => q.id === 'pierre-mac').a, /Nothing happens automatically/);
   assert.match(QUESTIONS.find(q => q.id === 'auth').a, /^No\./);
 });

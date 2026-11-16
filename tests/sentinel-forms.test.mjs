@@ -102,13 +102,13 @@ test('approvals carry their conditions and validity; returns carry the decision'
   let run = ok(reduce(blankRun('ransomware'), { type: 'start' }, at()));
   for (const g of ['detect', 'assess', 'impact']) { const r = playbookRecord('ransomware', g, s.notes[g]); run = ok(reduce(run, { type: 'record', gate: g, actor: gateActor(run, g), note: r.note, fields: r.fields }, at())); }
   const a = approvalRecord('ransomware', 'security', 'approve', s.notes.security);
-  run = ok(reduce(run, { type: 'decide', step: 'security', actor: 'vijay', decision: 'approve', note: a.note, fields: a.fields }, at()));
+  run = ok(reduce(run, { type: 'decide', step: 'security', actor: 'victor', decision: 'approve', note: a.note, fields: a.fields }, at()));
   const sec = run.approvals.find(x => x.id === 'security');
   assert.equal(sec.fields.Decision, 'Approved with conditions');
   assert.equal(sec.fields.Conditions.split('; ').length, approvalFormFor('ransomware', 'security').conditions.length);
   assert.equal(sec.fields.Validity, '2 hours');
   const r = approvalRecord('ransomware', 'executive', 'return', 'Narrow the scope and resubmit with evidence.');
-  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'vandana', decision: 'return', note: r.note, fields: r.fields }, at()));
+  run = ok(reduce(run, { type: 'decide', step: 'executive', actor: 'vanessa', decision: 'return', note: r.note, fields: r.fields }, at()));
   const back = run.ledger[run.ledger.length - 1];
   assert.equal(back.kind, 'returned');
   assert.deepEqual(back.detail, { Decision: 'Returned for revision' });

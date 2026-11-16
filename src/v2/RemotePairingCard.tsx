@@ -15,7 +15,7 @@ const ADMIN_URL = 'http://127.0.0.1:43873';
 
 export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: Role; onRole: (role: Role) => void }) {
   const [remote, setRemote] = useState<RemoteStatus | null>(null);
-  const [presenter, setPresenter] = useState('Pavan');
+  const [presenter, setPresenter] = useState('Pierre');
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
   const [now, setNow] = useState(() => Date.now());
@@ -42,7 +42,7 @@ export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: R
   async function action(endpoint: '/pair' | '/revoke') {
     if (!remote || !localPage || busy) return;
     if (endpoint === '/pair' && !eligible) return;
-    if (endpoint === '/revoke' && !window.confirm('Revoke Pavan’s access immediately? He will need a new code.')) return;
+    if (endpoint === '/revoke' && !window.confirm('Revoke Pierre’s access immediately? He will need a new code.')) return;
     setBusy(true); setMessage('');
     try {
       const response = await fetch(`${ADMIN_URL}${endpoint}`, {
@@ -54,7 +54,7 @@ export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: R
       });
       const body: { error?: string } = await response.json();
       if (!response.ok) throw new Error(body.error || 'The Mac rejected the pairing request.');
-      setMessage(endpoint === '/pair' ? 'A new code is active for five minutes. Pavan has 30 minutes of access after pairing.' : 'Remote presenter disconnected and access revoked.');
+      setMessage(endpoint === '/pair' ? 'A new code is active for five minutes. Pierre has 30 minutes of access after pairing.' : 'Remote presenter disconnected and access revoked.');
       await refresh();
     } catch (err) { setMessage(err instanceof Error ? err.message : 'Request failed.'); }
     finally { setBusy(false); }
@@ -62,7 +62,7 @@ export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: R
 
   async function copyLink() {
     if (!remote) return;
-    try { await navigator.clipboard.writeText(remote.remoteUrl); setMessage('Link copied. Ask Pavan to verify the certificate fingerprint with you before pairing.'); }
+    try { await navigator.clipboard.writeText(remote.remoteUrl); setMessage('Link copied. Ask Pierre to verify the certificate fingerprint with you before pairing.'); }
     catch { setMessage('Select and copy the controller link manually.'); }
   }
 
@@ -70,7 +70,7 @@ export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: R
   const activeSeconds = Math.max(0, Math.ceil(((remote?.pairedUntil ?? 0) - now) / 1000));
   return <section id="v2-remote-control" className="v2-remote-card" aria-label="Remote presenter pairing">
     <div className="v2-remote-top">
-      <div className="v2-remote-title"><span className="v2-remote-emblem"><Wifi size={22}/></span><div><span className="v2-eyebrow">V2.3 / SECURE CLASSROOM PAIRING</span><h2>Let Pavan take the final step.</h2><p>Same-Wi-Fi presenter connection · 30-minute session · final decision remains on your Mac.</p></div></div>
+      <div className="v2-remote-title"><span className="v2-remote-emblem"><Wifi size={22}/></span><div><span className="v2-eyebrow">V2.3 / SECURE CLASSROOM PAIRING</span><h2>Let Pierre take the final step.</h2><p>Same-Wi-Fi presenter connection · 30-minute session · final decision remains on your Mac.</p></div></div>
       <span className={`v2-remote-mode ${remote?.live ? 'live' : remote ? 'preview' : ''}`}><span/>{remote?.live ? 'LIVE AGENT' : remote ? 'SAFE PREVIEW' : 'AGENT OFFLINE'}</span>
     </div>
     <div className="v2-remote-body">
@@ -83,10 +83,10 @@ export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: R
               <label className="v2-remote-label" htmlFor="v2-presenter-name">Authorized presenter name</label>
               <input id="v2-presenter-name" className="v2-remote-name" value={presenter} maxLength={48} onChange={e => setPresenter(e.target.value)}/>
               <button className="v2-remote-primary" disabled={!eligible || busy || remote.busy} onClick={() => void action('/pair')}><UserRound size={16}/> {remote.pairingCode || remote.connected ? 'Create a NEW pairing code' : 'Enable remote pairing'} <ArrowRight size={15}/></button>
-              {remote.pairingCode && <div className="v2-remote-code"><small>ONE-TIME CODE · SHOW ONLY TO PAVAN</small><strong>{remote.pairingCode}</strong><span><Clock3 size={13}/> Code expires in {String(Math.floor(pairingSeconds/60)).padStart(2, '0')}:{String(pairingSeconds%60).padStart(2, '0')}</span></div>}
+              {remote.pairingCode && <div className="v2-remote-code"><small>ONE-TIME CODE · SHOW ONLY TO PIERRE</small><strong>{remote.pairingCode}</strong><span><Clock3 size={13}/> Code expires in {String(Math.floor(pairingSeconds/60)).padStart(2, '0')}:{String(pairingSeconds%60).padStart(2, '0')}</span></div>}
               {remote.connected && <div className="v2-remote-connected"><Check size={15}/> {remote.controllerName} is paired · {Math.ceil(activeSeconds/60)} min remaining</div>}
             </>}
-        <div className="v2-remote-steps"><div><b>01</b> Pair only after approved incident closure.</div><div><b>02</b> Pavan uses the HTTPS link and one-time code.</div><div><b>03</b> He requests shutdown; your Mac asks you to Allow or Cancel.</div></div>
+        <div className="v2-remote-steps"><div><b>01</b> Pair only after approved incident closure.</div><div><b>02</b> Pierre uses the HTTPS link and one-time code.</div><div><b>03</b> He requests shutdown; your Mac asks you to Allow or Cancel.</div></div>
       </div>
       <div className="v2-remote-right">
         <div className="v2-remote-link-head"><Activity size={17}/><b>PRESENTER ACCESS</b></div>
@@ -94,7 +94,7 @@ export function RemotePairingCard({ run, role, onRole }: { run: DemoRun; role: R
         <div className="v2-remote-url"><span>{remote?.remoteUrl || 'Start Remote Agent to generate a link'}</span><button title="Copy controller link" aria-label="Copy controller link" onClick={() => void copyLink()} disabled={!remote}><Copy size={16}/></button></div>
         <label className="v2-remote-label">Certificate SHA-256 fingerprint</label>
         <div className="v2-remote-fingerprint">{remote?.fingerprint || 'Not available until the agent starts'}</div>
-        <p className="v2-remote-instructions">The controller uses a locally generated HTTPS certificate, which browsers won't automatically trust. Pavan should verify this fingerprint in the browser’s certificate details with you <b>before</b> allowing the connection. Both laptops must be on the same Wi-Fi, without client isolation. Never expose the link to the public internet.</p>
+        <p className="v2-remote-instructions">The controller uses a locally generated HTTPS certificate, which browsers won't automatically trust. Pierre should verify this fingerprint in the browser’s certificate details with you <b>before</b> allowing the connection. Both laptops must be on the same Wi-Fi, without client isolation. Never expose the link to the public internet.</p>
         <div className="v2-remote-actions"><button onClick={() => void refresh()}><Radio size={15}/> Refresh status</button><button className="revoke" onClick={() => void action('/revoke')} disabled={!remote || busy}><XCircle size={15}/> Revoke access</button></div>
         <div className="v2-remote-activity"><small><Activity size={13}/> RECENT CONTROL ACTIVITY</small>{(remote?.recentActions ?? []).slice(-3).reverse().map(event => <div key={`${event.at}-${event.event}`}><span>{event.event}</span><b>{event.actor}</b></div>)}{!remote?.recentActions.length && <p>Nothing requested yet.</p>}</div>
       </div>

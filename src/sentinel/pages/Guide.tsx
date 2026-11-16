@@ -32,10 +32,10 @@ export default function Guide() {
             <li>The story: FIN-WS-07 was isolated first so its memory evidence survived. After verification and closure, the last follow-up powers it off for imaging and re-imaging. Karan’s MacBook stands in for FIN-WS-07.</li>
             <li>The public link only <b>simulates</b> it and ends on a black “powered off” screen. Nothing ever shuts down automatically.</li>
             <li>For the real one, present from the local copy on Karan’s Mac (<code>npm run dev</code> → <code>localhost:5173/present</code>) with the helper running; after the incident is closed, Karan opens pairing on his own screen.</li>
-            <li>Pavan opens the HTTPS link on his Windows laptop (same Wi-Fi), checks the fingerprint with Karan, enters the 6-digit code, then requests.</li>
+            <li>Pierre opens the HTTPS link on his Windows laptop (same Wi-Fi), checks the fingerprint with Karan, enters the 6-digit code, then requests.</li>
             <li>Karan’s Mac asks. <b>Reject is the default.</b> If he authorizes, the Mac shuts down and the show ends there — take questions with evidence before that scene, then answer from the phone script.</li>
           </ol>
-          <p className="s-small">Untested so far: Pavan’s physical Windows laptop on the classroom Wi-Fi (rehearse once before class). School Wi-Fi with client isolation can block it — use a phone hotspot.</p>
+          <p className="s-small">Untested so far: Pierre’s physical Windows laptop on the classroom Wi-Fi (rehearse once before class). School Wi-Fi with client isolation can block it — use a phone hotspot.</p>
         </section>
         <section className="s-panel">
           <h2 className="s-h3">What is real and what is simulated</h2>

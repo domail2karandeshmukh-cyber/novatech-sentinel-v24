@@ -78,7 +78,7 @@ function shutdownSpy() {
 const neverCalled = name => () => { throw new Error(`${name} must not be called in this test`); };
 
 const meta = {
-  requesterName: 'Pavan Sanam',
+  requesterName: 'Pierre Sauvage',
   incidentId: 'NT-SEC-041',
   scenario: 'Ransomware on a finance workstation',
   reason: 'Final classroom step',
@@ -111,7 +111,7 @@ test('approve → shutdown is requested exactly once, and the window always gets
   assert.deepEqual(companion.calls.spawns[0].args, []);
   const sent = companion.calls.requests[0];
   assert.equal(sent.mode, 'LIVE', 'a live executor can never show the "nothing will shut down" preview wording');
-  assert.equal(sent.requesterName, 'Pavan Sanam');
+  assert.equal(sent.requesterName, 'Pierre Sauvage');
   assert.equal(sent.incidentId, 'NT-SEC-041');
   assert.deepEqual(sent.governance, meta.governance);
 });
@@ -382,7 +382,7 @@ test('default checks use the real filesystem: a plain file or a directory is not
 // Request sanitisation (same limits as the Swift side)
 
 test('buildApprovalRequest keeps only known fields with safe defaults', () => {
-  const request = buildApprovalRequest({ requesterName: 'Pavan Sanam', command: 'rm -rf /', shell: true });
+  const request = buildApprovalRequest({ requesterName: 'Pierre Sauvage', command: 'rm -rf /', shell: true });
   assert.deepEqual(Object.keys(request).sort(), ['channel', 'consequence', 'governance', 'incidentId', 'mode', 'ownerName', 'reason', 'requestId', 'requesterContext', 'requesterName', 'scenario', 'timeoutSeconds']);
   assert.match(request.requestId, /^[0-9a-f-]{36}$/);
   assert.equal(request.ownerName, 'Karan Deshmukh');
@@ -395,12 +395,12 @@ test('buildApprovalRequest keeps only known fields with safe defaults', () => {
 
 test('strings are single-line, stripped of control/bidi characters and clamped to 160', () => {
   const request = buildApprovalRequest({
-    requesterName: '  Pavan\n\tSanam‮evil​  ',
+    requesterName: '  Pierre\n\tSauvage‮evil​  ',
     reason: 'x'.repeat(500),
     scenario: '\u0007 ',
     deviceName: 'Karans-MacBook-Air.local',
   });
-  assert.equal(request.requesterName, 'Pavan Sanamevil');
+  assert.equal(request.requesterName, 'Pierre Sauvageevil');
   assert.equal(Array.from(request.reason).length, APPROVAL_LIMITS.maxText);
   assert.equal(request.scenario, 'Not provided');
   assert.equal(request.deviceName, 'Karans-MacBook-Air.local');
@@ -441,14 +441,14 @@ function manager() {
   const pairing = new RemotePairing({ clock: () => now, getCode: () => '439281', getToken: () => 'a'.repeat(64) });
   return { pairing, tick: ms => { now += ms; } };
 }
-const approve = { workflowClosed: true, approved: true, scenarioId: 'ransomware', controllerName: 'Pavan Sanam' };
+const approve = { workflowClosed: true, approved: true, scenarioId: 'ransomware', controllerName: 'Pierre Sauvage' };
 const governance = {
   incidentId: 'NT-SEC-041',
   scenario: 'Ransomware on a finance workstation',
   reason: 'Final classroom step',
   approvals: [
     { gate: 'Detect', person: 'Karan Deshmukh', role: 'Risk Coordinator', decision: 'Acknowledged' },
-    { gate: 'Security authorization', person: 'Vijay Bhosale', role: 'RSSI / CISO', decision: 'Authorized' },
+    { gate: 'Security authorization', person: 'Victor Bonnet', role: 'RSSI / CISO', decision: 'Authorized' },
   ],
 };
 
@@ -461,7 +461,7 @@ test('governance attached at activation follows the pairing into the session', (
   assert.deepEqual(pairing.activeGovernance(), governance);
   assert.ok(Object.isFrozen(pairing.activeGovernance()));
   assert.ok(Object.isFrozen(pairing.activeGovernance().approvals[0]));
-  assert.equal(pairing.authorize(token).name, 'Pavan Sanam');
+  assert.equal(pairing.authorize(token).name, 'Pierre Sauvage');
 });
 
 test('without governance the pairing behaves exactly as before', () => {
@@ -564,7 +564,7 @@ test('remote executor: request built from the paired session; approve → one sh
   assert.deepEqual(result, { status: 'requested' });
   assert.equal(shutdownImpl.calls, 1);
   const sent = companion.calls.requests[0];
-  assert.equal(sent.requesterName, 'Pavan Sanam');
+  assert.equal(sent.requesterName, 'Pierre Sauvage');
   assert.equal(sent.requesterContext, DEFAULT_REQUESTER_CONTEXT);
   assert.equal(sent.ownerName, 'Karan Deshmukh');
   assert.equal(sent.incidentId, 'NT-SEC-041');

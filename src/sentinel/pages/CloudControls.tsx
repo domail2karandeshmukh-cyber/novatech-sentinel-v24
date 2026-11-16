@@ -69,17 +69,17 @@ export default function CloudControls() {
   return (
     <section className="s-panel raised" style={{ marginTop: 16 }} aria-labelledby="h-cloud">
       <div className="s-panel-head">
-        <div><h2 id="h-cloud" className="s-h3">REAL cloud pairing · Pavan on Windows</h2>
+        <div><h2 id="h-cloud" className="s-h3">REAL cloud pairing · Pierre on Windows</h2>
           <p className="s-small">Public website → authenticated cloud relay → Mac background helper → Karan’s physical approval. This section is separate from the simulation.</p></div>
         <span className={`s-chip ${available ? 'ok' : 'warn'}`}>{!checked ? 'Checking' : available ? 'Relay available' : 'Relay not configured'}</span>
       </div>
       {!available ? <p className="s-policy warn"><LockKeyhole size={16} /><span>Real requests are unavailable. The simulation below remains safe to use.</span></p> : (
         <div className="s-stack">
-          <p className="s-small">Only after the director-approved incident workflow is complete, Karan opens <code>http://127.0.0.1:43873/</code> on his Mac and privately gives Pavan the five-minute code.</p>
+          <p className="s-small">Only after the director-approved incident workflow is complete, Karan opens <code>http://127.0.0.1:43873/</code> on his Mac and privately gives Pierre the five-minute code.</p>
           {!liveSession ? <div className="s-row"><label className="s-field"><span>Six-digit code from Karan’s Mac</span>
             <input className="s-input" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} autoComplete="off" value={code} onChange={e => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))} /></label>
             <button className="s-btn primary" disabled={busy || code.length !== 6} onClick={() => void pair()}>Pair with Karan’s Mac</button></div> : <>
-            <p className="s-policy ok"><ShieldCheck size={16} /><span>Pavan Sanam paired · {clock(until - now)} remaining · Karan’s approval still required</span></p>
+            <p className="s-policy ok"><ShieldCheck size={16} /><span>Pierre Sauvage paired · {clock(until - now)} remaining · Karan’s approval still required</span></p>
             <label className="s-field"><span><input type="checkbox" checked={confirm} onChange={e => setConfirm(e.target.checked)} /> I understand this requests a REAL shutdown of Karan’s Mac, subject to his physical approval.</span></label>
             <button className="s-btn danger" disabled={busy || !confirm || Boolean(requestId)} onClick={() => void request()}>Request REAL Mac shutdown (owner must approve)</button>
             {requestId && <p className="s-small" role="status">Request <code>{requestId.slice(0, 8)}</code> · {state === 'approved-shutdown-requested' ? 'Mac reported macOS shutdown was requested.' : state === 'rejected' ? 'Karan rejected the request; Mac remains on.' : state === 'failed' ? 'Request failed; Mac should remain on.' : state === 'delivered' ? 'Delivered to Mac; waiting for owner decision.' : 'Waiting for Mac agent; do not assume it shut down.'}</p>}

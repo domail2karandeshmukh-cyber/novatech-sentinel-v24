@@ -114,7 +114,7 @@ function main() {
   console.log(`  Signature: ${signature}`);
   console.log('\nNothing has been enabled yet. Next steps:');
   console.log('  1. Safe test (never shuts down):     npm run companion:test-dialog');
-  console.log('  2. Use it for Pavan\'s requests:      npm run remote:live -- --approver=swiftui');
+  console.log('  2. Use it for Pierre\'s requests:      npm run remote:live -- --approver=swiftui');
   console.log('     Background agent instead:        npm run remote:install:live -- --approver=swiftui');
   console.log('  3. Roll back at any time:            run the same command without --approver=swiftui');
   console.log('See docs/NATIVE_COMPANION.md for the full guide.');

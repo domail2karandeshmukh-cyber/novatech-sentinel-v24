@@ -248,7 +248,7 @@ function FastForwardButton({ scene, block }: { scene: TimedScene; block?: boolea
     : <button className={`s-btn sm ${block ? 'block' : ''}`} onClick={go}><FastForward size={14} />{label}</button>;
 }
 
-/** Drives the simulated final step (power-off for re-imaging) shown on the projector; the real one runs on Pavan's laptop and Karan's Mac. */
+/** Drives the simulated final step (power-off for re-imaging) shown on the projector; the real one runs on Pierre's laptop and Karan's Mac. */
 function MacRehearsal() {
   const mac = useStore(s => s.mac);
   const run = useStore(s => s.run);
@@ -257,7 +257,7 @@ function MacRehearsal() {
   const can = macCan(mac, eligible, now);
   const status = mac.phase === 'idle' ? (eligible ? 'Ready. Karan opens pairing first.' : 'Locked until the ransomware incident is closed.')
     : mac.phase === 'code' ? `Code ${mac.code} on screen, expires in ${clock(mac.codeUntil - now)}.`
-      : mac.phase === 'paired' ? `Pavan is paired. Session ${clock(Math.max(0, mac.sessionUntil - now))} left.`
+      : mac.phase === 'paired' ? `Pierre is paired. Session ${clock(Math.max(0, mac.sessionUntil - now))} left.`
         : mac.phase === 'pending' ? `The approval window is on the projector: ${Math.max(0, Math.ceil((mac.deadline - now) / 1000))} s before automatic rejection.`
           : mac.result === 'approved' ? 'Authorized (simulated). Nothing shuts down.' : mac.result === 'timeout' ? 'Timed out. The Mac stays on.' : 'Rejected. The Mac stays on.';
   return (
@@ -266,12 +266,12 @@ function MacRehearsal() {
       <p className="s-small" role="status" style={{ margin: '6px 0' }}>{status}</p>
       <div className="s-stack">
         <button className="s-btn sm" disabled={!can.open} onClick={macSim.open}>1. Open pairing (Karan)</button>
-        <button className="s-btn sm" disabled={!can.pair} onClick={macSim.pair}>2. Pair from Windows (Pavan)</button>
-        <button className="s-btn sm" disabled={!can.request} onClick={macSim.request}>3. Send the request (Pavan)</button>
+        <button className="s-btn sm" disabled={!can.pair} onClick={macSim.pair}>2. Pair from Windows (Pierre)</button>
+        <button className="s-btn sm" disabled={!can.request} onClick={macSim.request}>3. Send the request (Pierre)</button>
         <div className="s-ctl-pair"><button className="s-btn sm" disabled={!can.decide} onClick={() => macSim.decide('rejected')}>Reject</button><button className="s-btn sm danger" disabled={!can.decide} onClick={() => macSim.decide('approved')}>Authorize</button></div>
         <button className="s-btn sm ghost" disabled={!can.revoke} onClick={macSim.revoke}>Revoke access</button>
       </div>
-      <p className="s-small" style={{ margin: '8px 0 0' }}>The real final step runs on Pavan’s laptop and Karan’s Mac. This rehearsal never reaches a device; leave the approval window alone to show the 30-second timeout.</p>
+      <p className="s-small" style={{ margin: '8px 0 0' }}>The real final step runs on Pierre’s laptop and Karan’s Mac. This rehearsal never reaches a device; leave the approval window alone to show the 30-second timeout.</p>
     </section>
   );
 }
