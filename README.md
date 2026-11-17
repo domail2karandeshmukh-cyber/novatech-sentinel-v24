@@ -9,9 +9,9 @@ ESAIP (Angers, France) · MSc · Risk Management course · **Group 1** · Academ
 
 > [!IMPORTANT]
 > **This is an academic simulation.** NOVATECH SERVICES is a fictional case company. Every alert, incident,
-> telemetry value, financial figure and notification in the application is simulated and labelled
-> **SIMULATED** in the interface. The public website cannot shut down, isolate or change any real device,
-> network or payment. See [What is simulated and what is real](#5-what-is-simulated-and-what-is-real).
+> telemetry value, financial figure, and notification in the application is simulated and labelled
+> **SIMULATED** in the interface. The public website can't shut down, isolate, or change any real device,
+> network, or payment. See [What is simulated and what is real](#5-what-is-simulated-and-what-is-real).
 
 ![NOVATECH Sentinel landing page: an atlas of NOVATECH's offices in Angers, Nantes and Rennes, its EU cloud, bank, suppliers and clients](docs/images/landing.jpg)
 
@@ -39,7 +39,7 @@ ESAIP (Angers, France) · MSc · Risk Management course · **Group 1** · Academ
 **NOVATECH SERVICES** is the fictional case company of the course: an IT and digital-services firm with
 85 employees, €12 million turnover (70 % recurring), 230 clients, three offices (Angers head office, Nantes and
 Rennes), 40 % of staff teleworking, 35 % revenue growth and 25 planned hires. Its growth creates new exposure:
-dependence on the cloud, identity attacks, supplier and payment fraud, overloaded delivery teams and new
+dependence on the cloud, identity attacks, supplier and payment fraud, overloaded delivery teams, and new
 regulatory obligations.
 
 Group 1 analysed these risks and built **NOVATECH Sentinel** to show how a risk analysis becomes day-to-day
@@ -59,7 +59,7 @@ Version 2.4 brings three parts together in one web application:
 **Academic objectives**
 
 - Apply the complete risk-management process (context, identification, analysis, evaluation, treatment,
-  monitoring and review) to a realistic SME case.
+  monitoring, and review) to a realistic SME case.
 - Express risks in business terms: a likelihood × impact register, a board risk appetite, and financial
   exposure quantified in euros.
 - Turn the analysis into governance: named risk owners, authority levels, separation of duties, delegation and
@@ -70,8 +70,8 @@ Version 2.4 brings three parts together in one web application:
 
 **Project objectives**
 
-- One application in which the board, the risk coordinator and each department see the same risk picture.
-- A workflow in which no single person can request, approve, execute and verify the same action.
+- One application in which the board, the risk coordinator, and each department see the same risk picture.
+- A workflow in which no single person can request, approve, execute, and verify the same action.
 - Evidence that can be checked: who signed each step, when, and under which conditions.
 - Honest labelling: everything simulated is marked as such, and real device actions stay outside the public
   website.
@@ -82,14 +82,14 @@ Version 2.4 brings three parts together in one web application:
 
 | Step | How NOVATECH Sentinel supports it |
 | --- | --- |
-| **Context** | Company profile and an atlas of NOVATECH's offices, EU cloud regions, bank, ERP, subcontracted developers and client clusters |
+| **Context** | Company profile and an atlas of NOVATECH's offices, EU cloud regions, bank, ERP, subcontracted developers, and client clusters |
 | **Identify** | Risk register R1–R8 and an EBIOS RM study, from business values to attack scenarios |
 | **Analyse** | Likelihood (1–4) × impact (1–4) = score 1–16, on the course scale: 1–3 low, 4–7 moderate, 8–11 high, 12–16 critical |
 | **Evaluate** | Board risk appetite: a score of 12 or more is outside tolerance; annual loss limits per risk category |
-| **Quantify** | FAIR-style Monte Carlo simulation (10,000 iterations): expected annual loss, 1-in-10-year loss and the loss avoided by controls |
+| **Quantify** | FAIR-style Monte Carlo simulation (10,000 iterations): expected annual loss, 1-in-10-year loss, and the loss avoided by controls |
 | **Treat** | A treatment option per risk (for example reduce or transfer), action plans with owners, and 25 controls mapped to ISO/IEC 27001, NIS2, GDPR and DORA |
-| **Monitor and review** | Key risk indicators with warning and critical thresholds, control tests, continuity tests and vendor reviews |
-| **Report** | Board view, audit trail and after-action report |
+| **Monitor and review** | Key risk indicators with warning and critical thresholds, control tests, continuity tests, and vendor reviews |
+| **Report** | Board view, audit trail, and after-action report |
 
 **Risk register (case snapshot)**
 
@@ -100,12 +100,12 @@ Version 2.4 brings three parts together in one web application:
 | R3 | Human error / onboarding / training | Camille Laurent\* (HR) | 3 | 3 | 9 | High | 6 | Reduce |
 | R4 | Operational capacity / SLA failure | Julie Martin\* (Client Delivery) | 4 | 3 | 12 | Critical | 6 | Reduce |
 | R5 | Supplier / subcontractor failure | Marc Dubois\* (Procurement) | 3 | 3 | 9 | High | 6 | Reduce / Transfer |
-| R6 | Legal / compliance obligations | Sophie Girard\* (Legal & Compliance) | 2 | 3 | 6 | Moderate | 4 | Reduce |
+| R6 | Legal / compliance obligations | Sophie Girard\* (Legal and Compliance) | 2 | 3 | 6 | Moderate | 4 | Reduce |
 | R7 | Supplier payment fraud (business email compromise) | Sarah Perrin (CFO) | 3 | 4 | 12 | Critical | 6 | Reduce |
 | R8 | Unauthorised access to finance systems | Sarah Perrin (CFO) | 2 | 4 | 8 | High | 4 | Reduce |
 
 \* Fictional NOVATECH employee, not a Group 1 member. R1–R6 come from the group's original analysis; R7 and R8
-were added for Finance in the governance upgrade. Four risks (R1, R2, R4 and R7) are outside the board's
+were added for Finance in the governance upgrade. Four risks (R1, R2, R4, and R7) are outside the board's
 appetite.
 
 ### 3.2 Incident response: seven governed gates
@@ -115,12 +115,12 @@ and a signed form, and the gates are completed in order.
 
 | # | Gate | Guiding question | Owner in the ransomware scenario |
 | :-: | --- | --- | --- |
-| 1 | Detect & take ownership | Is this real, and who owns it? | Karan Deshmukh, Risk Coordinator |
+| 1 | Detect and take ownership | Is this real, and who owns it? | Karan Deshmukh, Risk Coordinator |
 | 2 | Cybersecurity assessment | What is technically happening, and what is the safest treatment? | Nadia Vasseur, Cybersecurity Analyst |
 | 3 | Financial impact | What could this cost the business? | Sarah Perrin, CFO |
 | 4 | Executive authorization | Who is allowed to approve this, and do they? | Victor Bonnet (CISO) and Vanessa Mallet (CEO) |
 | 5 | Authorised IT action | Do exactly what was approved, nothing more. | Pierre Sauvage, IT Operations Manager |
-| 6 | Independent verification | Did it work? Checked by someone who did not do it. | Victor Bonnet, CISO |
+| 6 | Independent verification | Did it work? Checked by someone who didn't do it. | Victor Bonnet, CISO |
 | 7 | Risk closure | What risk remains, and who owns the follow-up? | Karan Deshmukh, Risk Coordinator |
 
 The workflow can be rehearsed with three scenarios:
@@ -133,19 +133,19 @@ The workflow can be rehearsed with three scenarios:
 
 The incident engine (`src/sentinel/engine/incident.ts`) enforces these governance rules:
 
-- **Separation of duties.** An approver cannot be the requester or the executor, and dual control needs two
-  different people. The executor cannot have approved the action, and the verifier cannot have executed or
+- **Separation of duties.** An approver can't be the requester or the executor, and dual control needs two
+  different people. The executor can't have approved the action, and the verifier can't have executed or
   requested it. When the verifier also gave an approval, the platform discloses it instead of calling the
   check independent.
 - **Policy-routed approvals.** A disruptive security action needs the CISO. When the modelled exposure is
-  €100,000 or more, the CEO is added (dual control). A CFO who requests a payment hold cannot approve it
+  €100,000 or more, the CEO is added (dual control). A CFO who requests a payment hold can't approve it
   herself, so the approval is routed to the CEO.
 - **Return for revision and delegation.** An approver can send a treatment back for revision. When someone is
-  unavailable, authority passes only to a pre-defined deputy for a limited time; if there is no eligible
+  unavailable, authority passes only to a pre-defined deputy for a limited time; if there's no eligible
   deputy, the step is blocked.
 - **Signed hand-offs.** Each gate is a form, with fields such as severity (P1–P4), MITRE ATT&CK techniques, a
   low / likely / maximum loss range, approval conditions and validity, the change ticket, the verification
-  method, residual risk and follow-ups. A form cannot be signed until it is complete.
+  method, residual risk and follow-ups. A form can't be signed until it's complete.
 - **Evidence.** Every event is sealed in a SHA-256 hash-chained ledger that can be verified, tamper-tested and
   exported from the Evidence page.
 
@@ -155,14 +155,14 @@ The incident engine (`src/sentinel/engine/incident.ts`) enforces these governanc
 
 **Command and situational awareness**
 
-- A landing atlas of NOVATECH's sites, cloud regions, bank, ERP, suppliers, client clusters and teleworker
+- A landing atlas of NOVATECH's sites, cloud regions, bank, ERP, suppliers, client clusters, and teleworker
   homes, drawn on Natural Earth geography.
 - The Command Center shows the next authorised decision, current exposure, the top five risks, a heatmap, key
   risk indicators, open tasks and readiness.
 
 **Governed incident response**
 
-- Seven gates, three scenarios, signed forms, separation of duties, delegation and return for revision
+- Seven gates, three scenarios, signed forms, separation of duties, delegation, and return for revision
   (section 3.2).
 - *Challenge the controls*: what-if questions (the CEO is unavailable, the CEO sends the treatment back, the
   executor or the requester tries to approve) answered by the engine on a private copy and never recorded.
@@ -184,11 +184,11 @@ The incident engine (`src/sentinel/engine/incident.ts`) enforces these governanc
 
 **Presentation support**
 
-- Presenter Mode offers nine shows in 2, 5, 8, 12, 20 and 30-minute versions, with a private console, an
+- Presenter Mode offers nine shows in 2, 5, 8, 12, 20, and 30-minute versions, with a private console, an
   audience (projector) window, a phone script for each speaker, and a Q&A view in which every anticipated
   question has an owner, a short answer and a page that proves it.
 - NOVA narration uses the browser's on-device voices, with captions and synthesized sound cues. Light and dark
-  themes, projector contrast and reduced motion are supported.
+  themes, projector contrast, and reduced motion are supported.
 
 **Security-conscious design**
 
@@ -211,13 +211,13 @@ owner.
 | Capability | On the public website | Real-world effect |
 | --- | --- | --- |
 | Alerts, telemetry, key risk indicators, incidents, financial figures | Generated from a synthetic feed and fictional case data; labelled **SIMULATED** | None |
-| People and access | The persona switcher chooses who the visitor acts as. It is a presentation convenience, **not authentication**. | None |
-| Approvals, separation of duties, delegation | Real rule logic, evaluated in the visitor's browser | None. It demonstrates governance; it is not a security boundary. |
+| People and access | The persona switcher chooses who the visitor acts as. It's a presentation convenience, **not authentication**. | None |
+| Approvals, separation of duties, delegation | Real rule logic, evaluated in the visitor's browser | None. It demonstrates governance; it isn't a security boundary. |
 | Case-workspace data | A simulated in-browser backend holding a snapshot of the case data (27 October 2026); changes stay in that browser | None. A real database is used only when a build is configured with Supabase settings. |
-| Evidence ledger | SHA-256 hash chain computed and stored in the browser | Detects edits to recorded events, but is not an independent, server-side audit trail |
+| Evidence ledger | SHA-256 hash chain computed and stored in the browser | Detects edits to recorded events, but isn't an independent, server-side audit trail |
 | Notifications (inbox, e-mail, mobile push) | Simulated and labelled | None. No message is sent. |
 | IT actions (isolate an endpoint, cloud failover, payment hold) | Simulated | None. No system is touched. |
-| Final scene: power-off of the demonstration Mac for re-imaging | Simulated and labelled REHEARSAL, SIMULATED or PREVIEW | None from the public website |
+| Final scene: power-off of the demonstration Mac for re-imaging | Simulated and labelled REHEARSAL, SIMULATED, or PREVIEW | None from the public website |
 
 **Real device operations (optional, outside the public website).** If the team chooses, the final scene can
 power off one real computer: Karan's MacBook, which stands in for the compromised workstation FIN-WS-07. This
@@ -238,7 +238,7 @@ These tools are documented in [docs/DEVELOPER_GUIDE.md](docs/DEVELOPER_GUIDE.md)
 [V2_DEMO_GUIDE.md](V2_DEMO_GUIDE.md) and [docs/NATIVE_COMPANION.md](docs/NATIVE_COMPANION.md). The repository
 also contains an optional cloud relay (`api/remote.js`, [CLOUD_RELAY_SETUP.md](CLOUD_RELAY_SETUP.md)). It
 stays disabled unless server-side secrets are provisioned, and its Mac-side integration is incomplete in this
-version (see [Known limitations](#13-known-limitations)), so the public website cannot deliver a real request
+version (see [Known limitations](#13-known-limitations)), so the public website can't deliver a real request
 to a device.
 
 ## 6. Technology stack
@@ -350,7 +350,7 @@ presents one part of the story.
 | **Nadia Vasseur** | Cybersecurity Analyst | Detection and triage; incident investigation; cybersecurity action plan | Cybersecurity investigation |
 | **Sarah Perrin** | Finance Director (CFO / DAF) | Financial impact assessment; payment controls and dual control on payments; finance action plan | Financial analysis |
 | **Vanessa Mallet** | Chief Executive Officer | Company-level decisions; executive authorisation of high-impact actions (€100,000 or more) | Executive approval |
-| **Pierre Sauvage** | IT Operations Manager | Authorised technical execution only; infrastructure, endpoints and failover | IT execution |
+| **Pierre Sauvage** | IT Operations Manager | Authorised technical execution only; infrastructure, endpoints, and failover | IT execution |
 
 Other NOVATECH people in the application (for example Thomas Bernard, Léa Moreau and the Internal Auditor) are
 fictional and labelled as such.
@@ -386,7 +386,7 @@ browser; **Settings** can reset it.
   were added in `docs/images/`.
 - **Not in version control** (see `.gitignore`): `node_modules/`, `dist/`, `.vercel/`, `.env` and `.env.*`
   (except the empty template `.env.example`), log files and `.DS_Store`.
-- **No credentials.** No passwords, tokens, API keys or private keys are stored in this repository. The
+- **No credentials.** No passwords, tokens, API keys, or private keys are stored in this repository. The
   optional relay reads its secrets only from server-side environment variables, and the LAN agent generates its
   TLS key on the Mac at run time and stores it outside the project folder with restricted file permissions.
 - **Data minimisation.** The case-workspace snapshot contains no authentication user IDs, tokens, keys or
@@ -395,8 +395,8 @@ browser; **Settings** can reset it.
 
 ## 13. Known limitations
 
-- **Simulation boundary.** Personas are not authentication. Workspace changes, incident runs and the ledger live
-  in one browser. The ledger detects edits but is not a tamper-proof audit store. Financial figures are
+- **Simulation boundary.** Personas aren't authentication. Workspace changes, incident runs, and the ledger live
+  in one browser. The ledger detects edits but isn't a tamper-proof audit store. Financial figures are
   case-study estimates, not historical loss data.
 - **Presenter synchronisation** works only between windows of the same browser on the same computer.
 - **Voices** depend on the browser and device; no recorded or cloud voice is bundled.
@@ -405,16 +405,16 @@ browser; **Settings** can reset it.
   unchanged.
 - **Cloud relay incomplete.** `api/remote.js` and the browser panel on `/endpoint` are present, but in this
   version:
-  - the Mac agent does not start the relay client (`scripts/cloud-relay-client.mjs`);
-  - the `npm run remote:cloud:setup` command that `CLOUD_RELAY_SETUP.md` refers to is not defined in
+  - the Mac agent doesn't start the relay client (`scripts/cloud-relay-client.mjs`);
+  - the `npm run remote:cloud:setup` command that `CLOUD_RELAY_SETUP.md` refers to isn't defined in
     `package.json`;
-  - the local owner page that the guide describes is not served by `scripts/remote-helper-servers.mjs`, which
+  - the local owner page that the guide describes isn't served by `scripts/remote-helper-servers.mjs`, which
     is why `tests/remote-local-admin.test.mjs` fails.
 
-  As a result, the public website cannot deliver a real request to the Mac with this source.
+  As a result, the public website can't deliver a real request to the Mac with this source.
 - **Inherited lint debt.** The original enterprise pages fail the whole-project ESLint run, mainly because of
   explicit `any` types; the V2.4 code passes with warnings only.
-- **Not production software.** This is a classroom prototype. It has not been penetration-tested or certified,
+- **Not production software.** This is a classroom prototype. It hasn't been penetration-tested or certified,
   and the standards it references (ISO 31000, ISO/IEC 27005, ISO/IEC 27001, EBIOS RM, NIS2, DORA, GDPR and FAIR)
   are used for learning purposes only.
 
@@ -423,11 +423,11 @@ browser; **Settings** can reset it.
 | Document | Contents |
 | --- | --- |
 | [docs/DEVELOPER_GUIDE.md](docs/DEVELOPER_GUIDE.md) | The original developer README: routes, presenting, local Mac tools, rollback |
-| [docs/RELEASE_NOTES_V2.4.md](docs/RELEASE_NOTES_V2.4.md) | Changes, review fixes and test history of V2.4 |
+| [docs/RELEASE_NOTES_V2.4.md](docs/RELEASE_NOTES_V2.4.md) | Changes, review fixes, and test history of V2.4 |
 | [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md), [20 min](docs/DEMO_SCRIPT_20.md), [30 min](docs/DEMO_SCRIPT_30.md) | Presentation scripts |
 | [docs/ENTERPRISE_DEMO_DATA.md](docs/ENTERPRISE_DEMO_DATA.md) | How the case-workspace snapshot was captured and minimised |
 | [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) | Visual design system |
-| [docs/VOICE.md](docs/VOICE.md) | NOVA voice, pronunciation and costs of cloud voices |
+| [docs/VOICE.md](docs/VOICE.md) | NOVA voice, pronunciation, and costs of cloud voices |
 | [docs/NATIVE_COMPANION.md](docs/NATIVE_COMPANION.md) | Opt-in SwiftUI approval companion |
 | [V2_DEMO_GUIDE.md](V2_DEMO_GUIDE.md) | V2.3 demonstration sequence and security boundary |
 | [CLOUD_RELAY_SETUP.md](CLOUD_RELAY_SETUP.md) | Optional cloud relay (incomplete; see Known limitations) |
